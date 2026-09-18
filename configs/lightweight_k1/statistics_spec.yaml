@@ -1,0 +1,37 @@
+{
+ "confirmatory_family_holm_m3": {
+  "H1": "K1 vs S1: NI 0.02 then two-sided superiority (hierarchical)",
+  "H2": "K1 vs C_small: two-sided",
+  "H3": "Q8(K1) vs K1: NI 0.01"
+ },
+ "module": "src/methodology_v2/compression/stats.py",
+ "non_inferiority": "one-sided exact sign-flip on MARGIN-SHIFTED deltas (delta + m); H0: mean(delta) <= -m",
+ "paired_unit": "fold x seed (9 cells)",
+ "power_note": "n=9: smallest two-sided p 0.0039; Holm superiority needs ~8-9/9 positive cells; nulls are legitimate results",
+ "push_arms": {
+  "contrasts": [
+   "B1 vs S1",
+   "F1 vs S1-10%"
+  ],
+  "rule": "mean delta >= 0.02 AND two-sided p < 0.05 else 'not distinguishable'"
+ },
+ "report": [
+  "all 9 deltas",
+  "mean",
+  "median",
+  "SD",
+  "fraction positive",
+  "effect size mean/SD"
+ ],
+ "secondary_family_holm_m4": [
+  "K0 vs S0 NI 0.02",
+  "K1 vs K0 two-sided",
+  "Q8(S1) vs S1 NI 0.01",
+  "Q8(S0) vs S0 NI 0.01"
+ ],
+ "sensitivity": [
+  "per-dataset deltas",
+  "MacroDomainF1 excluding CWRU"
+ ],
+ "sign_flip": "exact, all 512 patterns"
+}

@@ -1,0 +1,80 @@
+{
+ "composition": "CWRU: one fixed native12 load partition in every global fold (TRAIN 0+1hp, VAL 2hp, TEST 3hp). JNU/HIT: sealed methodology_v2 fold k. MaFaulDa: mafaulda_v2.stratified.v1 fold k, radial-only. No split was regenerated.",
+ "cwru_membership_identical_across_folds": true,
+ "cwru_native12": true,
+ "cwru_protocol_dir": "pcste_v2/protocol/cwru_native12_load_v1",
+ "cwru_protocol_id": "pcste_v2_cwru_native12_load_v1",
+ "cwru_protocol_master": "10fa6270e3efda96c229dbb22f5377e65bd7355857a1f12d73bdbb419fdf17b1",
+ "final_spec_version": "final_s0_s1.v1",
+ "fold_1": {
+  "counts": {
+   "CWRU/test": 260,
+   "CWRU/train": 1007,
+   "CWRU/validation": 260,
+   "HIT/test": 280,
+   "HIT/train": 2632,
+   "HIT/validation": 280,
+   "JNU/test": 24,
+   "JNU/train": 120,
+   "JNU/validation": 24,
+   "MAFAULDA/test": 2115,
+   "MAFAULDA/train": 9783,
+   "MAFAULDA/validation": 2205
+  },
+  "n_windows": 18990,
+  "sha256": "456a69474a3763647b7e0ad13f5538e8f630d268347671ad617134b08e830d0a"
+ },
+ "fold_2": {
+  "counts": {
+   "CWRU/test": 260,
+   "CWRU/train": 1007,
+   "CWRU/validation": 260,
+   "HIT/test": 280,
+   "HIT/train": 2632,
+   "HIT/validation": 280,
+   "JNU/test": 24,
+   "JNU/train": 108,
+   "JNU/validation": 24,
+   "MAFAULDA/test": 2205,
+   "MAFAULDA/train": 9783,
+   "MAFAULDA/validation": 2115
+  },
+  "n_windows": 18978,
+  "sha256": "74029f81a4b5617b13218812aa26568b0f3a268f8f6b450b5ab0293b17f71f93"
+ },
+ "fold_3": {
+  "counts": {
+   "CWRU/test": 260,
+   "CWRU/train": 1007,
+   "CWRU/validation": 260,
+   "HIT/test": 280,
+   "HIT/train": 2632,
+   "HIT/validation": 280,
+   "JNU/test": 24,
+   "JNU/train": 120,
+   "JNU/validation": 24,
+   "MAFAULDA/test": 1850,
+   "MAFAULDA/train": 10161,
+   "MAFAULDA/validation": 2260
+  },
+  "n_windows": 19158,
+  "sha256": "fe622f3bc1146998d00fe070ea045f0790145b55a028effea52de00f94000f0e"
+ },
+ "freeze_inputs": [
+  "analysis/pcste_v2_final_s0_s1_v1/FINAL_SCIENTIFIC_SPEC.yaml",
+  "analysis/pcste_v2_final_s0_s1_v1/FINAL_STATISTICAL_PLAN.yaml",
+  "analysis/pcste_v2_final_s0_s1_v1/FINAL_S1_REFERENCE_ASSESSMENT.yaml",
+  "analysis/pcste_v2_final_s0_s1_v1/FINAL_GLOBAL_FOLD_MAPPING.csv",
+  "analysis/pcste_v2_final_s0_s1_v1/FINAL_MATCHING_AUDIT.csv",
+  "analysis/pcste_v2_final_s0_s1_v1/FINAL_SSL_RUN_MANIFEST.csv",
+  "analysis/pcste_v2_final_s0_s1_v1/FINAL_S0_RUN_MANIFEST.csv",
+  "analysis/pcste_v2_final_s0_s1_v1/FINAL_S1_RUN_MANIFEST.csv",
+  "analysis/pcste_v2_cwru_native12_migration/OFFICIAL_NATIVE12_SOURCE_INVENTORY.json"
+ ],
+ "mafaulda_protocol": "v2_stratified",
+ "steps_per_epoch": {
+  "1": 214,
+  "2": 212,
+  "3": 223
+ }
+}

@@ -1,0 +1,7 @@
+{
+ "protocol_id": "pcste_v2_cwru_native12_load_v1",
+ "status": "FROZEN",
+ "training_allowed": true,
+ "freeze_digest_sha256": "ddf4d32573c016b08da65b4f878ee0511a9bae4b15444626e1d932d24ebf39e4",
+ "note": "Final matched S0 vs S1 stage (final_s0_s1.v1). Re-frozen 2026-09-09 after an implementation-only fix to the SSL mask container size (no scientific quantity changed; regression-tested). training_allowed=true is scoped to the 27 registered trajectories; TEST remains behind the all-18 barrier."
+}

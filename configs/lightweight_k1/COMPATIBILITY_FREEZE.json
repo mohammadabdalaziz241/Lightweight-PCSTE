@@ -1,0 +1,43 @@
+{
+  "adapter_scope_only": [
+    "map new checkpoint model keys by removing the core. prefix",
+    "supply pcste_v2 final-v1 g0_c0 representations to the original Part6 interface",
+    "resolve new final-v1 window splits from the frozen manifest for the original TEST guard",
+    "resolve new final-v1 S1 checkpoint locations"
+  ],
+  "k1_contract": {
+    "alpha": 0.5,
+    "architecture": "half_4x1",
+    "checkpoint_selector": "validation MacroDomainF1 strict improvement",
+    "directions": 1,
+    "encoder_params": 1375953,
+    "ensemble_rule": "mean_prob_at_T",
+    "epochs": 50,
+    "kept_direction": "fwd",
+    "n_blocks": 4,
+    "relational_weight": 1.0,
+    "teacher_policy": "three S1 seeds from the same global fold",
+    "temperature": 4.0,
+    "uni_residual": "mean_of_remaining"
+  },
+  "pre_freeze_git_head": "8c92058c14a5119935ccaa3b485cecc3a44dc916",
+  "proof": {
+    "adapter_smoke_script_sha256": "5874e599930736e6782500cb08127e22b6edd7f9b566b2d601014c6e83cc4b81",
+    "baseline_provenance_sha256": "9754fff32029ea5c95a80542e148f055b163b4fa20320c868416e30835e7a186",
+    "final_s0_s1_barrier_sha256": "321bdedddec7613bcfc40f17175f427882f28e45c50a7241b1fd2f66365aa2a3",
+    "original_part6_code_hash_manifest_sha256": "19547c22656f2c01c230cc8a9fc37479a13d93e34fd2cef882fbd59e2c7b55ce",
+    "original_part6_spec_hash_manifest_sha256": "14051001564a929dd8a226c8d843049a126d0e369977933dbc5474a946b2cbac",
+    "smoke_report_sha256": "a958fedb736eac897ddb8f2c8ae9299afc0c765258b450edb5e9da1b67d8b0ee"
+  },
+  "scientific_policy": {
+    "original_part6_source_modified": false,
+    "reuse_original_part6_losses": true,
+    "reuse_original_part6_quantization_later": true,
+    "reuse_original_part6_student_surgery": true,
+    "reuse_original_part6_teacher_cache": true,
+    "reuse_original_part6_trainer": true,
+    "test_used_during_compatibility": false
+  },
+  "status": "COMPATIBILITY_PROVEN_AND_FROZEN",
+  "study": "pcste_v2_lightweight_v1"
+}

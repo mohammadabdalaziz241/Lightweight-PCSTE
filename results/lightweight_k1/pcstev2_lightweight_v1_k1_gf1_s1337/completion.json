@@ -1,0 +1,11 @@
+{
+ "best_checkpoint_sha256": "bda95639ad23241c6b047cbec0c825ee53a31bab4bed147484ad615062714725",
+ "best_epoch": 25,
+ "best_val_macro_f1": 0.9905436529191768,
+ "config_hash": "5754b23c4932a5c4c2b49961edc379c58b9e8a9e002d7023616b2619fd4a6217",
+ "epochs_completed": 50,
+ "note": "NO TEST evaluation here. K1 TEST remains blocked until all nine K1 cells are complete and frozen.",
+ "run_id": "pcstev2_lightweight_v1_k1_gf1_s1337",
+ "stream_sha256": "9829ae898a1d0f71b9482d18ce30f4c510359b6e7d293e8de9c5166748b21325",
+ "test_used": false
+}

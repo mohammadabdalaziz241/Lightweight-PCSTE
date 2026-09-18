@@ -1,0 +1,52 @@
+{
+ "allowlist_patterns": [
+  "^stem\\.proj$",
+  "^stem\\.proj_a$",
+  "^stem\\.proj_b$",
+  "^coords\\.proj$",
+  "^temporal\\.layers\\.\\d+\\.(fwd|bwd)\\.(in_proj|x_proj|out_proj)$",
+  "^mixer\\.score\\.[02]$",
+  "^mixer\\.(value|gate|context)$",
+  "^(heads\\.)?heads\\.[A-Z]+$"
+ ],
+ "denylist_patterns": [
+  "\\.dt_proj$",
+  "\\.A_log$",
+  "\\.D$",
+  "\\.conv1d$",
+  "norm$",
+  "^temporal\\.norm$",
+  "^mixer\\.norm$"
+ ],
+ "deployment_representations": {
+  "cpu_dynamic": "torch.ao dynamic quantization, per-channel int8 weights + dynamic int8 activations, allowlisted modules only (qualified-name qconfig dict)",
+  "sim": "int8 weight-only, dequantised fp32 compute (CPU=GPU numerics; the accuracy representation)"
+ },
+ "exploratory_val_only": [
+  "fp16_all_but_sensitive",
+  "w4_per_group_in_out_proj",
+  "static_w8a8_train_calibrated",
+  "leave_one_tensor_sensitivity"
+ ],
+ "fp32_tensor_patterns": [
+  "\\.dt_proj\\.",
+  "\\.A_log$",
+  "\\.D$",
+  "\\.conv1d\\.",
+  "norm\\.(weight|bias)$"
+ ],
+ "latency_claim": "NONE for Q8 (weight-only int8 does not speed the reference scan)",
+ "ni_margin": 0.01,
+ "plan_module": "src/methodology_v2/compression/quantization.py",
+ "recipe": "Q8",
+ "size_measurement": "actual torch.save bytes of the compact int8 state and of the torch.ao state (never an estimate)",
+ "stays_fp32": [
+  "dt_proj",
+  "A_log",
+  "D",
+  "conv1d",
+  "all LayerNorms",
+  "recurrent state / exp(delta*A) path (not a parameterised module \u2014 untouched by construction)"
+ ],
+ "weights": "per-output-channel symmetric int8, zero-point 0, scale=max|w_row|/127"
+}

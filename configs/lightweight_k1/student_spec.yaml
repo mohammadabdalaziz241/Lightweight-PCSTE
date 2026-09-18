@@ -1,0 +1,184 @@
+{
+ "compact_student_RESOLVED": {
+  "R_per_band_T24": 589824,
+  "architecture_hash": "745ff30dc98116f49e8827b7a81a309084c63ca9d49b4c66c04e93aea02cbcff",
+  "breakdown": {
+   "coordinate_encoder": 6336,
+   "cross_band_mixer": 164737,
+   "patch_stem": 196880,
+   "temporal_backbone": 1008000,
+   "total": 1375953
+  },
+  "chosen_by": "pre-registered Stage-2 rule (median validation MacroDomainF1 after training-free removal), executed before sealing \u2014 see half_student_decision.json",
+  "d_inner": 384,
+  "d_model": 192,
+  "d_state": 16,
+  "directions": 1,
+  "dt_rank": 12,
+  "encoder_params": 1375953,
+  "head_params": 3860,
+  "n_blocks": 4,
+  "scan_steps_T23": 92,
+  "scan_steps_T24": 96,
+  "spec": {
+   "d_inner": 384,
+   "d_model": 192,
+   "d_state": 16,
+   "directions": 1,
+   "dt_rank": 12,
+   "n_blocks": 4,
+   "name": "half_4x1",
+   "stem_rank": null,
+   "uni_residual": "mean_of_remaining"
+  },
+  "surgery": "keep the fwd direction of every layer + all norms/stem/coords/mixer/heads verbatim; drop bwd blocks",
+  "total_params": 1379813,
+  "variant": "4x1"
+ },
+ "full": {
+  "R_per_band_T24": 1179648,
+  "architecture_hash": "0451ce0d2b2b3c2d82c58643eefc3be1e1de811729b1c5e352cb2be5e23fbb5c",
+  "breakdown": {
+   "coordinate_encoder": 6336,
+   "cross_band_mixer": 164737,
+   "patch_stem": 196880,
+   "temporal_backbone": 2014080,
+   "total": 2382033
+  },
+  "d_inner": 384,
+  "d_model": 192,
+  "d_state": 16,
+  "directions": 2,
+  "dt_rank": 12,
+  "encoder_params": 2382033,
+  "head_params": 3860,
+  "n_blocks": 4,
+  "scan_steps_T23": 184,
+  "scan_steps_T24": 192,
+  "spec": {
+   "d_inner": 384,
+   "d_model": 192,
+   "d_state": 16,
+   "directions": 2,
+   "dt_rank": 12,
+   "n_blocks": 4,
+   "name": "full",
+   "stem_rank": null,
+   "uni_residual": "mean_of_remaining"
+  },
+  "total_params": 2385893
+ },
+ "half_student_alternative_4x1": {
+  "R_per_band_T24": 589824,
+  "breakdown": {
+   "coordinate_encoder": 6336,
+   "cross_band_mixer": 164737,
+   "patch_stem": 196880,
+   "temporal_backbone": 1008000,
+   "total": 1375953
+  },
+  "d_inner": 384,
+  "d_model": 192,
+  "d_state": 16,
+  "directions": 1,
+  "dt_rank": 12,
+  "encoder_params": 1375953,
+  "head_params": 3860,
+  "n_blocks": 4,
+  "note": "equal-cost comparator for the pre-registered Stage-2 rule (median validation MacroDomainF1 after training-free removal); never the a-priori primary",
+  "scan_steps_T23": 92,
+  "scan_steps_T24": 96,
+  "spec": {
+   "d_inner": 384,
+   "d_model": 192,
+   "d_state": 16,
+   "directions": 1,
+   "dt_rank": 12,
+   "n_blocks": 4,
+   "name": "half_4x1",
+   "stem_rank": null,
+   "uni_residual": "mean_of_remaining"
+  },
+  "total_params": 1379813
+ },
+ "student_d": {
+  "R_per_band_T24": 589824,
+  "architecture_hash": "f441a0a09df9debbfb3daf32a97476a36d570a9445e2d497649e142ceae21046",
+  "breakdown": {
+   "coordinate_encoder": 6336,
+   "cross_band_mixer": 164737,
+   "patch_stem": 196880,
+   "temporal_backbone": 1007232,
+   "total": 1375185
+  },
+  "d_inner": 384,
+  "d_model": 192,
+  "d_state": 16,
+  "directions": 2,
+  "dt_rank": 12,
+  "encoder_params": 1375185,
+  "head_params": 3860,
+  "n_blocks": 2,
+  "scan_steps_T23": 92,
+  "scan_steps_T24": 96,
+  "spec": {
+   "d_inner": 384,
+   "d_model": 192,
+   "d_state": 16,
+   "directions": 2,
+   "dt_rank": 12,
+   "n_blocks": 2,
+   "name": "student_d",
+   "stem_rank": null,
+   "uni_residual": "mean_of_remaining"
+  },
+  "total_params": 1379045
+ },
+ "student_d_surgery": {
+  "copied_verbatim": [
+   "stem",
+   "coords",
+   "temporal.norm (final LN)",
+   "mixer",
+   "heads"
+  ],
+  "mapping": "student temporal.layers.i <- teacher temporal.layers.retained[i]; every tensor shape-checked; strict load",
+  "retained_layers": [
+   0,
+   2
+  ]
+ },
+ "student_dw": {
+  "R_per_band_T24": 393216,
+  "architecture_hash": "3793cb712dbb6044d6d39d02e9883c37c1243f16147da81ff21c18514d951e67",
+  "breakdown": {
+   "coordinate_encoder": 4224,
+   "cross_band_mixer": 77441,
+   "patch_stem": 131280,
+   "temporal_backbone": 466688,
+   "total": 679633
+  },
+  "d_inner": 256,
+  "d_model": 128,
+  "d_state": 16,
+  "directions": 2,
+  "dt_rank": 8,
+  "encoder_params": 679633,
+  "head_params": 2580,
+  "n_blocks": 2,
+  "scan_steps_T23": 92,
+  "scan_steps_T24": 96,
+  "spec": {
+   "d_inner": 256,
+   "d_model": 128,
+   "d_state": 16,
+   "directions": 2,
+   "dt_rank": 8,
+   "n_blocks": 2,
+   "name": "student_dw",
+   "stem_rank": null,
+   "uni_residual": "mean_of_remaining"
+  },
+  "total_params": 682213
+ }
+}

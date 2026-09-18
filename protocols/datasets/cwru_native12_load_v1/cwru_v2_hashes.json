@@ -1,0 +1,17 @@
+{
+ "protocol_id": "pcste_v2_cwru_native12_load_v1",
+ "files": {
+  "cwru_load_disjointness_audit.json": "141f25fac5330a355cc682ff14aec15bd9dd434554cdb82bdb9d3a3f6ce089bd",
+  "cwru_load_source_audit.csv": "cc194e5b42f0fee833fc9d1482031cc6da82437695a2725fcc3f5c57b8fbffa5",
+  "cwru_load_split_summary.csv": "bdef4881f89940be152fdbbccababee9940f5cd33630c7942c09e7e1676ebd3d",
+  "cwru_n12_allowlist.json": "f3dca78b4d0d1ca2fcb7fe1d8814103f2629b691620039a8ee42b89fcc3e0696",
+  "cwru_n12_de_fe_tables.csv": "97a401b431b14b597bbad4052b204428450ff6a0a17f2577bf5d01129af8b7b2",
+  "cwru_n12_denylist.csv": "a33a65ef0682d31e43d9cfa9983139d681950e320895ecab7deb6233eeff43ac",
+  "cwru_n12_structural_exclusions.csv": "37fea6af1ab348be2c467943bbe1475e9a11d4233468c427f43738cf13be8ec2",
+  "cwru_v2_folds.json": "09af0279745e43bfb79f145605b87cbb40e0cdaba4a18792d83d33d69c6de357",
+  "cwru_v2_recordings.csv": "58a3ba3030a2d8b23349d5f35f042e2e9eea728291fde1e745f165718e378ad2",
+  "cwru_v2_windows_fold_1.csv": "c9cfe35009332cc1e87d892dd42ef5b850ae2ad4c2ee77979bcb4c6508d45cd2"
+ },
+ "master": "10fa6270e3efda96c229dbb22f5377e65bd7355857a1f12d73bdbb419fdf17b1",
+ "native12": true
+}

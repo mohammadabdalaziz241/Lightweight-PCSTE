@@ -1,0 +1,7 @@
+{
+ "protocol_id": "pcste_v2_cwru_native12_load_v1",
+ "freeze_digest_sha256": "ddf4d32573c016b08da65b4f878ee0511a9bae4b15444626e1d932d24ebf39e4",
+ "n_bundle_files": 69,
+ "index_file": "FREEZE_BUNDLE_INDEX.txt",
+ "digest_input": "sorted 'relative_path sha256' lines of the bundle index (this file, PROTOCOL_STATUS.json and the index file excluded)"
+}

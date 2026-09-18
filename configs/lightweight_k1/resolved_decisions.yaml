@@ -1,0 +1,23 @@
+{
+ "compact_student_variant": "4x1",
+ "ensemble_rule": "mean_prob_at_T",
+ "f1_batch_composition": {
+  "note": "F1 stays disabled and non-runnable until the registered 10%-label S1 runs exist; the composition must be resolved in a documented amendment BEFORE enabling F1 (never from TEST).",
+  "status": "DEFERRED_UNTIL_FEWSHOT"
+ },
+ "half_student_direction_variant": {
+  "keep": "fwd",
+  "residual": "mean_of_remaining"
+ },
+ "relational_alpha_kl_weight": 1.0,
+ "stage2_fallback_threshold": {
+  "max_drop": 0.05,
+  "metric": "median validation MacroDomainF1 drop after training-free removal",
+  "scope": "Stage-2 d_inner/d_state pruning-ratio fallback (384->320, 16->12) within the descriptive sensitivity screens; does NOT alter the sealed Student-D architecture of Stage 3"
+ },
+ "student_d_retained_layers": [
+  0,
+  2
+ ],
+ "student_dw_stem_rank": null
+}

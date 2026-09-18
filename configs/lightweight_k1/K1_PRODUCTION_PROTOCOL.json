@@ -1,0 +1,94 @@
+{
+  "adapter_scope_only": [
+    "strip core. namespace prefix from final-v1 control checkpoint",
+    "provide final-v1 g0_c0 representation tuple to original Part6 interface",
+    "resolve final-v1 split membership from the frozen global manifest for the original Part6 TEST guard",
+    "resolve frozen final-v1 S1 checkpoint paths through FINAL_SELECTED_CHECKPOINTS.csv"
+  ],
+  "architecture": {
+    "d_inner": 384,
+    "d_model": 192,
+    "d_state": 16,
+    "directions": 1,
+    "dt_rank": 12,
+    "encoder_params": 1375953,
+    "kept_direction": "fwd",
+    "n_blocks": 4,
+    "name": "half_4x1",
+    "stem_rank": null,
+    "uni_residual": "mean_of_remaining"
+  },
+  "cells": [
+    {
+      "global_fold": 1,
+      "seed": 42
+    },
+    {
+      "global_fold": 1,
+      "seed": 1337
+    },
+    {
+      "global_fold": 1,
+      "seed": 2026
+    },
+    {
+      "global_fold": 2,
+      "seed": 42
+    },
+    {
+      "global_fold": 2,
+      "seed": 1337
+    },
+    {
+      "global_fold": 2,
+      "seed": 2026
+    },
+    {
+      "global_fold": 3,
+      "seed": 42
+    },
+    {
+      "global_fold": 3,
+      "seed": 1337
+    },
+    {
+      "global_fold": 3,
+      "seed": 2026
+    }
+  ],
+  "initialization": "same-cell frozen final-v1 Full S1 best.pt",
+  "loss": {
+    "alpha": 0.5,
+    "ensemble_rule": "mean_prob_at_T",
+    "kind": "kd_ensemble+relational",
+    "kl_direction": "KL(teacher_T || student_T), sum over classes",
+    "label_smoothing": 0.0,
+    "reduction": "mean over datasets of per-dataset window means",
+    "relational_weight": 1.0,
+    "temperature": 4.0
+  },
+  "post_baseline_test_disclosure": {
+    "baseline_s0_s1_test_results_already_known": true,
+    "implication": "This lightweight extension was finalised after the baseline S0/S1 TEST results were known. No K1 rule may be changed using future K1 TEST results."
+  },
+  "registered_cells": 9,
+  "source_hashes": {
+    "compatibility_freeze_sha256": "5eb16c5dab0023000c5c49a8a11efa917eacbe9f3e487b3d70a835933604e868",
+    "main_s0_s1_barrier_sha256": "321bdedddec7613bcfc40f17175f427882f28e45c50a7241b1fd2f66365aa2a3",
+    "original_part6_code_hash_manifest_sha256": "19547c22656f2c01c230cc8a9fc37479a13d93e34fd2cef882fbd59e2c7b55ce",
+    "original_part6_spec_hash_manifest_sha256": "14051001564a929dd8a226c8d843049a126d0e369977933dbc5474a946b2cbac",
+    "registered_cells_csv_sha256": "6d7e91b0bbd4ade3befbb97fccf18394526be33e8b7e54ef9c9fbcd0a5cee753"
+  },
+  "status": "K1_PRODUCTION_REGISTERED",
+  "study": "pcste_v2_lightweight_v1",
+  "teacher_cache": "original Part6 teacher cache; TRAIN+VAL only; raw per-seed logits, embedding, mixer alpha and band summaries",
+  "teacher_policy": "three frozen final-v1 S1 teachers from the same global fold: seeds 42, 1337, 2026",
+  "test_policy": "No lightweight TEST evaluation during teacher caching, training, validation, checkpoint selection or implementation verification. All nine K1 cells must be completed and frozen before any K1 TEST.",
+  "training": {
+    "checkpoint_rule": "max validation MacroDomainF1; strict >; ties retain earlier epoch; no early stopping",
+    "epochs": 50,
+    "implementation": "original src/methodology_v2/compression/Part6Trainer",
+    "optimizer_scheduler": "original Part6Trainer optimizer and scheduler",
+    "stream": "exact matching final-v1 SupervisedSampler stream"
+  }
+}

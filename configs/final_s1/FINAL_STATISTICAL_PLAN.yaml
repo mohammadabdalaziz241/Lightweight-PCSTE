@@ -1,0 +1,76 @@
+{
+ "aggregation_rules": {
+  "join_keys": "immutable (global_fold, seed, dataset, partition); never row order",
+  "macro3": "same, excluding CWRU",
+  "macro4": "equal mean of the four dataset metrics WITHIN a cell, then averaged over the nine cells per strategy",
+  "paired_sd": "SD of the paired differences themselves, not derived from the two arm summaries",
+  "sd": "ddof=1 over cells; never average dataset SDs and never pool windows across datasets"
+ },
+ "assumptions_and_limits": [
+  "the enumeration is exact for the specified sign-flip reference distribution; pairing alone does not prove independent or exchangeable signs",
+  "overlapping training data across global folds, repeated seeds and the single fixed CWRU evaluation population limit population-level interpretation",
+  "the result is conditional evidence over the nine registered cells, not an exact unseen-machine generalisation guarantee",
+  "the smallest attainable non-zero two-sided p with nine non-zero pairs is 2/512 = 0.00390625; limited evidence must not be disguised by treating windows as replicates",
+  "CWRU's nine cells reuse ONE fixed 260-window evaluation population: they represent three seeds and three other-dataset joint-training contexts, not nine independent CWRU folds or specimen samples; they are never described as 2340 independent examples",
+  "this experiment addresses full-label downstream initialisation only: similar performance does not establish label efficiency, transfer to another machine, or reduced total compute; S1's additional pretraining cost is reported",
+  "training curves may describe optimisation behaviour but the primary endpoint is never retrospectively redefined as convergence speed"
+ ],
+ "companion_endpoint": {
+  "definition": "same construction using the unweighted macro one-vs-rest ROC AUC per dataset",
+  "name": "Macro-4 TEST AUC"
+ },
+ "dataset_claim_language": {
+  "CWRU": "native12 same-specimen/different-load evaluation",
+  "HIT": "held-out logical-recording generalisation within the same rig",
+  "JNU": "guarded within-recording temporal generalisation",
+  "MAFAULDA": "the retained configuration/severity-based evaluation, including class-specific grouping exceptions",
+  "joint": "none of these alone proves unseen-machine generalisation, and none of them is the separate unseen-specimen CWRU benchmark"
+ },
+ "final_spec_version": "final_s0_s1.v1",
+ "interpretation_labels": {
+  "SSL_BENEFICIAL": "positive mean Macro-4 TEST F1 delta AND Holm-adjusted F1 p < 0.05 under the stated conditional analysis; report whether AUC agrees, the win/loss pattern and the practical magnitude; significance is not equated with a large improvement",
+  "SSL_COMPETITIVE": "neither superiority nor inferiority established, both mean Macro-4 F1 and AUC deltas within a predeclared +/-0.01 descriptive band, and no contradictory significant AUC result; this means observed full-label performance is close, NOT proven equivalence or non-inferiority; dispersion and unstable cells must be reported",
+  "SSL_INCONCLUSIVE_OR_MIXED": "everything else, including substantial but uncertain effects, conflicting endpoints, or inadequate inferential assumptions; if F1 and AUC are significant in opposite directions this label is used",
+  "SSL_UNFAVOURABLE": "negative mean Macro-4 TEST F1 delta AND Holm-adjusted F1 p < 0.05, with the same qualifications"
+ },
+ "primary_endpoint": {
+  "definition": "within each cell, Macro-4 = equal mean of the four dataset Macro-F1 values on TEST; the paired difference is S1 minus S0 for that pair",
+  "n_pairs": 9,
+  "name": "Macro-4 TEST F1"
+ },
+ "reported_per_endpoint": [
+  "all nine deltas",
+  "mean",
+  "sample SD (ddof=1)",
+  "median",
+  "counts of positive / zero / negative",
+  "raw p",
+  "Holm-adjusted p"
+ ],
+ "status": "FROZEN_BEFORE_TRAINING",
+ "test": {
+  "forbidden": [
+   "Monte-Carlo sampling",
+   "shuffling pair identities",
+   "unpaired tests",
+   "switching to one-sided after seeing signs",
+   "searching datasets/checkpoints/label fractions for significance"
+  ],
+  "implementation": "the repository's existing standalone sign-flip primitive (src/methodology_v2/compression/stats.py) is reused after verification; none of its lightweight-pipeline conclusions or non-inferiority margins are imported",
+  "name": "exact two-sided paired sign-flip (permutation) test",
+  "procedure": "enumerate all 2^9 = 512 sign patterns of the nine fixed paired differences; with T = |mean(delta)|, p = fraction of patterns with |mean(sign * delta)| >= T - tol",
+  "sampling": "none: exact enumeration (512 patterns)",
+  "ties": "included; all-zero deltas give p = 1",
+  "tolerance": 1e-12
+ },
+ "testing_family": {
+  "alpha": 0.05,
+  "correction": "Holm",
+  "members": [
+   "Macro-4 TEST F1",
+   "Macro-4 TEST AUC"
+  ],
+  "note": "dataset-level and Macro-3 paired analyses are DESCRIPTIVE and are not part of this family; VAL comparisons are reported separately and are not tested"
+ },
+ "unit_of_analysis": "one pair = (global_fold, seed); 9 pairs; each contributes ONE paired difference S1 - S0"
+}

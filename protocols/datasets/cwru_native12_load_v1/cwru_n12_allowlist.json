@@ -1,0 +1,742 @@
+{
+ "files": {
+  "data/raw/ball/B007_0_DE12k.mat": {
+   "mat_variable": "X118_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "118.mat",
+   "sha256": "b00628f8dd8d1d930af77fa465d1e5cdb385fe259489053f91f3680bda7f640e",
+   "source_url": "https://engineering.case.edu/sites/default/files/118.mat"
+  },
+  "data/raw/ball/B007_1_DE12k.mat": {
+   "mat_variable": "X119_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "119.mat",
+   "sha256": "bc72d9df7668219e004a0f711232b23ec0aed393eb9bd8f9f5483426f6b51330",
+   "source_url": "https://engineering.case.edu/sites/default/files/119.mat"
+  },
+  "data/raw/ball/B007_2_DE12k.mat": {
+   "mat_variable": "X120_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "120.mat",
+   "sha256": "e0b7a584c49af52335ff0904a97d4afcf02d045625c582de63a7c85ce10b489c",
+   "source_url": "https://engineering.case.edu/sites/default/files/120.mat"
+  },
+  "data/raw/ball/B007_3_DE12k.mat": {
+   "mat_variable": "X121_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "121.mat",
+   "sha256": "52f686e984ba8e9b04a047a57416271cdb322cee57ee105dce58926a24b966cb",
+   "source_url": "https://engineering.case.edu/sites/default/files/121.mat"
+  },
+  "data/raw/ball/B014_0_DE12k.mat": {
+   "mat_variable": "X185_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "185.mat",
+   "sha256": "5bea2c60f177215ba3ec4ae287faf745d7e14aed1a12efe9e37b27c27044bafc",
+   "source_url": "https://engineering.case.edu/sites/default/files/185.mat"
+  },
+  "data/raw/ball/B014_1_DE12k.mat": {
+   "mat_variable": "X186_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "186.mat",
+   "sha256": "1b3b6f3ad38e891feaa8026fe957b34f62f9082785089cc74f6878acdfe88ec5",
+   "source_url": "https://engineering.case.edu/sites/default/files/186.mat"
+  },
+  "data/raw/ball/B014_2_DE12k.mat": {
+   "mat_variable": "X187_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "187.mat",
+   "sha256": "0f1338cce89beb5c8d8e5e154579bc576354e7c7d1617ebd1759662c6f3100b2",
+   "source_url": "https://engineering.case.edu/sites/default/files/187.mat"
+  },
+  "data/raw/ball/B014_3_DE12k.mat": {
+   "mat_variable": "X188_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "188.mat",
+   "sha256": "1981614324d653c2522bea68fd4fd87e337495b117d12596db67abd1e10e7443",
+   "source_url": "https://engineering.case.edu/sites/default/files/188.mat"
+  },
+  "data/raw/ball/B021_0_DE12k.mat": {
+   "mat_variable": "X222_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "222.mat",
+   "sha256": "fcc0ee740fa123b1f4683f555458891719efb2857afd9fdee63e8fde0ed14469",
+   "source_url": "https://engineering.case.edu/sites/default/files/222.mat"
+  },
+  "data/raw/ball/B021_1_DE12k.mat": {
+   "mat_variable": "X223_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "223.mat",
+   "sha256": "7287410fd2217e3b332c5ab4732a68963be046d7d17bd40efa41cabe6a0514e5",
+   "source_url": "https://engineering.case.edu/sites/default/files/223.mat"
+  },
+  "data/raw/ball/B021_2_DE12k.mat": {
+   "mat_variable": "X224_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "224.mat",
+   "sha256": "8a16894c2ff4d6bcdb9f4c345c0d5f13737b3bd6d15015d6b566c86e7a3ee7b7",
+   "source_url": "https://engineering.case.edu/sites/default/files/224.mat"
+  },
+  "data/raw/ball/B021_3_DE12k.mat": {
+   "mat_variable": "X225_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "225.mat",
+   "sha256": "ece92fa141af03473fdfca80d00d9112472a20340224514e79979c6ddc97a6cf",
+   "source_url": "https://engineering.case.edu/sites/default/files/225.mat"
+  },
+  "data/raw/ball/B028_0_DE12k.mat": {
+   "mat_variable": "X048_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "3005.mat",
+   "sha256": "37f3f8e0268a9cd7df8ff5e15e326be06ab099b2291a2282041d01bb89a7c924",
+   "source_url": "https://engineering.case.edu/sites/default/files/3005.mat"
+  },
+  "data/raw/ball/B028_1_DE12k.mat": {
+   "mat_variable": "X049_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "3006.mat",
+   "sha256": "b642c57602deaeecfa33291d9179a2d2c2d997e0c23b44598a3cdecb9533d3f1",
+   "source_url": "https://engineering.case.edu/sites/default/files/3006.mat"
+  },
+  "data/raw/ball/B028_2_DE12k.mat": {
+   "mat_variable": "X050_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "3007.mat",
+   "sha256": "9b1ce8c46b4df3c3a8ab5f18a3fceaa78b0c17904716abc1bf6066c7235a226c",
+   "source_url": "https://engineering.case.edu/sites/default/files/3007.mat"
+  },
+  "data/raw/ball/B028_3_DE12k.mat": {
+   "mat_variable": "X051_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "3008.mat",
+   "sha256": "ac958f7b5a1c00469849e6104a1869d75231cddd0742a39d36475fce589ee475",
+   "source_url": "https://engineering.case.edu/sites/default/files/3008.mat"
+  },
+  "data/raw/inner_race/IR007_0_DE12k.mat": {
+   "mat_variable": "X105_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "105.mat",
+   "sha256": "f80b0ea04fd06b372a0eaec7c056543ea37e4bb4727a5b173d2a5bacd2aa9cab",
+   "source_url": "https://engineering.case.edu/sites/default/files/105.mat"
+  },
+  "data/raw/inner_race/IR007_1_DE12k.mat": {
+   "mat_variable": "X106_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "106.mat",
+   "sha256": "e5cec7cdd138e6cd1deb9ed8634e5aaa9bc1bd7094ddc075bff606580eb6e883",
+   "source_url": "https://engineering.case.edu/sites/default/files/106.mat"
+  },
+  "data/raw/inner_race/IR007_2_DE12k.mat": {
+   "mat_variable": "X107_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "107.mat",
+   "sha256": "111ba8996a115684661a13c913bd74d8029a59294492f88aec7b03e175fdd388",
+   "source_url": "https://engineering.case.edu/sites/default/files/107.mat"
+  },
+  "data/raw/inner_race/IR007_3_DE12k.mat": {
+   "mat_variable": "X108_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "108.mat",
+   "sha256": "d415f0e65128bfa0b118c2051c988fb0dc6ce3e4c8aa45fdc5ad1d0967462e7d",
+   "source_url": "https://engineering.case.edu/sites/default/files/108.mat"
+  },
+  "data/raw/inner_race/IR014_0_DE12k.mat": {
+   "mat_variable": "X169_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "169.mat",
+   "sha256": "f5448673725c4ea2735fe7d3fe4b16ad82b217eac6b62c4bf351c4549b0a5229",
+   "source_url": "https://engineering.case.edu/sites/default/files/169.mat"
+  },
+  "data/raw/inner_race/IR014_1_DE12k.mat": {
+   "mat_variable": "X170_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "170.mat",
+   "sha256": "bcb73a5208b67265468232a2e342f53719850901671d0ee28494f3af97621f46",
+   "source_url": "https://engineering.case.edu/sites/default/files/170.mat"
+  },
+  "data/raw/inner_race/IR014_2_DE12k.mat": {
+   "mat_variable": "X171_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "171.mat",
+   "sha256": "63d0fdc1a68e64610ddfaf56a9c224d6137ab7b5c0d318eea1d542b9e5ffc029",
+   "source_url": "https://engineering.case.edu/sites/default/files/171.mat"
+  },
+  "data/raw/inner_race/IR014_3_DE12k.mat": {
+   "mat_variable": "X172_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "172.mat",
+   "sha256": "f75170ceef70d5da475671de0d2e52a0acd9b3883ad422b6deaf2907d888ba24",
+   "source_url": "https://engineering.case.edu/sites/default/files/172.mat"
+  },
+  "data/raw/inner_race/IR021_0_DE12k.mat": {
+   "mat_variable": "X209_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "209.mat",
+   "sha256": "9f723d6d9d2eba714c6dc50f99321dffa73d8b1e4d3605675b2c2251511eff80",
+   "source_url": "https://engineering.case.edu/sites/default/files/209.mat"
+  },
+  "data/raw/inner_race/IR021_1_DE12k.mat": {
+   "mat_variable": "X210_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "210.mat",
+   "sha256": "596692397e77e129a00f7b7a61c4c3ffd6c7a59979b89039e7f70a7431cce1c7",
+   "source_url": "https://engineering.case.edu/sites/default/files/210.mat"
+  },
+  "data/raw/inner_race/IR021_2_DE12k.mat": {
+   "mat_variable": "X211_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "211.mat",
+   "sha256": "8296a02ee489c2d16cbd9fc278ca2e29b22475cec70ebe840558c78b6b743dc1",
+   "source_url": "https://engineering.case.edu/sites/default/files/211.mat"
+  },
+  "data/raw/inner_race/IR021_3_DE12k.mat": {
+   "mat_variable": "X212_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "212.mat",
+   "sha256": "bfe13761f545a26b217db897a12d27e16fec74306aa86ade8dbdc8ebe587c253",
+   "source_url": "https://engineering.case.edu/sites/default/files/212.mat"
+  },
+  "data/raw/inner_race/IR028_0_DE12k.mat": {
+   "mat_variable": "X056_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "3001.mat",
+   "sha256": "2e7400f922b75888dbee1fc3ab8c7cd770822127aa97353b7b622de103e79d46",
+   "source_url": "https://engineering.case.edu/sites/default/files/3001.mat"
+  },
+  "data/raw/inner_race/IR028_1_DE12k.mat": {
+   "mat_variable": "X057_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "3002.mat",
+   "sha256": "13556b993e01d95a48c6693f592bbea4da2252c99eb94d2f4a0961d8b3af033a",
+   "source_url": "https://engineering.case.edu/sites/default/files/3002.mat"
+  },
+  "data/raw/inner_race/IR028_2_DE12k.mat": {
+   "mat_variable": "X058_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "3003.mat",
+   "sha256": "ef7ebceaee0a1da63c6da18f227e3582d6c626dbce2d84a06674872645cb8272",
+   "source_url": "https://engineering.case.edu/sites/default/files/3003.mat"
+  },
+  "data/raw/inner_race/IR028_3_DE12k.mat": {
+   "mat_variable": "X059_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "3004.mat",
+   "sha256": "5c0a940bcef2b4850c826f3480f493ea69c68a09b79a70e79c7fa5cb39020c32",
+   "source_url": "https://engineering.case.edu/sites/default/files/3004.mat"
+  },
+  "data/raw/outer_race/OR007@12_0_DE12k.mat": {
+   "mat_variable": "X156_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "156.mat",
+   "sha256": "d6ebef8850c114f136018381f6d3fa1c700073a784fffac72c0c8a3e21a227e3",
+   "source_url": "https://engineering.case.edu/sites/default/files/156.mat"
+  },
+  "data/raw/outer_race/OR007@12_1_DE12k.mat": {
+   "mat_variable": "X158_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "158.mat",
+   "sha256": "9ca1d5954e2ab970d3e8e87d069a1a468151f177071b4b7dc6f9ca1acfd0dfcd",
+   "source_url": "https://engineering.case.edu/sites/default/files/158.mat"
+  },
+  "data/raw/outer_race/OR007@12_2_DE12k.mat": {
+   "mat_variable": "X159_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "159.mat",
+   "sha256": "a0544e211cda781e06c70a29fbbc34ff871625dd9929917cfb5367b8bc59d236",
+   "source_url": "https://engineering.case.edu/sites/default/files/159.mat"
+  },
+  "data/raw/outer_race/OR007@12_3_DE12k.mat": {
+   "mat_variable": "X160_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "160.mat",
+   "sha256": "e3385b0ba00274a35405205622b9513cbd0b2a3e62116d50adf477a1def0e8d2",
+   "source_url": "https://engineering.case.edu/sites/default/files/160.mat"
+  },
+  "data/raw/outer_race/OR007@3_0_DE12k.mat": {
+   "mat_variable": "X144_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "144.mat",
+   "sha256": "f1f51d8c3b66e90fcdd8de15be95c2d4d3e9bac018dbba57f3006e930eec6b22",
+   "source_url": "https://engineering.case.edu/sites/default/files/144.mat"
+  },
+  "data/raw/outer_race/OR007@3_1_DE12k.mat": {
+   "mat_variable": "X145_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "145.mat",
+   "sha256": "2ea3b3e021ec0024a6b85573035e4ca76856180c875fed7740a2ee7216ad84a2",
+   "source_url": "https://engineering.case.edu/sites/default/files/145.mat"
+  },
+  "data/raw/outer_race/OR007@3_2_DE12k.mat": {
+   "mat_variable": "X146_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "146.mat",
+   "sha256": "1be984f637243ce8e0bf801a6a82b0b024abd6d0f71aa9d759330ccc898d7b7b",
+   "source_url": "https://engineering.case.edu/sites/default/files/146.mat"
+  },
+  "data/raw/outer_race/OR007@3_3_DE12k.mat": {
+   "mat_variable": "X147_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "147.mat",
+   "sha256": "cb8a4440866359a664200b5cf774c567accdbf12a56a4854d137a4638cfe43fb",
+   "source_url": "https://engineering.case.edu/sites/default/files/147.mat"
+  },
+  "data/raw/outer_race/OR007@6_0_DE12k.mat": {
+   "mat_variable": "X130_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "130.mat",
+   "sha256": "35a095307d0971477049b343a1b5981dde465a58fb7f233ad89b035068c1717d",
+   "source_url": "https://engineering.case.edu/sites/default/files/130.mat"
+  },
+  "data/raw/outer_race/OR007@6_1_DE12k.mat": {
+   "mat_variable": "X131_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "131.mat",
+   "sha256": "7883f7b83beadc54b2f301767f9145ce07055707182fb0278fdf0a6bb53ce3cb",
+   "source_url": "https://engineering.case.edu/sites/default/files/131.mat"
+  },
+  "data/raw/outer_race/OR007@6_2_DE12k.mat": {
+   "mat_variable": "X132_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "132.mat",
+   "sha256": "17a69ed5d2270b42532e678e35bbe2fa04a2cc413cf2bf9e88c7692de8662d18",
+   "source_url": "https://engineering.case.edu/sites/default/files/132.mat"
+  },
+  "data/raw/outer_race/OR007@6_3_DE12k.mat": {
+   "mat_variable": "X133_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "133.mat",
+   "sha256": "53f076cb0d905cf46bffaee7736abce8224ffed777deed03c0c863d762a90c71",
+   "source_url": "https://engineering.case.edu/sites/default/files/133.mat"
+  },
+  "data/raw/outer_race/OR014@6_0_DE12k.mat": {
+   "mat_variable": "X197_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "197.mat",
+   "sha256": "fa571b47cd942f9514a920b403fb7c053cd442bb2963a360a96d0f61432f03e9",
+   "source_url": "https://engineering.case.edu/sites/default/files/197.mat"
+  },
+  "data/raw/outer_race/OR014@6_1_DE12k.mat": {
+   "mat_variable": "X198_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "198.mat",
+   "sha256": "dbd58e4585ca8f8332c708b15936987ec0990ca701359fd2483dae2719df5b49",
+   "source_url": "https://engineering.case.edu/sites/default/files/198.mat"
+  },
+  "data/raw/outer_race/OR014@6_2_DE12k.mat": {
+   "mat_variable": "X199_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "199.mat",
+   "sha256": "ca4e6407fdb68845a6973da6028477911a62d018580063749fe956441be95cf2",
+   "source_url": "https://engineering.case.edu/sites/default/files/199.mat"
+  },
+  "data/raw/outer_race/OR014@6_3_DE12k.mat": {
+   "mat_variable": "X200_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "200.mat",
+   "sha256": "2526483d2701220a700df8e6c9db0c527641b0887225907f4096610dd7120f4b",
+   "source_url": "https://engineering.case.edu/sites/default/files/200.mat"
+  },
+  "data/raw/outer_race/OR021@12_0_DE12k.mat": {
+   "mat_variable": "X246_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "246.mat",
+   "sha256": "9e02c5e5785f51cc9a60bf31ccb14e6869ff7d452e4aedefa325aa8a6d9da4e9",
+   "source_url": "https://engineering.case.edu/sites/default/files/246.mat"
+  },
+  "data/raw/outer_race/OR021@12_1_DE12k.mat": {
+   "mat_variable": "X247_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "247.mat",
+   "sha256": "83ed7f952bd0e1c412ca490e1757a36c4f91ffdef75ce359daaeec4a5b0466fa",
+   "source_url": "https://engineering.case.edu/sites/default/files/247.mat"
+  },
+  "data/raw/outer_race/OR021@12_2_DE12k.mat": {
+   "mat_variable": "X248_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "248.mat",
+   "sha256": "d3418e8f9884493548bdddb5406f84a4fd0e73ec153b8f3dfd4633525685ff10",
+   "source_url": "https://engineering.case.edu/sites/default/files/248.mat"
+  },
+  "data/raw/outer_race/OR021@12_3_DE12k.mat": {
+   "mat_variable": "X249_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "249.mat",
+   "sha256": "2468c6faf7d93483ffba1f2a10b17820f024d5a34037256e7ee38dfde541e974",
+   "source_url": "https://engineering.case.edu/sites/default/files/249.mat"
+  },
+  "data/raw/outer_race/OR021@6_0_DE12k.mat": {
+   "mat_variable": "X234_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "234.mat",
+   "sha256": "ebcbdb96612e8085bbdbf81f0e5e8e8a8d1a693d1ec559c4894f7792771aa9b2",
+   "source_url": "https://engineering.case.edu/sites/default/files/234.mat"
+  },
+  "data/raw/outer_race/OR021@6_1_DE12k.mat": {
+   "mat_variable": "X235_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "235.mat",
+   "sha256": "667e4bf1f213f92d10dca71d494ad002d8fd22bfd8004b31a4c71ccf0d764b66",
+   "source_url": "https://engineering.case.edu/sites/default/files/235.mat"
+  },
+  "data/raw/outer_race/OR021@6_2_DE12k.mat": {
+   "mat_variable": "X236_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "236.mat",
+   "sha256": "c411d6d9826cba8073430555dc833e05fcbe4c38535f3eb7f03c525ea6797589",
+   "source_url": "https://engineering.case.edu/sites/default/files/236.mat"
+  },
+  "data/raw/outer_race/OR021@6_3_DE12k.mat": {
+   "mat_variable": "X237_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "237.mat",
+   "sha256": "233d1edb2daa963658369119e389e30f02aca551dd7bb028ab33e7ba63edfd20",
+   "source_url": "https://engineering.case.edu/sites/default/files/237.mat"
+  },
+  "data/raw_cwru_12k_fe/B007_0_FE12k.mat": {
+   "mat_variable": "X282_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "282.mat",
+   "sha256": "e7447bf84ff363c0e49f651f76b502ab34b58653d53156faa852033cef8da947",
+   "source_url": "https://engineering.case.edu/sites/default/files/282.mat"
+  },
+  "data/raw_cwru_12k_fe/B007_1_FE12k.mat": {
+   "mat_variable": "X283_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "283.mat",
+   "sha256": "ec58fd361b56b645ce3811352ec4ae947fbdfc053cede581738129d02ea8928b",
+   "source_url": "https://engineering.case.edu/sites/default/files/283.mat"
+  },
+  "data/raw_cwru_12k_fe/B007_2_FE12k.mat": {
+   "mat_variable": "X284_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "284.mat",
+   "sha256": "f6179084903e78126b7728f267125f0d387f79eb69742145fc1047fdfc938d8b",
+   "source_url": "https://engineering.case.edu/sites/default/files/284.mat"
+  },
+  "data/raw_cwru_12k_fe/B007_3_FE12k.mat": {
+   "mat_variable": "X285_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "285.mat",
+   "sha256": "0536eee89c111af8c4ecbf8dd580bc63a35df480795d837d1e9a0d036c62ed4b",
+   "source_url": "https://engineering.case.edu/sites/default/files/285.mat"
+  },
+  "data/raw_cwru_12k_fe/B014_0_FE12k.mat": {
+   "mat_variable": "X286_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "286.mat",
+   "sha256": "ffef67be62c7f4395c3c0d69684ee7b7772d5c6f6c4f5f67b6791fa66d2489ea",
+   "source_url": "https://engineering.case.edu/sites/default/files/286.mat"
+  },
+  "data/raw_cwru_12k_fe/B014_1_FE12k.mat": {
+   "mat_variable": "X287_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "287.mat",
+   "sha256": "11838a991ec50b1f34f786ca8431e0ef1ff81df072a66e9740e6488da5be8627",
+   "source_url": "https://engineering.case.edu/sites/default/files/287.mat"
+  },
+  "data/raw_cwru_12k_fe/B014_2_FE12k.mat": {
+   "mat_variable": "X288_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "288.mat",
+   "sha256": "1c16e412208b2f7d43779ba6654fdc76781bd118071a27442338cae781a22bd5",
+   "source_url": "https://engineering.case.edu/sites/default/files/288.mat"
+  },
+  "data/raw_cwru_12k_fe/B014_3_FE12k.mat": {
+   "mat_variable": "X289_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "289.mat",
+   "sha256": "5fb1247048f7773b2bc023afed156f7708d6a03fe78f7aa33f0a202beef6b2de",
+   "source_url": "https://engineering.case.edu/sites/default/files/289.mat"
+  },
+  "data/raw_cwru_12k_fe/B021_0_FE12k.mat": {
+   "mat_variable": "X290_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "290.mat",
+   "sha256": "53146773c3f3b844a6aaaf57fbbe4a821c4e887bb9ad20af49c4bf904e4d9096",
+   "source_url": "https://engineering.case.edu/sites/default/files/290.mat"
+  },
+  "data/raw_cwru_12k_fe/B021_1_FE12k.mat": {
+   "mat_variable": "X291_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "291.mat",
+   "sha256": "1511ae3611d67c9cfa697ba2b204332ab52337a95e22eba9ebde172e3385d69d",
+   "source_url": "https://engineering.case.edu/sites/default/files/291.mat"
+  },
+  "data/raw_cwru_12k_fe/B021_2_FE12k.mat": {
+   "mat_variable": "X292_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "292.mat",
+   "sha256": "09d10a867b780b4d214453a31c6c85963b7a5c67eb51a70e382902f37b202123",
+   "source_url": "https://engineering.case.edu/sites/default/files/292.mat"
+  },
+  "data/raw_cwru_12k_fe/B021_3_FE12k.mat": {
+   "mat_variable": "X293_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "293.mat",
+   "sha256": "9133e6cdc952670aca0a1a5576c24b1075c7701c956f43083bc38a3505af0271",
+   "source_url": "https://engineering.case.edu/sites/default/files/293.mat"
+  },
+  "data/raw_cwru_12k_fe/IR007_0_FE12k.mat": {
+   "mat_variable": "X278_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "278.mat",
+   "sha256": "1ad584953158dcdf4eb1ceba71dee781e5596163aad37a2619b0649213f9e3dd",
+   "source_url": "https://engineering.case.edu/sites/default/files/278.mat"
+  },
+  "data/raw_cwru_12k_fe/IR007_1_FE12k.mat": {
+   "mat_variable": "X279_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "279.mat",
+   "sha256": "6bfa8b958280248fbec06b0d543f532b3571e03550f6ac466de59cc215264595",
+   "source_url": "https://engineering.case.edu/sites/default/files/279.mat"
+  },
+  "data/raw_cwru_12k_fe/IR007_2_FE12k.mat": {
+   "mat_variable": "X280_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "280.mat",
+   "sha256": "9ba0712567e9bc2a43ccb8d37e8f1c594cf671babcee7313150ae145a15c365d",
+   "source_url": "https://engineering.case.edu/sites/default/files/280.mat"
+  },
+  "data/raw_cwru_12k_fe/IR007_3_FE12k.mat": {
+   "mat_variable": "X281_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "281.mat",
+   "sha256": "0f1a41d62797039139cf27c6f8b823fe87de44dfb4b2ef03fc6e0ef4d3734992",
+   "source_url": "https://engineering.case.edu/sites/default/files/281.mat"
+  },
+  "data/raw_cwru_12k_fe/IR014_0_FE12k.mat": {
+   "mat_variable": "X274_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "274.mat",
+   "sha256": "f39ea799aeffceb012dbfb7b58fbe52c80df4cdab64da9ad96eed03e5118e9a6",
+   "source_url": "https://engineering.case.edu/sites/default/files/274.mat"
+  },
+  "data/raw_cwru_12k_fe/IR014_1_FE12k.mat": {
+   "mat_variable": "X275_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "275.mat",
+   "sha256": "6677df8434d4dc6f5130bdd4c07e25be562b5b93a49ff867a724f424fb11c577",
+   "source_url": "https://engineering.case.edu/sites/default/files/275.mat"
+  },
+  "data/raw_cwru_12k_fe/IR014_2_FE12k.mat": {
+   "mat_variable": "X276_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "276.mat",
+   "sha256": "d1558eb6bd464e2a9e515bb4b2251814d53d61ab9c1f67ba25fbffe8dad47b5d",
+   "source_url": "https://engineering.case.edu/sites/default/files/276.mat"
+  },
+  "data/raw_cwru_12k_fe/IR014_3_FE12k.mat": {
+   "mat_variable": "X277_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "277.mat",
+   "sha256": "6abdf2d5dc823f50d95814c488735ca2083def087233608e2f2cd718782985a6",
+   "source_url": "https://engineering.case.edu/sites/default/files/277.mat"
+  },
+  "data/raw_cwru_12k_fe/IR021_0_FE12k.mat": {
+   "mat_variable": "X270_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "270.mat",
+   "sha256": "fd7c20f53af7ccaf7ab6b08b885fbe4bf27ce44d9739af2725dc94c8130af953",
+   "source_url": "https://engineering.case.edu/sites/default/files/270.mat"
+  },
+  "data/raw_cwru_12k_fe/IR021_1_FE12k.mat": {
+   "mat_variable": "X271_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "271.mat",
+   "sha256": "2362b0f50519001004b6167b6344deae2c1387121c532366855ce0df51c1a872",
+   "source_url": "https://engineering.case.edu/sites/default/files/271.mat"
+  },
+  "data/raw_cwru_12k_fe/IR021_2_FE12k.mat": {
+   "mat_variable": "X272_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "272.mat",
+   "sha256": "7b9b455d79d696d1fc5762ef058a6363cb153dabdf404100cb4247af767acbd1",
+   "source_url": "https://engineering.case.edu/sites/default/files/272.mat"
+  },
+  "data/raw_cwru_12k_fe/IR021_3_FE12k.mat": {
+   "mat_variable": "X273_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "273.mat",
+   "sha256": "990bd16b90bf70650f102962331b066242792f285612d5081c2ba80053b2e637",
+   "source_url": "https://engineering.case.edu/sites/default/files/273.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@12_0_FE12k.mat": {
+   "mat_variable": "X302_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "302.mat",
+   "sha256": "c82d3ac43ed7d4e5dc41d6e0498e43754f7326f1c80d983afbfec2a8dfc3299e",
+   "source_url": "https://engineering.case.edu/sites/default/files/302.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@12_1_FE12k.mat": {
+   "mat_variable": "X305_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "305.mat",
+   "sha256": "1e31694e7b03e57f45bcd49dddbfb1a36b6e7237c32505c9333a3f2bb3ef10ed",
+   "source_url": "https://engineering.case.edu/sites/default/files/305.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@12_2_FE12k.mat": {
+   "mat_variable": "X306_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "306.mat",
+   "sha256": "66ff410ca987b3561a121cb67d154a85057760bc6a72f30bafda8ee163712fd4",
+   "source_url": "https://engineering.case.edu/sites/default/files/306.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@12_3_FE12k.mat": {
+   "mat_variable": "X307_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "307.mat",
+   "sha256": "8e5a47da86128668332fa6d17736515fcb1101c4e5a1e890cdb11e662a0573ca",
+   "source_url": "https://engineering.case.edu/sites/default/files/307.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@3_0_FE12k.mat": {
+   "mat_variable": "X298_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "298.mat",
+   "sha256": "a954b389feafb8c60e3ba1d04226d0511a340aad8fce082ab920c564b2012423",
+   "source_url": "https://engineering.case.edu/sites/default/files/298.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@3_1_FE12k.mat": {
+   "mat_variable": "X299_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "299.mat",
+   "sha256": "503fc5bd97d151ee053eb89562a4e2f2b24095b15c798600b66e17c87a48a29e",
+   "source_url": "https://engineering.case.edu/sites/default/files/299.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@3_2_FE12k.mat": {
+   "mat_variable": "X300_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "300.mat",
+   "sha256": "0b4ac23bbd279760fe3b8873ea257eab562718b5de44c4c617d309fb792550a1",
+   "source_url": "https://engineering.case.edu/sites/default/files/300.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@3_3_FE12k.mat": {
+   "mat_variable": "X301_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "301.mat",
+   "sha256": "c709cd9f9ddf4a074850bce3384b14fad7f210b188da32d23cc6e6ab68f7a616",
+   "source_url": "https://engineering.case.edu/sites/default/files/301.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@6_0_FE12k.mat": {
+   "mat_variable": "X294_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "294.mat",
+   "sha256": "6b774ffb83a046a6a4402221c2bc02c84c8e4494ea8457452e366ccc048c7d5e",
+   "source_url": "https://engineering.case.edu/sites/default/files/294.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@6_1_FE12k.mat": {
+   "mat_variable": "X295_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "295.mat",
+   "sha256": "13f7052f2422f19858f4136aa645dcfefc28f474c6b7e54b6ffcc4abedee8e26",
+   "source_url": "https://engineering.case.edu/sites/default/files/295.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@6_2_FE12k.mat": {
+   "mat_variable": "X296_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "296.mat",
+   "sha256": "00785405cb36ab8c96a63b43d77e5016477e276154f7bd0a5f74f13825030150",
+   "source_url": "https://engineering.case.edu/sites/default/files/296.mat"
+  },
+  "data/raw_cwru_12k_fe/OR007@6_3_FE12k.mat": {
+   "mat_variable": "X297_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "297.mat",
+   "sha256": "858c409a74f0dcbd31af28f79175daf5e494fe194269909c18c579851aaf3c1d",
+   "source_url": "https://engineering.case.edu/sites/default/files/297.mat"
+  },
+  "data/raw_cwru_12k_fe/OR014@3_0_FE12k.mat": {
+   "mat_variable": "X310_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "310.mat",
+   "sha256": "09e94ad346b84bbeb4cd172d5d66aacd08857369b23547a540cd266f71a18c17",
+   "source_url": "https://engineering.case.edu/sites/default/files/310.mat"
+  },
+  "data/raw_cwru_12k_fe/OR014@3_1_FE12k.mat": {
+   "mat_variable": "X309_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "309.mat",
+   "sha256": "af7f88db380cc666a06d14c465f7e2bb9b6c5db53daf2fbcfc966654f01577ce",
+   "source_url": "https://engineering.case.edu/sites/default/files/309.mat"
+  },
+  "data/raw_cwru_12k_fe/OR014@3_2_FE12k.mat": {
+   "mat_variable": "X311_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "311.mat",
+   "sha256": "8b5f2efba1c9d45cc88b9ced3bb02a2963ecbcc4ed15034f91e1295bf19db4fb",
+   "source_url": "https://engineering.case.edu/sites/default/files/311.mat"
+  },
+  "data/raw_cwru_12k_fe/OR014@3_3_FE12k.mat": {
+   "mat_variable": "X312_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "312.mat",
+   "sha256": "e4f22d6012d316f62f9a46add474af6f956a8365a3eb2115904be0a9abc29f7f",
+   "source_url": "https://engineering.case.edu/sites/default/files/312.mat"
+  },
+  "data/raw_cwru_12k_fe/OR014@6_0_FE12k.mat": {
+   "mat_variable": "X313_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "313.mat",
+   "sha256": "74adda10ce37f133a16d1caf62f2a2c17434a56c18db5af2612eaf127897bc1f",
+   "source_url": "https://engineering.case.edu/sites/default/files/313.mat"
+  },
+  "data/raw_cwru_12k_fe/OR021@3_1_FE12k.mat": {
+   "mat_variable": "X316_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "316.mat",
+   "sha256": "4b0730d494cdf33b8aea1ab2195be5fcd408f37c0fe12d0a2644c88bc59657ff",
+   "source_url": "https://engineering.case.edu/sites/default/files/316.mat"
+  },
+  "data/raw_cwru_12k_fe/OR021@3_2_FE12k.mat": {
+   "mat_variable": "X317_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "317.mat",
+   "sha256": "ed46ca719883b337f75cffcf5d0024386f26c1591dd4163892b48f02d25b40e0",
+   "source_url": "https://engineering.case.edu/sites/default/files/317.mat"
+  },
+  "data/raw_cwru_12k_fe/OR021@3_3_FE12k.mat": {
+   "mat_variable": "X318_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "318.mat",
+   "sha256": "307d56daeffb9e45a0aee649031e83b4165adb8a32cefabb925e540ca51aad8e",
+   "source_url": "https://engineering.case.edu/sites/default/files/318.mat"
+  },
+  "data/raw_cwru_12k_fe/OR021@6_0_FE12k.mat": {
+   "mat_variable": "X315_FE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "315.mat",
+   "sha256": "e1f6acfe79b622a24bf2ed3d092b83342c9a280a0e443df480c7220a49fff392",
+   "source_url": "https://engineering.case.edu/sites/default/files/315.mat"
+  },
+  "data/raw_native12_official/258.mat": {
+   "mat_variable": "X258_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "258.mat",
+   "sha256": "0b9c84acca45c3ee6ecbd697eb186a903293809625fda231a18da8c588e34383",
+   "source_url": "https://engineering.case.edu/sites/default/files/258.mat"
+  },
+  "data/raw_native12_official/259.mat": {
+   "mat_variable": "X259_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "259.mat",
+   "sha256": "7d9f99e3a85d10d9c9548d09a2990f5dd35dd8a634d2f71ac1192a03ffadf1f2",
+   "source_url": "https://engineering.case.edu/sites/default/files/259.mat"
+  },
+  "data/raw_native12_official/260.mat": {
+   "mat_variable": "X260_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "260.mat",
+   "sha256": "75b92225df9bdc8053809d9732fec4a5eac27e770bb78f9796998f8b7f6a15df",
+   "source_url": "https://engineering.case.edu/sites/default/files/260.mat"
+  },
+  "data/raw_native12_official/261.mat": {
+   "mat_variable": "X261_DE_time",
+   "native_sampling_rate_hz": 12000,
+   "official_filename": "261.mat",
+   "sha256": "d89e31d7ba9f08e183e9acdea10f814a89837e38e6762a7dde4d871a976437a1",
+   "source_url": "https://engineering.case.edu/sites/default/files/261.mat"
+  }
+ },
+ "inventory_sha256": "bd97cebced8be3a1425ba5edbff116386edf7b63756282376d1c715a0a22f611",
+ "n": 105,
+ "protocol_id": "pcste_v2_cwru_native12_load_v1"
+}

@@ -1,0 +1,7 @@
+{
+ "pcste_v2_stage_has_ever_read_TEST": false,
+ "code_enforcement": "scripts/pcste_v2/run.py preload() asserts (sub.split != 'test').all()",
+ "earlier_methodology_v2_stage_read_TEST": true,
+ "earlier_stage_runs_with_test_predictions": 21,
+ "consequence": "JNU/HIT (100%) and a majority of MaFaulDa TEST windows are NOT project-wide never-seen data; CWRU 3 hp has never been TEST-scored. This is disclosed, the partitions are unchanged, and no forbidden state is inherited by these final models."
+}

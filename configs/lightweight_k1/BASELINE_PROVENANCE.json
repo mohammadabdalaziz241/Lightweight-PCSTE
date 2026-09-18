@@ -1,0 +1,22 @@
+{
+  "study": "pcste_v2_lightweight_v1",
+  "purpose": "Reuse the dissertation Part-6 lightweight implementation unchanged on the new frozen PCSTE-v2 final S1 checkpoints.",
+  "base_commit_before_lightweight_adapter": "018d8f4f87a0ede4fbd55a699c87e79f80ce5feb",
+  "full_model_source": "results/pcste_v2/final_v1 frozen S1 best.pt checkpoints",
+  "k1_recipe": {
+    "architecture": "4x1",
+    "keep_direction": "fwd",
+    "residual": "mean_of_remaining",
+    "encoder_params": 1375953,
+    "teacher_set": "three same-global-fold S1 checkpoints",
+    "ensemble_rule": "mean_prob_at_T",
+    "temperature": 4.0,
+    "alpha": 0.5,
+    "relational_alpha_kl_weight": 1.0
+  },
+  "non_inferiority_margins": {
+    "K1_vs_Full_S1": -0.02,
+    "Q8_K1_vs_K1": -0.01
+  },
+  "implementation_policy": "Original methodology_v2 Part-6 implementation files are read-only and must not be modified. New code may only adapt checkpoint/data interfaces to the pcste_v2 final-v1 protocol."
+}

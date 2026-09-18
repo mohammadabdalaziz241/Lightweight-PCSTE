@@ -1,0 +1,45 @@
+{
+ "axes": {
+  "compute": [
+   "FlopCounter GFLOP per dataset shape",
+   "analytic scan GFLOP",
+   "scan steps",
+   "R"
+  ],
+  "latency": {
+   "cpu": {
+    "abab": true,
+    "batches": [
+     1,
+     16
+    ],
+    "stat": "median + IQR",
+    "threads": [
+     1,
+     4
+    ],
+    "timed": 20,
+    "warmup": 5
+   },
+   "gpu": {
+    "batches": [
+     16,
+     64
+    ],
+    "only_when_idle": true,
+    "sync": true
+   }
+  },
+  "memory": "VmHWM of a fresh subprocess (3 forwards); cuda.max_memory_allocated on GPU",
+  "size": [
+   "encoder params",
+   "head params",
+   "total",
+   "fp32 bytes",
+   "int8 bytes (measured)"
+  ]
+ },
+ "busy_host_rule": "refuse latency when load1>1.5 or GPU util>20% unless --allow-busy (tagged)",
+ "caveat_on_every_table": "pure-PyTorch reference selective scan (fused kernels unavailable on this stack); latency reflects this backend",
+ "energy": "not measured (RAPL root-only); CPU-seconds flagged proxy"
+}

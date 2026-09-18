@@ -1,0 +1,201 @@
+{
+ "architecture": {
+  "blocks": "4 bidirectional Mamba temporal blocks, Hz-aware cross-band mixer, validity-masked pooling",
+  "d_model": 192,
+  "disabled": [
+   "envelope branch",
+   "3-band envelope",
+   "multi-resolution",
+   "axial/2-channel fusion",
+   "C1 specimen-balanced sampling",
+   "C2 cross-specimen contrastive",
+   "CNN alternatives",
+   "architecture search"
+  ],
+  "encoder_parameters": 2382033,
+  "head_parameters": 3860,
+  "model": "PC-STE v2, variant n2b (plain baseline)",
+  "patch": "16 frequency bins x 8 time frames",
+  "representation": "log(1+|STFT|), v1 grid, N2b normalisation (TRAIN-only, log1p std floor 0.05)",
+  "ssl_only_breakdown": "learned mask token (192) + ctx_proj Linear(192,192) + decoder Linear(192,256)->GELU->Linear(256,128)",
+  "ssl_only_parameters": 119552,
+  "total_downstream_parameters": 2385893
+ },
+ "decisions_unchanged": [
+  "Stage C PARTIAL",
+  "X1 intervention NOT_ADVANCED",
+  "native12 specimen screen NOT_ADVANCED",
+  "envelope closed",
+  "multi-resolution rejected",
+  "axial fusion rejected"
+ ],
+ "downstream": {
+  "effective_batch": 64,
+  "epochs": 50,
+  "identical_for_S0_and_S1": true,
+  "loss": "equal-domain mean of the per-dataset cross-entropies present in the micro-batch (exact effective-batch mean under accumulation)",
+  "micro_batch": 32,
+  "optimizer": {
+   "betas": [
+    0.9,
+    0.95
+   ],
+   "eps": 1e-08,
+   "grad_clip_global_norm": 1.0,
+   "lr": 0.0003,
+   "min_lr": 1e-06,
+   "optimizer": "AdamW",
+   "warmup_epochs": 5,
+   "weight_decay": 0.05
+  },
+  "sampler": "SupervisedSampler: dataset -> class (cycled) -> group -> window, 16 items per dataset per step",
+  "schedule": "linear warm-up 5 epochs then cosine to min lr 1e-6, stepped per optimiser step",
+  "selector": "MacroDomainF1_VAL = (F1_CWRU + F1_JNU + F1_HIT + F1_MaFaulDa)/4, maximise, strict improvement, earliest epoch on ties; ONE checkpoint per joint model used for all four datasets",
+  "steps_per_epoch": {
+   "1": 214,
+   "2": 212,
+   "3": 223
+  }
+ },
+ "environment": {
+  "numpy": "2.4.4",
+  "python": "3.12.3",
+  "sklearn": "1.9.0",
+  "torch": "2.12.0+cu130"
+ },
+ "final_spec_version": "final_s0_s1.v1",
+ "git_commit_at_freeze": "28f12f549958590d689f20a6a685ac1acb855773",
+ "matrix": {
+  "final_supervised_models": 18,
+  "global_folds": [
+   1,
+   2,
+   3
+  ],
+  "pairs": 9,
+  "s0_runs": 9,
+  "s1_runs": 9,
+  "seeds": [
+   42,
+   1337,
+   2026
+  ],
+  "ssl_runs": 9,
+  "trajectories": 27
+ },
+ "pairing": {
+  "hashing": "canonical: sorted parameter names, shapes, dtypes and tensor bytes (not serialised file hashes)",
+  "intended_difference": "initial encoder state: random for S0; the selected matched SSL encoder for S1",
+  "matched": [
+   "TRAIN/VAL/TEST membership",
+   "representation and N2b bytes",
+   "encoder and head architecture",
+   "initial head tensor values (head_seed(fold, seed), independent generator)",
+   "supervised sampler stream (identical IDs in identical order; hash-verified)",
+   "epochs, steps, batch sizes",
+   "optimiser/scheduler recipe, both freshly initialised",
+   "selector and evaluation populations"
+  ],
+  "pair_id": "(final_spec_version, global_fold, seed)",
+  "s0_ssl_common_initial_encoder": "S0 and the start of its matched SSL run are built by the same factory immediately after torch.manual_seed(seed), so their initial encoder tensors are identical (test-enforced)",
+  "s1_extra_cost_disclosed": "S1 additionally consumes its SSL pretraining compute and uses reconstruction-based checkpoint selection; this procedural difference is reported, not hidden"
+ },
+ "prepared_utc": "2026-09-09",
+ "protocol": {
+  "composition": "CWRU: one fixed native12 load partition in every global fold (TRAIN 0+1hp, VAL 2hp, TEST 3hp). JNU/HIT: sealed methodology_v2 fold k. MaFaulDa: mafaulda_v2.stratified.v1 fold k, radial-only. No split was regenerated.",
+  "cwru": "pcste_v2_cwru_native12_load_v1 (cwru_native12.load.v1)",
+  "cwru_disjointness": {
+   "load": true,
+   "recording": true,
+   "specimen": false
+  },
+  "cwru_master_sha256": "10fa6270e3efda96c229dbb22f5377e65bd7355857a1f12d73bdbb419fdf17b1",
+  "cwru_membership_identical_across_folds": true,
+  "cwru_partition": {
+   "test": "load 3 hp, 26 recordings, 260 windows, 20 specimens (SEALED until the all-18 barrier)",
+   "train": "loads 0+1 hp, 53 recordings, 1007 windows, 20 specimens",
+   "validation": "load 2 hp, 26 recordings, 260 windows, 20 specimens"
+  },
+  "global": "global_v2_final_s0s1_v1",
+  "manifests": {
+   "fold_1": "456a69474a3763647b7e0ad13f5538e8f630d268347671ad617134b08e830d0a",
+   "fold_2": "74029f81a4b5617b13218812aa26568b0f3a268f8f6b450b5ab0293b17f71f93",
+   "fold_3": "fe622f3bc1146998d00fe070ea045f0790145b55a028effea52de00f94000f0e"
+  }
+ },
+ "question": "Does masked-reconstruction self-supervised pretraining provide a better or more useful initialisation for the same PC-STE v2 encoder than supervised training from scratch, at 100% labelled downstream training?",
+ "ssl": {
+  "corpus": "the four-dataset TRAIN populations only, labels withheld; SSLSampler is label-free and structurally rejects label-bearing columns (test-enforced)",
+  "effective_batch": 64,
+  "epochs": 60,
+  "mask": {
+   "exact_counts": {
+    "CWRU": 124,
+    "HIT": 245,
+    "JNU": 475,
+    "MAFAULDA": 475
+   },
+   "geometry": "M1_random",
+   "grids": {
+    "CWRU": [
+     9,
+     23
+    ],
+    "HIT": [
+     17,
+     24
+    ],
+    "JNU": [
+     33,
+     24
+    ],
+    "MAFAULDA": [
+     33,
+     24
+    ]
+   },
+   "ratio": 0.6,
+   "rng": "per-window generator seeded by sha256(seed|epoch|window_id); TRAIN masks vary by epoch; VAL masks fixed at validation_mask_seed(seed), epoch 0"
+  },
+  "micro_batch": 32,
+  "objective": "masked-reconstruction (accepted Part-5C): masked VALID patches never reach the stem (replaced by one learned mask token, coordinates still added); X1 additive post-mixer context; per-token MLP decoder; masked valid-cell MSE, per-window mean then batch mean",
+  "selector": {
+   "aggregation": "per-window mean first, then mean over that dataset's VAL windows, then the equal-weight mean over datasets",
+   "authority": "analysis/pcste_v2_diagnostics/FINAL_LIMITATIONS_FORENSIC_REPORT.md section 6 recommendation, implemented as the default in src/pcste_v2/selector.py",
+   "definition": "mean over datasets of MSE / masked-target energy E[x^2] (minimise)",
+   "direction": "minimise",
+   "epsilon": "denominator clamped at 1e-12",
+   "formula": "mean over the four datasets of (per-dataset window-mean masked-cell MSE) / (per-dataset window-mean masked-cell target energy E[target^2]); both numerator and denominator over exactly the same fixed VAL masked valid cells",
+   "name": "mean_nmse.v2",
+   "note": "the TRAINING objective remains the accepted masked-cell MSE; adopting the NMSE selector does not change it",
+   "tie": "strict improvement, earliest epoch retained"
+  },
+  "steps_per_epoch": {
+   "1": 214,
+   "2": 212,
+   "3": 223
+  },
+  "validation_use": "forward-only reconstruction on the frozen VAL split for checkpoint selection; VAL never enters gradients or any fitting; TEST never loaded"
+ },
+ "status": "FROZEN_BEFORE_TRAINING",
+ "supersedes": [
+  "the earlier S0-only final prompt",
+  "the two-seed confirmation proposal",
+  "the CNN diagnostic proposal",
+  "the input-probe proposal"
+ ],
+ "test_policy": {
+  "evaluation": "model.eval(), torch.no_grad(); each model's own heads and normalisers; no calibration, threshold search, TTA, ensembling or per-dataset checkpoint choice",
+  "excluded_from": [
+   "S0 optimisation",
+   "SSL optimisation and selection",
+   "S1 fine-tuning",
+   "normaliser fitting",
+   "hyperparameters",
+   "architecture",
+   "calibration",
+   "checkpoint selection"
+  ],
+  "sealed_until": "all 18 supervised validation-selected checkpoints are verified, frozen and committed in FINAL_SELECTED_CHECKPOINTS.csv with a matching digest"
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "bundle_rule": "the complete NINE-cell S1 bundle is frozen, never a TEST-best seed or a selected subset; all nine S0 comparators are preserved too; a single demonstration checkpoint, if needed, is predeclared as global fold 1 / seed 42",
+ "cwru_criteria_per_cell": {
+  "authority": "the current load-diagnostic criteria (analysis/pcste_v2_cwru_native12_load_diagnostic_v1/LOAD_SPLIT_CRITERIA.json), applied per cell for transparent reporting",
+  "every_specimen_recall_min": 0.7,
+  "macro_f1_strong": 0.85,
+  "macro_f1_very_strong": 0.9,
+  "per_class_recall_min": 0.8,
+  "reporting": "means, SDs and EVERY failed cell are shown; exact reproduction of the diagnostic's seed-42 value is not required"
+ },
+ "frozen_comparison_references": {
+  "cwru_load_diagnostic": "pcstev2_n12load_c0_f1_s42 (VAL, 2 hp) \u2014 a VAL-only, different-population historical reference; it is NOT a matched control for the 3 hp TEST",
+  "native12_specimen_C0": "pcstev2_n12v1_c0_f{1,3}_s42 \u2014 specimen-disjoint, a different question; descriptive context only"
+ },
+ "other_datasets": {
+  "limit": "where no accepted numerical threshold or compatible reference population exists, that limit is stated; no post-TEST gate is invented and preservation is not claimed as proven",
+  "reported": [
+   "meaningful regression",
+   "variability across seeds",
+   "residual class collapses, especially MaFaulDa horizontal misalignment and underhang cage"
+  ],
+  "rule": "current accepted preservation rules are applied ONLY against compatible same-fold evaluation populations; comparison run IDs and checkpoints are frozen before results and are never chosen post hoc from the best historical score"
+ },
+ "outcome_labels": {
+  "FINAL_FULL_S1_REFERENCE_MODEL": "complete valid execution and the predeclared quality evidence support qualification",
+  "FINAL_FULL_S1_REFERENCE_MODEL_WITH_LIMITATIONS": "the bundle is valid but variability, regressions, uncertainty or residual confusions require qualification; whether it remains suitable as a fixed lightweight reference is stated explicitly, and any S1 inferiority to S0 is disclosed",
+  "INCOMPLETE_OR_INVALID": "unresolved execution or provenance failure"
+ },
+ "prohibitions": [
+  "automatically substituting S0 as the teacher",
+  "retraining S1",
+  "beginning lightweight development on the basis of TEST results"
+ ],
+ "purpose": "assess, separately from the S0/S1 comparison's validity, whether the nine-cell S1 bundle qualifies as a fixed reference for a later lightweight-development stage. A valid comparison does not require SSL to win.",
+ "status": "FROZEN_BEFORE_TRAINING"
+}

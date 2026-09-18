@@ -1,0 +1,51 @@
+{
+  "adapter_changes": [
+    "remove core. namespace prefix from pcste_v2 control checkpoint",
+    "extract streams[g0_c0] tuple from pcste_v2 ItemBuilder",
+    "resolve new final-v1 S1 checkpoint paths"
+  ],
+  "architecture": {
+    "d_inner": 384,
+    "d_model": 192,
+    "d_state": 16,
+    "directions": 1,
+    "dt_rank": 12,
+    "n_blocks": 4,
+    "name": "half_4x1",
+    "stem_rank": null,
+    "uni_residual": "mean_of_remaining"
+  },
+  "encoder_params": 1375953,
+  "first_batch_size": 64,
+  "fold": 1,
+  "full_final_v1_stream_sha256": "699b74096d780bdd5d23128f3d7de7684ac19d33927a1c417f72ad63fe29f91e",
+  "kind": "NOT_AN_EXPERIMENT",
+  "loss": {
+    "alpha": 0.5,
+    "ensemble_rule": "mean_prob_at_T",
+    "kind": "kd_ensemble+relational",
+    "kl_direction": "KL(teacher_T || student_T), sum over classes",
+    "label_smoothing": 0.0,
+    "reduction": "mean over datasets of per-dataset window means",
+    "relational_weight": 1.0,
+    "temperature": 4.0
+  },
+  "one_step_loss": 0.883487269282341,
+  "original_part6_losses": "src/methodology_v2/compression/losses.py",
+  "original_part6_teacher_cache": "src/methodology_v2/compression/teachers.py",
+  "original_part6_trainer": "src/methodology_v2/compression/trainer.py",
+  "scheduler_lr_after_one_step": 5.607476635514018e-07,
+  "seed": 42,
+  "status": "PASS",
+  "teacher_checkpoint_sha256": {
+    "pcstev2_final_v1_s1_gf1_s1337": "a14075f0234c232f98d9acb0b02f6094b36c6990a85f5b44c4602c3a95920799",
+    "pcstev2_final_v1_s1_gf1_s2026": "cfb742f74eb4d55e8f7afceac78e176376b206619f07c6119d02d1d704cc94d2",
+    "pcstev2_final_v1_s1_gf1_s42": "7d6cea73ba61b3da23c73be14a8edae048276e88162517ee8d72a7c2a133ba0c"
+  },
+  "teacher_seeds": [
+    42,
+    1337,
+    2026
+  ],
+  "test_windows_used": false
+}

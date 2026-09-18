@@ -1,0 +1,79 @@
+{
+ "T": 4.0,
+ "alpha": 0.5,
+ "arms": {
+  "b0": {
+   "architecture": "full",
+   "init": "ssl",
+   "loss": "ce_label_smoothing_0.1",
+   "teacher_set": null,
+   "tier": "push"
+  },
+  "b1": {
+   "architecture": "full",
+   "init": "ssl",
+   "loss": "kd_ensemble",
+   "teacher_set": "s1",
+   "tier": "push"
+  },
+  "c_small": {
+   "architecture": "student_d",
+   "init": null,
+   "loss": "ce_hard",
+   "teacher_set": null,
+   "tier": "core"
+  },
+  "dw_k1": {
+   "architecture": "student_dw",
+   "init": null,
+   "loss": "kd_ensemble",
+   "teacher_set": "s1",
+   "tier": "optional"
+  },
+  "f1": {
+   "architecture": "full",
+   "init": "ssl",
+   "loss": "fewshot_kd",
+   "teacher_set": "s1_l010",
+   "tier": "push"
+  },
+  "k0": {
+   "architecture": "student_d",
+   "init": "s0",
+   "loss": "kd_ensemble+relational",
+   "teacher_set": "s0",
+   "tier": "core"
+  },
+  "k1": {
+   "architecture": "student_d",
+   "init": "s1",
+   "loss": "kd_ensemble+relational",
+   "teacher_set": "s1",
+   "tier": "core"
+  },
+  "p1": {
+   "architecture": "student_d",
+   "init": "s1",
+   "loss": "ce_hard",
+   "teacher_set": null,
+   "tier": "optional"
+  }
+ },
+ "b0_label_smoothing": 0.1,
+ "cache": "TRAIN+VAL only; per-seed raw logits of all 4 heads, 192-d embedding, mixer alpha, band summaries (fp16); keyed by window id + dataset + split + teacher hashes + encoder config hash; TEST ids refused structurally",
+ "ensemble_rule": "mean_prob_at_T",
+ "fixed_a_priori": true,
+ "kl": "forward KL(teacher||student), sum over classes, per window",
+ "loss": "(1-alpha)*CE + alpha*T^2*KL(teacher_T || student_T) on the window's OWN dataset head",
+ "reduction": "per-dataset window mean, then mean over datasets present (identical to primary L_sup)",
+ "relational_term": {
+  "form": "KL(alpha_teacher || alpha_student) over VALID mixer bands, same-cell single teacher (cached alpha), renormalised over valid bands, padded bands excluded",
+  "weight": 1.0
+ },
+ "teacher_sets": {
+  "b1": "same as k1 (full-size student)",
+  "f1": "registered 10%-label S1(f,s) (single)",
+  "k0": "S0(f,42)+S0(f,1337)+S0(f,2026)",
+  "k1": "S1(f,42)+S1(f,1337)+S1(f,2026)"
+ }
+}

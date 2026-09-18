@@ -1,0 +1,44 @@
+{
+ "protocol_id": "pcste_v2_cwru_native12_load_v1",
+ "protocol_version": "cwru_native12.load.v1",
+ "inherits": "pcste_v2_cwru_native12_specimen_v1 (allowlist, denylist, specimen registry, sensor policy, window geometry, STFT grid)",
+ "split_authority": "recording/load level",
+ "split_by_load": {
+  "0hp": "train",
+  "1hp": "train",
+  "2hp": "validation",
+  "3hp": "test"
+ },
+ "folds": {
+  "1": {
+   "validation": [
+    "load:2hp"
+   ],
+   "test": [
+    "load:3hp"
+   ]
+  }
+ },
+ "window_s": 1.0,
+ "stride_s": {
+  "train": 0.5,
+  "validation": 1.0,
+  "test": 1.0
+ },
+ "native_rate_hz": 12000,
+ "stft_cwru12": {
+  "grid": "v1",
+  "n_fft": 256,
+  "hop": 64,
+  "window_samples": 12000,
+  "transform": "log1p|STFT| (sealed rep_of)",
+  "padding": "none (frames = 1 + (n - n_fft)//hop)"
+ },
+ "sensor_policy": "accelerometer on the faulted bearing housing (DE_time for DE-fault, FE_time for FE-fault); class-independent; unchanged",
+ "disjointness": {
+  "recording": true,
+  "load": true,
+  "specimen": false
+ },
+ "design_note": "specimen-disjointness is deliberately NOT enforced; this protocol tests same-specimen/different-load recognition and is not comparable as a matched experiment to the specimen-disjoint protocol"
+}

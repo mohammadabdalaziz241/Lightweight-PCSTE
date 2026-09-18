@@ -1,0 +1,10 @@
+split,fault_type,n_specimens,specimens,n_recordings,n_windows,loads,sizes,fault_ends,sensors
+train,inner_race,7,DE_IR007|DE_IR014|DE_IR021|DE_IR028|FE_IR007|FE_IR014|FE_IR021,14,266,0hp|1hp,14 mil|21 mil|28 mil|7 mil,DE|FE,DE|FE
+train,ball,7,DE_B007|DE_B014|DE_B021|DE_B028|FE_B007|FE_B014|FE_B021,14,266,0hp|1hp,14 mil|21 mil|28 mil|7 mil,DE|FE,DE|FE
+train,outer_race,6,DE_OR007|DE_OR014|DE_OR021|FE_OR007|FE_OR014|FE_OR021,25,475,0hp|1hp,14 mil|21 mil|7 mil,DE|FE,DE|FE
+validation,inner_race,7,DE_IR007|DE_IR014|DE_IR021|DE_IR028|FE_IR007|FE_IR014|FE_IR021,7,70,2hp,14 mil|21 mil|28 mil|7 mil,DE|FE,DE|FE
+validation,ball,7,DE_B007|DE_B014|DE_B021|DE_B028|FE_B007|FE_B014|FE_B021,7,70,2hp,14 mil|21 mil|28 mil|7 mil,DE|FE,DE|FE
+validation,outer_race,6,DE_OR007|DE_OR014|DE_OR021|FE_OR007|FE_OR014|FE_OR021,12,120,2hp,14 mil|21 mil|7 mil,DE|FE,DE|FE
+test,inner_race,7,DE_IR007|DE_IR014|DE_IR021|DE_IR028|FE_IR007|FE_IR014|FE_IR021,7,70,3hp,14 mil|21 mil|28 mil|7 mil,DE|FE,DE|FE
+test,ball,7,DE_B007|DE_B014|DE_B021|DE_B028|FE_B007|FE_B014|FE_B021,7,70,3hp,14 mil|21 mil|28 mil|7 mil,DE|FE,DE|FE
+test,outer_race,6,DE_OR007|DE_OR014|DE_OR021|FE_OR007|FE_OR014|FE_OR021,12,120,3hp,14 mil|21 mil|7 mil,DE|FE,DE|FE

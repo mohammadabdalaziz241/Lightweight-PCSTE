@@ -1,0 +1,14 @@
+{
+ "policy": "ONE sealed TEST session after all Part-6 training",
+ "primary_results_visible_at_sealing": "some Phase-B TEST values exist in results/methodology_v2/downstream/*/test_report.json; Part 6 never opens them and no Part-6 rule derives from them (disclosed)",
+ "second_touch": "forbidden unless integrity_failures.json documents it",
+ "stage_0_4_guard": "guards.assert_no_test_windows on every entry; TEST manifest access needs a TestSessionToken minted only by test_policy.open_test_session",
+ "steps": [
+  "all registered runs COMPLETE",
+  "pretest-ledger written AND committed",
+  "test-session: test_seal.json BEFORE TEST load",
+  "one evaluation per ledger model",
+  "test_touch_ledger.csv append-only",
+  "session_summary.json"
+ ]
+}

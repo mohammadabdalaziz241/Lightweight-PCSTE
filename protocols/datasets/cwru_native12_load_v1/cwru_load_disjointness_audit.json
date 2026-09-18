@@ -1,0 +1,52 @@
+{
+ "recording_disjoint": true,
+ "load_disjoint": true,
+ "specimen_disjoint": false,
+ "window_id_unique": true,
+ "specimens_shared_train_validation": [
+  "DE_B007",
+  "DE_B014",
+  "DE_B021",
+  "DE_B028",
+  "DE_IR007",
+  "DE_IR014",
+  "DE_IR021",
+  "DE_IR028",
+  "DE_OR007",
+  "DE_OR014",
+  "DE_OR021",
+  "FE_B007",
+  "FE_B014",
+  "FE_B021",
+  "FE_IR007",
+  "FE_IR014",
+  "FE_IR021",
+  "FE_OR007",
+  "FE_OR014",
+  "FE_OR021"
+ ],
+ "n_specimens_shared_train_validation": 20,
+ "loads": {
+  "train": [
+   "0hp",
+   "1hp"
+  ],
+  "validation": [
+   "2hp"
+  ],
+  "test": [
+   "3hp"
+  ]
+ },
+ "n_recordings": {
+  "train": 53,
+  "validation": 26,
+  "test": 26
+ },
+ "n_specimens": {
+  "train": 20,
+  "validation": 20,
+  "test": 20
+ },
+ "intent": "specimen_disjoint=False is the deliberate design of this diagnostic: it asks whether a KNOWN physical fault specimen is recognised under a DIFFERENT operating load."
+}
