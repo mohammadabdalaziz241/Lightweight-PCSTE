@@ -1,0 +1,345 @@
+{
+ "schema_version": "lightweight_pcste_corrected_efficiency.v1",
+ "protocol_identity": "lightweight_pcste_efficiency_latency_correction_v1",
+ "status": "PUBLICATION_LATENCY_CORRECTION_COMPLETE",
+ "completed_at_utc": "2026-09-20T14:54:35+00:00",
+ "plan_sha256": "a1a327c2529c2169027e88ed2dadb7f2e35569eae2d4b7370da04f9e6e792730",
+ "authority": "This is the AUTHORITATIVE publication timing result. lightweight_pcste_efficiency_v1 remains frozen for provenance but its absolute latency/throughput timings omitted torch.inference_mode().",
+ "corrects": {
+  "benchmark": "lightweight_pcste_efficiency_v1",
+  "defect": "latency_stage and throughput_stage never entered torch.inference_mode(), though the plan stated that mode",
+  "affected": [
+   "CPU batch-1 latency",
+   "GPU batch-1 latency",
+   "GPU batch-32 throughput"
+  ],
+  "unaffected": [
+   "parameter counts",
+   "serialized model size",
+   "FLOPs",
+   "GPU peak memory"
+  ],
+  "original_artifacts_modified": false
+ },
+ "inference_mode_verification": {
+  "method": "torch.is_inference_mode_enabled() asserted inside every timed loop; fail-closed",
+  "total_assertions": 584,
+  "total_violations": 0,
+  "all_timed_forwards_in_inference_mode": true,
+  "per_stage": {
+   "inference_mode_verification_latency_cpu.json": {
+    "protocol_identity": "lightweight_pcste_efficiency_latency_correction_v1",
+    "stage": "latency",
+    "device": "cpu",
+    "method": "torch.is_inference_mode_enabled() asserted inside the timed loop",
+    "assertions_performed": 264,
+    "violations": 0,
+    "all_timed_forwards_in_inference_mode": true,
+    "fail_closed": "an assertion failure raises InferenceModeViolation and aborts the run"
+   },
+   "inference_mode_verification_latency_gpu.json": {
+    "protocol_identity": "lightweight_pcste_efficiency_latency_correction_v1",
+    "stage": "latency",
+    "device": "cuda",
+    "method": "torch.is_inference_mode_enabled() asserted inside the timed loop",
+    "assertions_performed": 264,
+    "violations": 0,
+    "all_timed_forwards_in_inference_mode": true,
+    "fail_closed": "an assertion failure raises InferenceModeViolation and aborts the run"
+   },
+   "inference_mode_verification_throughput_cpu.json": {
+    "protocol_identity": "lightweight_pcste_efficiency_latency_correction_v1",
+    "stage": "throughput",
+    "device": "cpu",
+    "method": "torch.is_inference_mode_enabled() asserted inside the timed loop",
+    "assertions_performed": 24,
+    "violations": 0,
+    "all_timed_forwards_in_inference_mode": true,
+    "fail_closed": "an assertion failure raises InferenceModeViolation and aborts the run"
+   },
+   "inference_mode_verification_throughput_gpu.json": {
+    "protocol_identity": "lightweight_pcste_efficiency_latency_correction_v1",
+    "stage": "throughput",
+    "device": "cuda",
+    "method": "torch.is_inference_mode_enabled() asserted inside the timed loop",
+    "assertions_performed": 32,
+    "violations": 0,
+    "all_timed_forwards_in_inference_mode": true,
+    "fail_closed": "an assertion failure raises InferenceModeViolation and aborts the run"
+   }
+  }
+ },
+ "corrected_latency": {
+  "cpu|model_only": {
+   "full_s1_macro4_median_ms": 54.70932449679822,
+   "k1_macro4_median_ms": 28.559695492731407,
+   "speedup_full_over_k1": 1.9156130187285094,
+   "latency_reduction_fraction": 0.4779738964899334,
+   "per_dataset_median_ms": {
+    "CWRU": {
+     "Full-S1": 19.839809014229104,
+     "K1": 10.552741499850526,
+     "speedup": 1.880062068658663
+    },
+    "JNU": {
+     "Full-S1": 82.33750850195065,
+     "K1": 41.88477946445346,
+     "speedup": 1.9658097656173261
+    },
+    "HIT": {
+     "Full-S1": 37.45025148964487,
+     "K1": 19.742981501622126,
+     "speedup": 1.896889357190953
+    },
+    "MAFAULDA": {
+     "Full-S1": 79.20972898136824,
+     "K1": 42.05827950499952,
+     "speedup": 1.8833326021325358
+    }
+   },
+   "old": {
+    "full_s1_macro4_median_ms": 91.8495253790752,
+    "k1_macro4_median_ms": 41.497666243230924,
+    "speedup_full_over_k1": 2.2133660442665892
+   },
+   "change": {
+    "full_s1_ms_delta_pct": -0.4043592030442666,
+    "k1_ms_delta_pct": -0.31177586408512675,
+    "speedup_delta": -0.2977530255380798,
+    "speedup_delta_pct": -0.13452498122005926
+   }
+  },
+  "cpu|end_to_end": {
+   "full_s1_macro4_median_ms": 55.69918599212542,
+   "k1_macro4_median_ms": 29.72493325069081,
+   "speedup_full_over_k1": 1.8738203891788712,
+   "latency_reduction_fraction": 0.4663309216961765,
+   "per_dataset_median_ms": {
+    "CWRU": {
+     "Full-S1": 20.320966985309497,
+     "K1": 11.01271202787757,
+     "speedup": 1.84522821752435
+    },
+    "JNU": {
+     "Full-S1": 80.68093849578872,
+     "K1": 42.321659973822534,
+     "speedup": 1.906374621073294
+    },
+    "HIT": {
+     "Full-S1": 38.386909494875,
+     "K1": 20.6986460252665,
+     "speedup": 1.8545613779769328
+    },
+    "MAFAULDA": {
+     "Full-S1": 83.40792899252847,
+     "K1": 44.86671497579664,
+     "speedup": 1.859015732208674
+    }
+   },
+   "old": {
+    "full_s1_macro4_median_ms": 93.32680712395813,
+    "k1_macro4_median_ms": 42.83687587303575,
+    "speedup_full_over_k1": 2.1786557778062416
+   },
+   "change": {
+    "full_s1_ms_delta_pct": -0.4031812754705635,
+    "k1_ms_delta_pct": -0.3060900767181864,
+    "speedup_delta": -0.3048353886273705,
+    "speedup_delta_pct": -0.13991902334122694
+   }
+  },
+  "cuda|model_only": {
+   "full_s1_macro4_median_ms": 7.71132786758244,
+   "k1_macro4_median_ms": 4.1637463655206375,
+   "speedup_full_over_k1": 1.8520167153885252,
+   "latency_reduction_fraction": 0.46004806992780567,
+   "per_dataset_median_ms": {
+    "CWRU": {
+     "Full-S1": 7.467867981176823,
+     "K1": 4.030162002891302,
+     "speedup": 1.852994489010431
+    },
+    "JNU": {
+     "Full-S1": 7.786403002683073,
+     "K1": 4.204236465739086,
+     "speedup": 1.8520373594909718
+    },
+    "HIT": {
+     "Full-S1": 7.790233474224806,
+     "K1": 4.206582496408373,
+     "speedup": 1.8519150595230673
+    },
+    "MAFAULDA": {
+     "Full-S1": 7.800807012245059,
+     "K1": 4.214004497043788,
+     "speedup": 1.8511624792326364
+    }
+   },
+   "old": {
+    "full_s1_macro4_median_ms": 11.81066000572173,
+    "k1_macro4_median_ms": 6.3681043684482574,
+    "speedup_full_over_k1": 1.8546586742892346
+   },
+   "change": {
+    "full_s1_ms_delta_pct": -0.3470874731939916,
+    "k1_ms_delta_pct": -0.3461560733598286,
+    "speedup_delta": -0.0026419589007093958,
+    "speedup_delta_pct": -0.0014244987163052416
+   }
+  },
+  "cuda|end_to_end": {
+   "full_s1_macro4_median_ms": 9.57673363154754,
+   "k1_macro4_median_ms": 5.864320999535266,
+   "speedup_full_over_k1": 1.6330507201612043,
+   "latency_reduction_fraction": 0.3876491479081027,
+   "per_dataset_median_ms": {
+    "CWRU": {
+     "Full-S1": 8.050936507061124,
+     "K1": 4.607927985489368,
+     "speedup": 1.7471923459771916
+    },
+    "JNU": {
+     "Full-S1": 10.593678016448393,
+     "K1": 6.7403269931674,
+     "speedup": 1.571686066148882
+    },
+    "HIT": {
+     "Full-S1": 9.094139008084312,
+     "K1": 5.372565501602367,
+     "speedup": 1.6926995129928126
+    },
+    "MAFAULDA": {
+     "Full-S1": 10.568180994596332,
+     "K1": 6.73646351788193,
+     "speedup": 1.5688025276976734
+    }
+   },
+   "old": {
+    "full_s1_macro4_median_ms": 13.408970240561757,
+    "k1_macro4_median_ms": 7.804726745234802,
+    "speedup_full_over_k1": 1.7180576179362899
+   },
+   "change": {
+    "full_s1_ms_delta_pct": -0.2857964884896089,
+    "k1_ms_delta_pct": -0.24861930584363587,
+    "speedup_delta": -0.08500689777508552,
+    "speedup_delta_pct": -0.049478490644100044
+   }
+  }
+ },
+ "corrected_throughput": {
+  "cuda": {
+   "full_s1_macro4_win_s": 392.8507858877992,
+   "k1_macro4_win_s": 785.4692133134638,
+   "ratio_k1_over_full": 1.9994085325256268,
+   "per_dataset": {
+    "CWRU": {
+     "Full-S1": 950.1599403654645,
+     "K1": 1918.555919881701,
+     "ratio_k1_over_full": 2.0191925994520012
+    },
+    "JNU": {
+     "Full-S1": 136.01724111424898,
+     "K1": 267.24883379183586,
+     "ratio_k1_over_full": 1.9648158689482436
+    },
+    "HIT": {
+     "Full-S1": 349.32930233885116,
+     "K1": 688.3570776456475,
+     "ratio_k1_over_full": 1.9705105556187716
+    },
+    "MAFAULDA": {
+     "Full-S1": 135.896659732632,
+     "K1": 267.7150219346715,
+     "ratio_k1_over_full": 1.9699897146948548
+    }
+   },
+   "old": {
+    "full_s1": 382.20858845463437,
+    "k1": 743.508885081876,
+    "ratio_k1_over_full": 1.9452961224342702
+   },
+   "change": {
+    "full_s1_pct": 0.027843951587257394,
+    "k1_pct": 0.056435543775602774,
+    "ratio_delta": 0.05411241009135659
+   }
+  },
+  "cpu": {
+   "full_s1_macro4_win_s": 13.8444448340145,
+   "k1_macro4_win_s": 26.269692563514596,
+   "ratio_k1_over_full": 1.897489778641931,
+   "per_dataset": {
+    "CWRU": {
+     "Full-S1": 30.712991296651442,
+     "K1": 58.07439522820053,
+     "ratio_k1_over_full": 1.8908739519140303
+    },
+    "JNU": {
+     "Full-S1": 5.594106113163899,
+     "K1": 10.776340533823674,
+     "ratio_k1_over_full": 1.9263739935974904
+    },
+    "HIT": {
+     "Full-S1": 13.371065125393754,
+     "K1": 25.22483223998035,
+     "ratio_k1_over_full": 1.8865237737922935
+    },
+    "MAFAULDA": {
+     "Full-S1": 5.699616800848902,
+     "K1": 11.003202252053825,
+     "ratio_k1_over_full": 1.9305161445967747
+    }
+   },
+   "old": null,
+   "note": "efficiency_v1 measured batch-32 throughput on GPU only; no old CPU b32 baseline exists"
+  }
+ },
+ "not_recomputed_referenced_from_frozen_artifacts": {
+  "_note": "read programmatically from the frozen artifacts named below; not re-measured and not hand-entered",
+  "parameters": {
+   "source": "benchmarks/efficiency_v1/parameter_size_results.json",
+   "sha256": "9fb2b83fa97293bac427dba981be34b25d57de76d2a4c6e14a2010d29599ebfc",
+   "encoder": {
+    "Full-S1": 2382033,
+    "K1": 1375953
+   },
+   "complete": {
+    "Full-S1": 2385893,
+    "K1": 1379813
+   },
+   "serialized_state_dict_bytes": {
+    "Full-S1": 9578353,
+    "K1": 5542468
+   }
+  },
+  "flops": {
+   "source": "benchmarks/efficiency_v1/flops_results.json",
+   "sha256": "a7eebee546bb3d1117c3d979b44fc09e2fc49cd73b4d6a8da3032a907004f7f1",
+   "macro4_total_gflops": {
+    "Full-S1": 2.606669696,
+    "K1": 1.423639424
+   }
+  },
+  "gpu_peak_memory": {
+   "source": "benchmarks/efficiency_v1/memory_results.json via aggregates.json",
+   "sha256": "a6885025efd3f0535b2da4c0339d3cfee3426f01eaa6e3e81cced2c752ce2e33",
+   "verified_used_inference_mode": "yes - memory_stage wraps both warm-up and measured forwards (run_benchmark.py lines 249, 254)",
+   "macro4_peak_bytes": {
+    "Full-S1": 30897664.0,
+    "K1": 26028800.0
+   },
+   "reduction_fraction": 0.15758032710822412
+  }
+ },
+ "q8_relationship": {
+  "q8_rerun": false,
+  "note": "Q8 remains frozen. A Full-S1 -> Q8 figure must be a clearly labelled chained ratio; direct cross-run division is not permitted."
+ },
+ "qualitative_conclusion": {
+  "k1_faster_than_full_s1": true,
+  "unchanged_by_correction": true,
+  "magnitude_changed": true,
+  "detail": "The direction is unchanged on every device, scope and dataset. The CPU magnitude was overstated: the batch-1 CPU speed-up falls from 2.2134x to 1.9156x (model-only). GPU model-only is essentially unchanged (1.8547x -> 1.8520x)."
+ }
+}

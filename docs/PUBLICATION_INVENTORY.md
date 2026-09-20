@@ -1,6 +1,6 @@
 # Publication Inventory
 
-Status: all three stages are complete and frozen - the **primary study** (K1 nine-cell matrix + sealed publication TEST), the **efficiency benchmark**, and the **secondary Q8 deployment extension**. The remaining open item is the archival deposit of excluded binary artifacts.
+Status: all four stages are complete and frozen - the **primary study** (K1 nine-cell matrix + sealed publication TEST), the **efficiency benchmark**, the **secondary Q8 deployment extension**, and the **latency/throughput correction** that supersedes the efficiency benchmark's timing rows. The remaining open item is the archival deposit of excluded binary artifacts.
 
 The primary study and the Q8 extension are deliberately kept separate throughout this repository: Q8 was frozen and evaluated only after the primary sealed comparison was complete, and is never presented as part of it.
 
@@ -91,6 +91,24 @@ Classification codes: `CORE` (implementation), `REPRO` (exact executor), `PROTOC
 
 No Q8 binary model artifact is stored: Q8 is regenerated deterministically from the frozen K1 checkpoints, and the conversion manifest carries a content digest for byte-level verification.
 
+## Corrected latency/throughput benchmark (authoritative timings)
+
+| Item | Class | Location | Size | In Git | Final |
+|---|---|---|---:|---|---|
+| **Correction plan (JSON + MD)** | PROTOCOL | `benchmarks/efficiency_latency_correction_v1/` | 26 KiB | Yes | **Yes** |
+| **Correction runner** | REPRO | `benchmarks/efficiency_latency_correction_v1/run_correction.py` | 11 KiB | Yes | **Yes** |
+| **Environment record** | RESULTS | `.../environment.json` | 2 KiB | Yes | **Yes** |
+| **Latency raw (32,000 timed samples)** | RESULTS | `.../latency_raw.csv` (+ per-device) | ~3.3 MiB | Yes | **Yes** |
+| **Latency summary** | RESULTS | `.../latency_summary.csv` (+ per-device) | 8 KiB | Yes | **Yes** |
+| **Throughput (GPU b32 + CPU b32)** | RESULTS | `.../throughput_results.csv` (+ per-device) | 4 KiB | Yes | **Yes** |
+| **Inference-mode verification (4 stages)** | RESULTS | `.../inference_mode_verification_*.json` | 2 KiB | Yes | **Yes** |
+| **ABAB order logs** | RESULTS | `.../order_log_*.json` | 12 KiB | Yes | **Yes** |
+| **Corrected efficiency summary** | RESULTS | `.../CORRECTED_EFFICIENCY_SUMMARY.json` | 7 KiB | Yes | **Yes** |
+| **Correction report** | RESULTS | `.../LATENCY_CORRECTION_REPORT.md` | 13 KiB | Yes | **Yes** |
+| **Correction hash manifest (21 entries)** | PROTOCOL | `.../LATENCY_CORRECTION_ARTIFACT_HASHES.sha256` | 2 KiB | Yes | **Yes** |
+
+This directory supersedes `efficiency_v1` for **latency and throughput only**. `efficiency_v1` remains frozen and unmodified, and its parameter, size, FLOP and GPU-memory results remain authoritative.
+
 ## Excluded binary artifacts (archival deposit)
 
 Sizes audited in `docs/ARTIFACTS.md`. Text-level identity (SHA256, selection rule, provenance) for every item below is tracked in Git.
@@ -121,7 +139,6 @@ The dissertation repository is a separate project and is deliberately **not** co
 |---|---|---|
 | Efficiency and Q8 deployment across all nine cells / other hardware | PENDING | Both benchmarks cover the deterministic GF1/seed-42 pair on one host. Efficiency is architectural, so transfer is expected but unmeasured. |
 | TEST evaluation of the Q8 `cpu_dynamic` representation | PENDING | TEST accuracy was evaluated on the frozen `sim` accuracy representation. A deployment accuracy claim for the CPU int8 artifact would need its own pre-registered TEST evaluation. |
-| `inference_mode` correction for `efficiency_v1` absolute latencies | PENDING | Its ratios are valid; its absolute milliseconds are inflated because the latency/throughput stages omitted `torch.inference_mode()`. The frozen results were not modified. |
 | Fused Mamba kernel timings | PENDING | All current timings use the pure-PyTorch reference selective scan. |
 | Zenodo / release deposit | PENDING | Must contain the artifacts marked Required above, with a DOI referenced from `README.md` and `docs/ARTIFACTS.md`. |
 | `PCSTE_DATA_ROOT` support in the dataset registry | PENDING | Currently documented as a provenance annotation only; `src/methodology_v2/registry.py` resolves `<repo root>/data` directly. |

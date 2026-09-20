@@ -1,0 +1,332 @@
+{
+ "schema_version": "lightweight_pcste_latency_correction.v1",
+ "protocol_identity": "lightweight_pcste_efficiency_latency_correction_v1",
+ "status": "FROZEN_BEFORE_TIMING",
+ "created_at_utc": "2026-09-20T14:22:43+00:00",
+ "publication_git_head_at_freeze": "7c9118e3c272673c34c324d3a2c841a569b20fe9",
+ "purpose": {
+  "summary": "Correct ONE defect in lightweight_pcste_efficiency_v1: its latency and throughput timed paths never entered torch.inference_mode(), although its frozen plan states that mode. This run re-measures CPU/GPU batch-1 latency and batch-32 throughput with inference mode actually active and verified.",
+  "is_new_science": false,
+  "recomputes_predictive_results": false,
+  "recomputes_parameters_size_flops_memory": false,
+  "original_benchmark_identity": "lightweight_pcste_efficiency_v1",
+  "original_plan_sha256": "f88db6d957a1f6eec4b3dc8199f7606eb7c73be0958a87322fa297124ff6595b",
+  "original_artifacts_modified": false
+ },
+ "defect": {
+  "statement": "torch.inference_mode() was intended for every timed inference (EFFICIENCY_BENCHMARK_PLAN.json measurement.mode = 'torch.inference_mode(), model .eval()') but was absent from the timed code path.",
+  "evidence_source": "benchmarks/efficiency_v1/run_benchmark.py",
+  "evidence_sha256": "2ab812e9629843b58e01f3c26d0d35a802531b8f461bfd1bc3466d4901e0e04e",
+  "where_missing": [
+   {
+    "function": "latency_stage",
+    "line": 159,
+    "detail": "calls builders[fam]() via _time_loop(line 141); neither the closure (bench_common.model_only_fn line 229 / end_to_end_fn line 205) nor _time_loop establishes any grad context, so autograd graph construction was active during every timed forward"
+   },
+   {
+    "function": "throughput_stage",
+    "line": 203,
+    "detail": "inline fn() timed via _time_loop with no grad context"
+   }
+  ],
+  "where_present_and_correct": [
+   {
+    "function": "flop_report",
+    "line": 103,
+    "detail": "'with torch.inference_mode():' wraps the FlopCounterMode forward"
+   },
+   {
+    "function": "memory_stage subprocess template _MEM_ONE",
+    "lines": [
+     249,
+     254
+    ],
+    "detail": "both the warm-up forwards and the measured forward are wrapped"
+   }
+  ],
+  "affected_measurements": [
+   "CPU batch-1 latency (model-only and end-to-end)",
+   "GPU batch-1 latency (model-only and end-to-end)",
+   "GPU batch-32 throughput"
+  ],
+  "unaffected_measurements": [
+   "parameter counts (param_report line 43 performs no forward)",
+   "serialized model size (torch.save byte measurement, no forward)",
+   "FLOPs (flop_report wraps its forward in inference mode)",
+   "GPU peak memory (memory_stage wraps both warm-up and measured forwards)"
+  ],
+  "expected_direction": "absolute latency should FALL; ratios are expected to be approximately preserved because the omission applied identically to both models, but this is measured, not assumed"
+ },
+ "held_identical_to_original": {
+  "model_pair": {
+   "rule": "lowest fold, then lowest seed",
+   "fold": 1,
+   "seed": 42,
+   "checkpoints": {
+    "Full-S1": {
+     "path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf1_s42/best.pt",
+     "sha256": "7d6cea73ba61b3da23c73be14a8edae048276e88162517ee8d72a7c2a133ba0c",
+     "bytes": 9572428,
+     "run_id": "pcstev2_final_v1_s1_gf1_s42"
+    },
+    "K1": {
+     "path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s42/best.pt",
+     "sha256": "10770c5359337cae6e8f82665a3533b87548fa7f57fad42c5d4d6ba2f9952c5b",
+     "bytes": 5539611,
+     "run_id": "pcstev2_lightweight_v1_k1_gf1_s42"
+    }
+   },
+   "verified_against": [
+    "benchmarks/efficiency_v1/EFFICIENCY_BENCHMARK_PLAN.json",
+    "configs/lightweight_k1/final_test_v1/PUBLICATION_FROZEN_MODEL_TABLE.csv"
+   ]
+  },
+  "inputs": {
+   "source": "the same deterministic VALIDATION windows as efficiency_v1, verified field-by-field",
+   "test_access": false,
+   "per_dataset": {
+    "CWRU": {
+     "dataset": "CWRU",
+     "window_id": "n12L:CWRU:cwru_n12_DE_120:DE:validation:0-12000",
+     "recording_id": "cwru_n12_DE_120",
+     "source_file": "data/raw/ball/B007_2_DE12k.mat",
+     "split": "validation",
+     "start_sample": 0,
+     "end_sample": 12000,
+     "native_sampling_rate_hz": 12000,
+     "raw_samples": 12000,
+     "raw_seconds": 1.0,
+     "stft_key": "CWRU12",
+     "stft_n_fft": 256,
+     "stft_hop": 64,
+     "spec_shape_bins_frames": [
+      129,
+      184
+     ],
+     "patch_grid_bands_timepatches": [
+      9,
+      23
+     ],
+     "head_dataset": "CWRU",
+     "head_n_classes": 3,
+     "normalizer_sha256": "ba53bf230e9a0d9678df73da786e2df3dfc4aab19a42b288c574f6de3ed21f7e"
+    },
+    "JNU": {
+     "dataset": "JNU",
+     "window_id": "f1:JNU:jnu_ib1000_2:D:acc_vertical:validation:325300-375300",
+     "recording_id": "jnu_ib1000_2",
+     "source_file": "data/raw_jnu/JNU-Bearing-Dataset/ib1000_2.csv",
+     "split": "validation",
+     "start_sample": 325300,
+     "end_sample": 375300,
+     "native_sampling_rate_hz": 50000,
+     "raw_samples": 50000,
+     "raw_seconds": 1.0,
+     "stft_key": "JNU",
+     "stft_n_fft": 1024,
+     "stft_hop": 256,
+     "spec_shape_bins_frames": [
+      513,
+      192
+     ],
+     "patch_grid_bands_timepatches": [
+      33,
+      24
+     ],
+     "head_dataset": "JNU",
+     "head_n_classes": 4,
+     "normalizer_sha256": "87e49d9bedac90eb3e5a3dc784cf3f6c2205a933b66ab7848e2663f66ecee5a3"
+    },
+    "HIT": {
+     "dataset": "HIT",
+     "window_id": "f1:HIT:hit_data1_rec02:ch3:validation:0-25000",
+     "recording_id": "hit_data1_rec02",
+     "source_file": "data/raw_hit/gdrive_full/HIT-dataset/data1.npy",
+     "split": "validation",
+     "start_sample": 0,
+     "end_sample": 25000,
+     "native_sampling_rate_hz": 25000,
+     "raw_samples": 25000,
+     "raw_seconds": 1.0,
+     "stft_key": "HIT",
+     "stft_n_fft": 512,
+     "stft_hop": 128,
+     "spec_shape_bins_frames": [
+      257,
+      192
+     ],
+     "patch_grid_bands_timepatches": [
+      17,
+      24
+     ],
+     "head_dataset": "HIT",
+     "head_n_classes": 3,
+     "normalizer_sha256": "87c56806636dc54d2859564c551f6dcee88b1a1fabae4252740aa77b72e18670"
+    },
+    "MAFAULDA": {
+     "dataset": "MAFAULDA",
+     "window_id": "v2f1:MAFAULDA:mafaulda_horizontal-misalignment_1.5mm_12.288:col3:validation:0-50000",
+     "recording_id": "mafaulda_horizontal-misalignment_1.5mm_12.288",
+     "source_file": "data/raw_mafaulda/full/horizontal-misalignment/1.5mm/12.288.csv",
+     "split": "validation",
+     "start_sample": 0,
+     "end_sample": 50000,
+     "native_sampling_rate_hz": 50000,
+     "raw_samples": 50000,
+     "raw_seconds": 1.0,
+     "stft_key": "MAFAULDA",
+     "stft_n_fft": 1024,
+     "stft_hop": 256,
+     "spec_shape_bins_frames": [
+      513,
+      192
+     ],
+     "patch_grid_bands_timepatches": [
+      33,
+      24
+     ],
+     "head_dataset": "MAFAULDA",
+     "head_n_classes": 10,
+     "normalizer_sha256": "25f247f287182c7c5a79e8ee460f96d0341cf893727f29b2f2e840c830d45be3"
+    }
+   }
+  },
+  "scopes": {
+   "model_only": "prepared resident representation -> encoder -> dataset head -> logits",
+   "end_to_end": "resident raw 1 s waveform -> stft_rep -> N2b normalisation -> collate -> encoder -> head -> logits",
+   "disk_io": "excluded from both; waveform resident and normaliser lru_cache warmed before timing"
+  },
+  "shared_setup_module": "benchmarks/efficiency_v1/bench_common.py imported UNMODIFIED (sha256 1de4d6081ba76b3f833369d8f21809540210899a2a1b6b8cf0899b06bab98b92)",
+  "timing_method": "time.perf_counter, with torch.cuda.synchronize() bounding each timed GPU region (the original convention, preserved; CUDA events are not substituted)",
+  "interleaving": "ABAB - within each dataset and scope, rounds alternate Full-S1/K1; even rounds A,B and odd rounds B,A. The realised order is written to order_log_*.json.",
+  "aggregation": {
+   "per_dataset": [
+    "mean",
+    "median",
+    "sd_ddof1",
+    "p95",
+    "min",
+    "max"
+   ],
+   "primary": "equal-domain mean of the four per-dataset medians",
+   "speedup": "Full-S1 / K1",
+   "reduction": "1 - K1/Full-S1"
+  },
+  "rerun_policy": "No valid run is repeated because a speed-up is smaller than expected. Only an infrastructure-invalid run may be repeated, with the reason recorded."
+ },
+ "the_correction": {
+  "change": "the entire warm-up + timed region of both latency and throughput now executes inside 'with torch.inference_mode():'",
+  "verification": "torch.is_inference_mode_enabled() is asserted inside the timed loop at the first, last and every 100th sample, plus once before warm-up",
+  "fail_closed": "a false assertion raises InferenceModeViolation and aborts the run; the assertion tally and violation count are written to inference_mode_verification_*.json",
+  "eval_mode": "models are additionally asserted to be in .eval() before timing"
+ },
+ "schedule": {
+  "cpu_latency": {
+   "batch": 1,
+   "threads": 1,
+   "warmup": 100,
+   "timed": 1000,
+   "rounds": 4,
+   "identical_to_original": true
+  },
+  "gpu_latency": {
+   "batch": 1,
+   "warmup": 200,
+   "timed": 1000,
+   "rounds": 4,
+   "identical_to_original": true
+  },
+  "gpu_throughput": {
+   "batch": 32,
+   "warmup": 50,
+   "timed": 200,
+   "identical_to_original": true,
+   "scope": "model_only"
+  },
+  "cpu_throughput": {
+   "batch": 32,
+   "threads": 1,
+   "warmup": 5,
+   "timed": 25,
+   "identical_to_original": false,
+   "deviation_reason": "efficiency_v1 measured batch-32 throughput on GPU only. CPU batch-32 is added here because the same infrastructure supports it symmetrically for both models, but each CPU batch-32 sample takes seconds, so a reduced schedule is used. Each sample already aggregates 32 windows. The reduced schedule is recorded rather than presented as equal to the batch-1 schedule.",
+   "scope": "model_only",
+   "include_only_if": "both models complete cleanly at the identical batch size"
+  }
+ },
+ "not_recomputed": {
+  "rationale": "unaffected by the defect and remain frozen; referenced from artifacts, never re-measured or hand-copied",
+  "sources": {
+   "parameters_and_size": "benchmarks/efficiency_v1/parameter_size_results.json",
+   "flops": "benchmarks/efficiency_v1/flops_results.json",
+   "gpu_memory": "benchmarks/efficiency_v1/memory_results.json",
+   "predictive": "results/final_test/publication_final_test_v1/aggregate_summary.json",
+   "q8": "benchmarks/q8_v1/results/q8_aggregate_summary.json"
+  }
+ },
+ "q8_relationship": {
+  "q8_rerun": false,
+  "note": "The Q8 extension already measured K1 FP32 vs Q8 with inference mode active and remains frozen. Any Full-S1 -> Q8 figure must be a clearly labelled chained ratio; direct cross-run division is not permitted unless timing conditions are demonstrably identical."
+ },
+ "hardware": {
+  "hostname": "otter135.eps.surrey.ac.uk",
+  "kernel": "6.8.0-136-generic",
+  "cpu_model": "Intel(R) Core(TM) i9-14900",
+  "cpu_physical_cores": "24",
+  "cpu_logical_cpus": 32,
+  "cpu_affinity_cpus": 32,
+  "ram_total_gib": 62.5,
+  "gpu_name": "NVIDIA RTX 4000 Ada Generation",
+  "gpu_capability": [
+   8,
+   9
+  ],
+  "gpu_query": "NVIDIA RTX 4000 Ada Generation, 580.126.09, 20475 MiB, P8, Enabled, 3105 MHz, 130.00 W",
+  "gpu_utilization_pct": "0 %, 0 %",
+  "gpu_compute_processes": "(none)",
+  "cuda_version_torch": "13.0",
+  "cudnn_version": 92000,
+  "python": "3.12.3",
+  "torch": "2.12.0+cu130",
+  "numpy": "2.4.4",
+  "pandas": "3.0.3",
+  "scipy": "1.18.0",
+  "sklearn": "1.9.0",
+  "torch_default_threads": 4,
+  "torch_interop_threads": 24,
+  "env_vars": {
+   "OMP_NUM_THREADS": "4",
+   "MKL_NUM_THREADS": null,
+   "OPENBLAS_NUM_THREADS": null,
+   "CUDA_VISIBLE_DEVICES": null,
+   "PYTORCH_CUDA_ALLOC_CONF": null
+  },
+  "loadavg": "0.56 0.27 0.09 1/738 163379"
+ },
+ "source_hashes": {
+  "benchmarks/efficiency_v1/run_benchmark.py": "2ab812e9629843b58e01f3c26d0d35a802531b8f461bfd1bc3466d4901e0e04e",
+  "benchmarks/efficiency_v1/bench_common.py": "1de4d6081ba76b3f833369d8f21809540210899a2a1b6b8cf0899b06bab98b92",
+  "benchmarks/efficiency_v1/EFFICIENCY_BENCHMARK_PLAN.json": "f88db6d957a1f6eec4b3dc8199f7606eb7c73be0958a87322fa297124ff6595b",
+  "benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256": "acb7346fe951b5bf565fb4e93c2ffdbeba51d7af858f2971c3de3ac901376368",
+  "benchmarks/efficiency_latency_correction_v1/run_correction.py": "c98e6d4db7e2fd9d3d1fac1a037e44d81e8e7ba69de2200e1eb594c1edff8f39",
+  "src/methodology_v2/encoder/pcste.py": "a79891f8f689d79757a79b5143d74b01a642aaf79e03200e0f4588b44d1d0ac4",
+  "src/methodology_v2/encoder/ssm.py": "d40672b80fa7d19e7f2e17bee3453848148621db93d7b1dd2be0b4615ae47401",
+  "src/methodology_v2/compression/student.py": "ad990df666ed0ec63833b950d9c4607ad363e881610e5502177f18faebfe363e",
+  "src/methodology_v2/experiment/heads.py": "fd90680026ae2fd93bd95f83c24441013f76e3ed3b903fe57745a9a6e104c8a1",
+  "src/pcste_v2/representation.py": "7d68f6d8ad5e3a94769d914ab7c553eec5d918aa8e8d07da5a3a24115d0ce249",
+  "src/pcste_v2/model.py": "aaec4c10084609503cdd517b99c00bd6ed67e51dc0c3ae724d2ec78959d2f9e6",
+  "configs/lightweight_k1/final_test_v1/PUBLICATION_FROZEN_MODEL_TABLE.csv": "34c1a6b3ed2c9f545cb6b368c46e22a2bdf3b03a1a5134f3f73180b484ab5cd9",
+  "protocols/splits/global_v2_final_s0s1_v1/global_v2_fold_1.csv": "456a69474a3763647b7e0ad13f5538e8f630d268347671ad617134b08e830d0a"
+ },
+ "prohibitions_observed": [
+  "no retraining",
+  "no TEST access or rerun",
+  "no modification of frozen predictive results",
+  "no modification of efficiency_v1 artifacts",
+  "no modification of Q8 artifacts",
+  "no recomputation of parameters/size/FLOPs",
+  "no new quantization experiment",
+  "no modification of the dissertation repository",
+  "no deletion or rewrite of historical benchmark files"
+ ]
+}

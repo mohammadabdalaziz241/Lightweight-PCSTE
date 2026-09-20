@@ -475,10 +475,14 @@ def test_efficiency_report_agrees_with_result_files():
 
     assert f"{ps['comparison']['encoder_only']['full_s1']:,}" in doc
     assert "1,375,953" in doc and "1,375,953" in readme
+    # efficiency_v1's own report must stay consistent with its own frozen results.
+    # Its ABSOLUTE latency is superseded by efficiency_latency_correction_v1 and is
+    # deliberately no longer expected in the README - see that benchmark's report.
     for key in ("cpu|model_only", "cuda|model_only"):
         med = ag["latency_headline"][key]["full_s1_macro4_median_ms"]
-        assert f"{med:.3f}" in doc, f"{key} headline median missing from the report"
-        assert f"{med:.3f}" in readme, f"{key} headline median missing from the README"
+        assert f"{med:.3f}" in doc, f"{key} headline median missing from the efficiency_v1 report"
+    # Parameters and FLOPs were unaffected by the timing defect and remain headline.
+    assert "2,385,893" in readme and "2.6067" in readme
     # The reference-scan caveat must be carried, not dropped.
     assert "reference selective scan" in doc and "reference selective scan" in readme
 
@@ -639,3 +643,148 @@ def test_documentation_separates_primary_study_from_q8_extension():
     # the primary margin must never be attached to Q8
     assert "-0.01" in results or "\u22120.01" in results
     assert "does not apply to Q8" in results or "does not apply" in results
+
+
+# --------------------------------------------------------------------------
+# corrected latency/throughput benchmark (efficiency_latency_correction_v1)
+# --------------------------------------------------------------------------
+
+CORR = REPO / "benchmarks/efficiency_latency_correction_v1"
+
+
+def test_correction_artifact_hashes_are_correct():
+    manifest = CORR / "LATENCY_CORRECTION_ARTIFACT_HASHES.sha256"
+    assert manifest.is_file()
+    n = 0
+    for line in manifest.read_text().splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        digest, rel = line.split(None, 1)
+        path = CORR / rel.strip()
+        assert path.is_file(), f"missing correction artifact: {rel}"
+        assert sha256_of(path) == digest, f"correction artifact modified: {rel}"
+        n += 1
+    assert n >= 21, f"expected the full correction artifact set, got {n}"
+
+
+def test_every_timed_forward_ran_in_inference_mode():
+    """The whole point of this benchmark: prove inference mode was active."""
+    checks = sorted(CORR.glob("inference_mode_verification_*.json"))
+    assert len(checks) == 4, f"expected 4 stage verifications, got {len(checks)}"
+    total, violations = 0, 0
+    for path in checks:
+        d = json.loads(path.read_text())
+        assert d["all_timed_forwards_in_inference_mode"] is True, path.name
+        assert d["violations"] == 0, path.name
+        assert d["assertions_performed"] > 0, path.name
+        total += d["assertions_performed"]
+        violations += d["violations"]
+    assert total >= 500 and violations == 0
+
+    summary = json.loads((CORR / "CORRECTED_EFFICIENCY_SUMMARY.json").read_text())
+    v = summary["inference_mode_verification"]
+    assert v["total_violations"] == 0
+    assert v["all_timed_forwards_in_inference_mode"] is True
+    assert v["total_assertions"] == total
+
+    # the runner must actually assert it, not just record a flag
+    src = (CORR / "run_correction.py").read_text()
+    assert "torch.is_inference_mode_enabled()" in src
+    assert "with torch.inference_mode():" in src
+    assert "InferenceModeViolation" in src
+
+    # every timed row is flagged
+    with (CORR / "latency_summary.csv").open() as fh:
+        rows = list(csv.DictReader(fh))
+    assert rows and all(r["inference_mode"] == "True" for r in rows)
+
+
+def test_correction_used_validation_inputs_only_and_the_same_pair():
+    plan = json.loads((CORR / "LATENCY_CORRECTION_PLAN.json").read_text())
+    held = plan["held_identical_to_original"]
+
+    # GF1 / seed 42, byte-identical to the frozen model table and to efficiency_v1
+    assert held["model_pair"]["fold"] == 1 and held["model_pair"]["seed"] == 42
+    with (PREREG / "PUBLICATION_FROZEN_MODEL_TABLE.csv").open() as fh:
+        row = next(r for r in csv.DictReader(fh) if r["fold"] == "1" and r["seed"] == "42")
+    ck = held["model_pair"]["checkpoints"]
+    assert ck["Full-S1"]["sha256"] == row["full_s1_sha256"]
+    assert ck["K1"]["sha256"] == row["k1_sha256"]
+    old_plan = json.loads((REPO / "benchmarks/efficiency_v1/EFFICIENCY_BENCHMARK_PLAN.json").read_text())
+    for fam in ("Full-S1", "K1"):
+        assert ck[fam]["sha256"] == old_plan["model_pair_selection"]["checkpoints"][fam]["sha256"]
+
+    # VALIDATION only, and identical to the inputs efficiency_v1 used
+    assert held["inputs"]["test_access"] is False
+    for ds, meta in held["inputs"]["per_dataset"].items():
+        assert meta["split"] == "validation", f"{ds} is not a validation window"
+        old = old_plan["inputs"]["per_dataset"][ds]
+        for field in ("window_id", "source_file", "start_sample", "end_sample",
+                      "native_sampling_rate_hz", "normalizer_sha256"):
+            assert meta[field] == old[field], f"{ds}/{field} differs from efficiency_v1"
+
+
+def test_correction_left_the_old_benchmarks_untouched():
+    """efficiency_v1 and q8_v1 must be byte-identical after the correction."""
+    for sub in ("benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256",
+                "benchmarks/q8_v1/Q8_ARTIFACT_HASHES.sha256"):
+        manifest = REPO / sub
+        base = manifest.parent
+        for line in manifest.read_text().splitlines():
+            if not line.strip() or line.lstrip().startswith("#"):
+                continue
+            digest, rel = line.split(None, 1)
+            assert sha256_of(base / rel.strip()) == digest, f"{sub}: {rel} changed"
+
+    # the correction must not have recomputed what it was told not to
+    summary = json.loads((CORR / "CORRECTED_EFFICIENCY_SUMMARY.json").read_text())
+    nr = summary["not_recomputed_referenced_from_frozen_artifacts"]
+    eff = REPO / "benchmarks/efficiency_v1"
+    assert nr["parameters"]["sha256"] == sha256_of(eff / "parameter_size_results.json")
+    assert nr["flops"]["sha256"] == sha256_of(eff / "flops_results.json")
+    assert nr["gpu_peak_memory"]["sha256"] == sha256_of(eff / "memory_results.json")
+    # and the referenced values must match the frozen source, not be hand-entered
+    ps = json.loads((eff / "parameter_size_results.json").read_text())
+    assert nr["parameters"]["encoder"]["K1"] == ps["per_model"]["K1"]["encoder_only"]["total_params"] == 1_375_953
+    assert summary["q8_relationship"]["q8_rerun"] is False
+    assert summary["corrects"]["original_artifacts_modified"] is False
+
+
+def test_headline_documentation_uses_the_corrected_timings():
+    summary = json.loads((CORR / "CORRECTED_EFFICIENCY_SUMMARY.json").read_text())
+    L = summary["corrected_latency"]
+    readme = (REPO / "README.md").read_text()
+    results = (REPO / "docs/RESULTS.md").read_text()
+
+    for key in ("cpu|model_only", "cpu|end_to_end", "cuda|model_only", "cuda|end_to_end"):
+        for field in ("full_s1_macro4_median_ms", "k1_macro4_median_ms"):
+            token = f"{L[key][field]:.3f}"
+            assert token in readme, f"README missing corrected {key}/{field} = {token}"
+            assert token in results, f"docs/RESULTS.md missing corrected {key}/{field} = {token}"
+
+    # the superseded absolute CPU numbers must no longer be presented as final
+    for stale in ("91.850 ms", "41.498 ms", "93.327 ms", "42.837 ms"):
+        assert stale not in readme, f"README still presents superseded timing {stale}"
+        assert stale not in results, f"docs/RESULTS.md still presents superseded timing {stale}"
+
+    # provenance must be explained, not silently swapped
+    for doc, label in ((readme, "README"), (results, "docs/RESULTS.md")):
+        assert "efficiency_latency_correction_v1" in doc, label
+        assert "inference_mode" in doc or "inference mode" in doc, label
+
+
+def test_correction_ratios_were_calculated_not_assumed():
+    """The report must state the measured ratio change, including where it moved."""
+    summary = json.loads((CORR / "CORRECTED_EFFICIENCY_SUMMARY.json").read_text())
+    L = summary["corrected_latency"]
+    for key in ("cpu|model_only", "cpu|end_to_end", "cuda|model_only", "cuda|end_to_end"):
+        h = L[key]
+        assert "old" in h and "change" in h, key
+        recomputed = h["full_s1_macro4_median_ms"] / h["k1_macro4_median_ms"]
+        assert abs(h["speedup_full_over_k1"] - recomputed) < 1e-9, key
+        assert h["speedup_full_over_k1"] > 1.0, f"{key}: K1 should still be faster"
+    # direction preserved, magnitude changed - both must be recorded
+    q = summary["qualitative_conclusion"]
+    assert q["k1_faster_than_full_s1"] is True
+    assert q["unchanged_by_correction"] is True
+    assert q["magnitude_changed"] is True

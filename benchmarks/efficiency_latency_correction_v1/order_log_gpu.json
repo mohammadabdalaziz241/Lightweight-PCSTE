@@ -1,0 +1,325 @@
+{
+ "abab_rule": "rounds alternate Full-S1/K1; even rounds A,B and odd rounds B,A",
+ "rounds": [
+  {
+   "device": "cuda",
+   "dataset": "CWRU",
+   "scope": "model_only",
+   "round": 0,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "CWRU",
+   "scope": "model_only",
+   "round": 1,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "CWRU",
+   "scope": "model_only",
+   "round": 2,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "CWRU",
+   "scope": "model_only",
+   "round": 3,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "CWRU",
+   "scope": "end_to_end",
+   "round": 0,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "CWRU",
+   "scope": "end_to_end",
+   "round": 1,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "CWRU",
+   "scope": "end_to_end",
+   "round": 2,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "CWRU",
+   "scope": "end_to_end",
+   "round": 3,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "JNU",
+   "scope": "model_only",
+   "round": 0,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "JNU",
+   "scope": "model_only",
+   "round": 1,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "JNU",
+   "scope": "model_only",
+   "round": 2,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "JNU",
+   "scope": "model_only",
+   "round": 3,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "JNU",
+   "scope": "end_to_end",
+   "round": 0,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "JNU",
+   "scope": "end_to_end",
+   "round": 1,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "JNU",
+   "scope": "end_to_end",
+   "round": 2,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "JNU",
+   "scope": "end_to_end",
+   "round": 3,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "HIT",
+   "scope": "model_only",
+   "round": 0,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "HIT",
+   "scope": "model_only",
+   "round": 1,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "HIT",
+   "scope": "model_only",
+   "round": 2,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "HIT",
+   "scope": "model_only",
+   "round": 3,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "HIT",
+   "scope": "end_to_end",
+   "round": 0,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "HIT",
+   "scope": "end_to_end",
+   "round": 1,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "HIT",
+   "scope": "end_to_end",
+   "round": 2,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "HIT",
+   "scope": "end_to_end",
+   "round": 3,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "MAFAULDA",
+   "scope": "model_only",
+   "round": 0,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "MAFAULDA",
+   "scope": "model_only",
+   "round": 1,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "MAFAULDA",
+   "scope": "model_only",
+   "round": 2,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "MAFAULDA",
+   "scope": "model_only",
+   "round": 3,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "MAFAULDA",
+   "scope": "end_to_end",
+   "round": 0,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "MAFAULDA",
+   "scope": "end_to_end",
+   "round": 1,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "MAFAULDA",
+   "scope": "end_to_end",
+   "round": 2,
+   "order": [
+    "Full-S1",
+    "K1"
+   ]
+  },
+  {
+   "device": "cuda",
+   "dataset": "MAFAULDA",
+   "scope": "end_to_end",
+   "round": 3,
+   "order": [
+    "K1",
+    "Full-S1"
+   ]
+  }
+ ]
+}

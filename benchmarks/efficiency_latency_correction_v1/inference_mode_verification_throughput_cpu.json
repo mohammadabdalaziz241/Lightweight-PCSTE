@@ -1,0 +1,10 @@
+{
+ "protocol_identity": "lightweight_pcste_efficiency_latency_correction_v1",
+ "stage": "throughput",
+ "device": "cpu",
+ "method": "torch.is_inference_mode_enabled() asserted inside the timed loop",
+ "assertions_performed": 24,
+ "violations": 0,
+ "all_timed_forwards_in_inference_mode": true,
+ "fail_closed": "an assertion failure raises InferenceModeViolation and aborts the run"
+}

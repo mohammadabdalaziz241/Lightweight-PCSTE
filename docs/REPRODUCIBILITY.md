@@ -228,8 +228,30 @@ python benchmarks/q8_v1/q8_bench.py --stage memory
 
 The driver fails closed if any pinned plan byte, source hash, K1 checkpoint hash, TEST membership manifest, or frozen K1 reference artifact differs. It needs the nine frozen K1 `best.pt` checkpoints and the fold normalizers from the canonical scientific repository, plus raw datasets at `<repo root>/data` - the same external prerequisites as section 8.
 
-**A measurement-mode caveat that also affects `efficiency_v1`.** `efficiency_v1`'s latency and throughput stages never applied `torch.inference_mode()`, although its plan states that mode; it *is* applied in its FLOPs and memory stages. Measured effect on this host: K1/JNU model-only 78.5 ms without it versus 38.6 ms with it. Its reported **ratios remain valid** (both models measured identically, ABAB-interleaved in one process), but its **absolute milliseconds are inflated**. Those results are frozen and were not modified. Q8 CPU latency was therefore measured both ways, and absolute milliseconds are never compared across the two benchmarks; the Full-S1 to Q8 speed-up is reported as a chained ratio.
+**A measurement-mode caveat that also affects `efficiency_v1`.** `efficiency_v1`'s latency and throughput stages never applied `torch.inference_mode()`, although its plan states that mode; it *is* applied in its FLOPs and memory stages. Measured effect on this host: K1/JNU model-only 78.5 ms without it versus 38.6 ms with it. Those results are frozen and were not modified. Q8 CPU latency was therefore measured both ways, and absolute milliseconds are never compared across the two benchmarks; the Full-S1 to Q8 speed-up is reported as a chained ratio.
 
-## 11. Not measured
+This defect was subsequently corrected in full by `lightweight_pcste_efficiency_latency_correction_v1` (section 11), which is now the authoritative timing result. That correction also showed the earlier assumption that the *ratios* were unaffected to be only partly right: GPU model-only barely moved, but the CPU speed-ups fell by about 13%.
+
+## 11. Corrected latency/throughput benchmark
+
+`benchmarks/efficiency_latency_correction_v1/` holds the authoritative publication timings. Verify with:
+
+```bash
+cd benchmarks/efficiency_latency_correction_v1 && sha256sum -c LATENCY_CORRECTION_ARTIFACT_HASHES.sha256
+```
+
+Reproduce:
+
+```bash
+python benchmarks/efficiency_latency_correction_v1/run_correction.py --stage env
+python benchmarks/efficiency_latency_correction_v1/run_correction.py --stage latency    --device cpu
+python benchmarks/efficiency_latency_correction_v1/run_correction.py --stage latency    --device cuda
+python benchmarks/efficiency_latency_correction_v1/run_correction.py --stage throughput --device cuda
+python benchmarks/efficiency_latency_correction_v1/run_correction.py --stage throughput --device cpu
+```
+
+It imports `benchmarks/efficiency_v1/bench_common.py` unmodified, so it needs the same external prerequisites as section 8 (the frozen GF1/seed-42 checkpoints from the canonical repository and raw datasets at `<repo root>/data`). Every timed forward asserts `torch.is_inference_mode_enabled()` and the run aborts on violation; the assertion tallies are published alongside the results.
+
+## 12. Not measured
 
 No TEST evaluation of the `cpu_dynamic` Q8 representation was performed, so no accuracy claim exists for the deployed CPU int8 artifact. There is no true INT8 GPU path in the preserved implementation, so no Q8 GPU latency or memory figure exists. Efficiency and Q8 deployment figures come from one representative cell (GF1/seed 42) on one host; they were not measured across all nine cells, on other hardware, or with multi-thread CPU scaling.

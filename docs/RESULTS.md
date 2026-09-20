@@ -107,14 +107,17 @@ Efficiency was measured separately under `lightweight_pcste_efficiency_v1` and d
 | Complete model parameters | 2,385,893 | 1,379,813 | 42.17% |
 | FP32 state_dict size | 9.135 MiB | 5.286 MiB | 42.14% |
 | Macro-4 FLOPs / 1 s window | 2.6067 GFLOP | 1.4236 GFLOP | 45.38% (1.83x) |
-| CPU batch-1 model-only latency | 91.850 ms | 41.498 ms | 54.82% (2.21x) |
-| CPU batch-1 end-to-end latency | 93.327 ms | 42.837 ms | 54.10% (2.18x) |
-| GPU batch-1 model-only latency | 11.811 ms | 6.368 ms | 46.08% (1.86x) |
-| GPU batch-1 end-to-end latency | 13.409 ms | 7.805 ms | 41.79% (1.72x) |
-| GPU batch-32 throughput | 382.2 windows/s | 743.5 windows/s | 1.95x |
+| CPU batch-1 model-only latency | 54.709 ms | 28.560 ms | 47.80% (1.92x) |
+| CPU batch-1 end-to-end latency | 55.699 ms | 29.725 ms | 46.63% (1.87x) |
+| GPU batch-1 model-only latency | 7.711 ms | 4.164 ms | 46.00% (1.85x) |
+| GPU batch-1 end-to-end latency | 9.577 ms | 5.864 ms | 38.76% (1.63x) |
+| GPU batch-32 throughput | 392.9 windows/s | 785.5 windows/s | 2.00x |
+| CPU batch-32 throughput | 13.84 windows/s | 26.27 windows/s | 1.90x |
 | GPU peak memory (batch 1) | 29.466 MiB | 24.823 MiB | 15.76% |
 
 Measured on the deterministically fixed GF1 / seed-42 pair on one idle RTX 4000 Ada host, with deterministic VALIDATION inputs. Latency is the equal-domain mean of four per-dataset batch-1 medians. All timings use the pure-PyTorch reference selective scan; fused Mamba kernels are unavailable on this stack.
+
+**Timing provenance.** Latency and throughput come from `lightweight_pcste_efficiency_latency_correction_v1`, the authoritative timing result. `lightweight_pcste_efficiency_v1` remains frozen for provenance, but its latency/throughput path never entered `torch.inference_mode()` despite its plan stating that mode; its absolute milliseconds were inflated and its CPU speed-ups overstated by about 13% (2.2134x -> 1.9156x model-only). Parameters, size, FLOPs and GPU memory were unaffected and are reused unchanged. The corrected run asserts `torch.is_inference_mode_enabled()` inside every timed loop (584 assertions, 0 violations). The qualitative conclusion is unchanged: K1 is faster than Full-S1 on every device, scope and dataset. See `benchmarks/efficiency_latency_correction_v1/LATENCY_CORRECTION_REPORT.md`.
 
 Pairing this with the sealed predictive result — K1 non-inferior at the frozen -0.02 margin, paired delta +0.020691 +/- 0.013509 — gives the performance-versus-efficiency trade-off the study set out to quantify. **No manuscript claim is drawn here.**
 

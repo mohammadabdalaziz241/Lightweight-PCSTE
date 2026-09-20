@@ -119,6 +119,19 @@ The historical Part-6 harness (`src/methodology_v2/compression/benchmark.py`) wa
 
 Plan `benchmarks/q8_v1/Q8_EVALUATION_PLAN.json` (SHA256 `5904c3657e5ba68987caca2b204b725e153607883d98116fd25b9ed6b8220be4`), barrier SHA256 `d3b6898a109e571ff721f18f0d21ddd1649afdf235d315cc20b63f7ba141373d`.
 
+## Timing correction protocol — efficiency_latency_correction_v1
+
+`lightweight_pcste_efficiency_latency_correction_v1` is a **measurement correction, not a new experiment**. It re-measures only CPU/GPU batch-1 latency and batch-32 throughput for Full-S1 and K1; it recomputes no predictive result, no parameter count, no model size and no FLOP figure.
+
+- **Defect corrected:** `efficiency_v1`'s `latency_stage` and `throughput_stage` never entered `torch.inference_mode()`, although its plan stated that mode. Verified from source: missing in `latency_stage` (line 159 via `_time_loop` line 141 and the `bench_common` closures), missing in `throughput_stage` (line 203); present and correct in `flop_report` (line 103) and `memory_stage` (lines 249, 254); not applicable to `param_report` (line 43, no forward).
+- **Affected:** CPU batch-1 latency, GPU batch-1 latency, GPU batch-32 throughput. **Unaffected:** parameters, serialized size, FLOPs, GPU peak memory - all reused unchanged.
+- **Held identical:** the same GF1/seed-42 pair (re-verified against the frozen model table), the same deterministic VALIDATION inputs (verified field-by-field), the same scopes, the same ABAB interleaving, the same synchronized host timing, `bench_common.py` imported unmodified. TEST is never touched.
+- **Proof, not assertion:** `torch.is_inference_mode_enabled()` is asserted inside every timed loop; a violation aborts the run. 584 assertions, 0 violations, published in `inference_mode_verification_*.json`.
+- **Schedule:** identical to the original for CPU b1 (100/1000), GPU b1 (200/1000) and GPU b32 (50/200). CPU b32 throughput is new, with a reduced 5/25 schedule recorded as a deviation.
+- **Outcome:** absolute latency fell ~40% on CPU and ~30% on GPU. Ratios were **not** uniformly preserved - CPU speed-ups fell ~13% (2.2134x -> 1.9156x model-only), GPU model-only was essentially unchanged (1.8547x -> 1.8520x). The qualitative conclusion "K1 is faster than Full-S1" is unchanged.
+
+Plan `benchmarks/efficiency_latency_correction_v1/LATENCY_CORRECTION_PLAN.json` (SHA256 `a1a327c2529c2169027e88ed2dadb7f2e35569eae2d4b7370da04f9e6e792730`), frozen and hashed before any timing. `benchmarks/efficiency_v1/` was not modified.
+
 ## Nothing further is pending
 
-All three stages - primary sealed study, efficiency benchmark, and the Q8 extension - are complete and frozen. Any future work may not reuse dissertation-era numbers as a publication measurement, and may not alter any frozen artifact listed in `FROZEN_ARTIFACT_HASHES.sha256`, `benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256`, or `benchmarks/q8_v1/Q8_ARTIFACT_HASHES.sha256`.
+All four stages - primary sealed study, efficiency benchmark, Q8 extension, and the latency/throughput correction - are complete and frozen. Any future work may not reuse dissertation-era numbers as a publication measurement, and may not alter any frozen artifact listed in `FROZEN_ARTIFACT_HASHES.sha256`, `benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256`, `benchmarks/q8_v1/Q8_ARTIFACT_HASHES.sha256`, or `benchmarks/efficiency_latency_correction_v1/LATENCY_CORRECTION_ARTIFACT_HASHES.sha256`.

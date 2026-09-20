@@ -24,6 +24,7 @@ Frozen artifacts are copied verbatim from the canonical scientific repository an
 | Per-model class-level / confusion-matrix reports (18 files) | `results/final_test/publication_final_test_v1/per_model_reports/` | ~535 KiB |
 | Efficiency benchmark plan, driver, results and report | `benchmarks/efficiency_v1/` | ~1.7 MiB |
 | Q8 extension plan, barrier, driver, results and report | `benchmarks/q8_v1/` | ~2.5 MiB |
+| Corrected latency/throughput benchmark | `benchmarks/efficiency_latency_correction_v1/` | ~3.7 MiB |
 
 Per-model reports contain per-dataset confusion matrices, per-class precision/recall/F1 with support, macro one-vs-rest AUC, CWRU per-specimen recall, MaFaulDa per-configuration recall, per-severity breakdowns, and each checkpoint's path and SHA256. They are text JSON and comfortably Git-safe.
 
@@ -72,6 +73,16 @@ These are enforced by `.gitignore`. No binary artifact may be added without firs
 The benchmark **produces no binary artifact**. Standardized FP32 state_dict serializations are written to temporary files purely to measure their byte size and are deleted immediately; they never enter Git. The benchmark *reads* the two frozen `best.pt` checkpoints and the fold-1 normalizer `.npz` from the canonical scientific repository — those remain excluded here and are part of the archival deposit.
 
 Result files are marked read-only (mode 444). They must never be edited in place; a correction means re-running the benchmark and re-freezing.
+
+## Corrected latency/throughput artifacts
+
+`benchmarks/efficiency_latency_correction_v1/` is tracked in full and hashed in `LATENCY_CORRECTION_ARTIFACT_HASHES.sha256` (21 entries). It is the **authoritative** publication timing result; `benchmarks/efficiency_v1/` stays frozen and unmodified for provenance.
+
+The bulk is raw timing samples. Both the per-device files written directly by each runner invocation (`latency_raw_cpu.csv`, `latency_raw_gpu.csv`) and the merged deliverable (`latency_raw.csv`) are kept: the per-device files are the untouched run outputs, the merged file is the required artifact. That costs ~1.8 MiB of duplication and buys exact provenance for each invocation, which is the better trade for a benchmark whose whole purpose is correcting a measurement-condition error.
+
+Also tracked: `inference_mode_verification_*.json` (one per stage, recording the `torch.is_inference_mode_enabled()` assertion tally — 584 assertions, 0 violations) and `order_log_*.json` (the realised ABAB interleaving order). These exist so the corrected measurement condition is auditable rather than merely claimed.
+
+No binary artifact is produced. Result files are mode 444.
 
 ## Q8 extension artifacts
 

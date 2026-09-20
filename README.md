@@ -87,14 +87,17 @@ Fresh publication-grade efficiency measurements were taken under `lightweight_pc
 | Complete model parameters | 2,385,893 | 1,379,813 | 42.17% |
 | FP32 state_dict size | 9.135 MiB | 5.286 MiB | 42.14% |
 | Macro-4 FLOPs / 1 s window | 2.6067 GFLOP | 1.4236 GFLOP | 45.38% (1.83×) |
-| CPU batch-1 model-only latency | 91.850 ms | 41.498 ms | 54.82% (2.21×) |
-| CPU batch-1 end-to-end latency | 93.327 ms | 42.837 ms | 54.10% (2.18×) |
-| GPU batch-1 model-only latency | 11.811 ms | 6.368 ms | 46.08% (1.86×) |
-| GPU batch-1 end-to-end latency | 13.409 ms | 7.805 ms | 41.79% (1.72×) |
-| GPU batch-32 throughput | 382.2 windows/s | 743.5 windows/s | 1.95× |
+| CPU batch-1 model-only latency | 54.709 ms | 28.560 ms | 47.80% (1.92×) |
+| CPU batch-1 end-to-end latency | 55.699 ms | 29.725 ms | 46.63% (1.87×) |
+| GPU batch-1 model-only latency | 7.711 ms | 4.164 ms | 46.00% (1.85×) |
+| GPU batch-1 end-to-end latency | 9.577 ms | 5.864 ms | 38.76% (1.63×) |
+| GPU batch-32 throughput | 392.9 windows/s | 785.5 windows/s | 2.00× |
+| CPU batch-32 throughput | 13.84 windows/s | 26.27 windows/s | 1.90× |
 | GPU peak memory (batch 1) | 29.466 MiB | 24.823 MiB | 15.76% |
 
 Latency figures are batch-1 medians aggregated as the equal-domain mean of the four per-dataset medians (CPU single-thread; 100/200 warm-up and 1000 timed iterations per cell, ABAB-interleaved). Model-only and end-to-end scopes are reported separately and never mixed; disk I/O is excluded from both. FLOPs are the explicit sum of a profiler dense term and an analytic selective-scan term — never a profiler count alone.
+
+**Timing provenance.** The latency and throughput rows come from `lightweight_pcste_efficiency_latency_correction_v1`, which is the authoritative timing result. The original `lightweight_pcste_efficiency_v1` remains frozen for provenance, but its latency/throughput code path never entered `torch.inference_mode()` despite its plan stating that mode, so its absolute milliseconds were inflated (~40% on CPU) and its CPU speed-ups were overstated by ~13% (2.21× → 1.92× model-only). Its parameter, size, FLOP and GPU-memory rows were unaffected and are reused unchanged. Every timed forward in the corrected run asserts `torch.is_inference_mode_enabled()` — 584 assertions, 0 violations. See [`benchmarks/efficiency_latency_correction_v1/LATENCY_CORRECTION_REPORT.md`](benchmarks/efficiency_latency_correction_v1/LATENCY_CORRECTION_REPORT.md).
 
 **Caveat carried on every timing figure:** all measurements use the pure-PyTorch reference selective scan, as fused Mamba kernels are unavailable on this stack. Absolute latency, and possibly the Full-S1 / K1 ratio, would differ with fused kernels. Results are from one representative cell on one host.
 
@@ -142,6 +145,7 @@ Full detail: [`benchmarks/q8_v1/Q8_FINAL_REPORT.md`](benchmarks/q8_v1/Q8_FINAL_R
 | `results/lightweight_k1/` | Per-cell validation-stage summaries (9 cells, no checkpoints) |
 | `results/final_test/publication_final_test_v1/` | Sealed final TEST results and per-model class-level reports |
 | `benchmarks/efficiency_v1/` | Frozen efficiency benchmark: plan, driver, results, final report |
+| `benchmarks/efficiency_latency_correction_v1/` | **Authoritative** corrected latency/throughput timings |
 | `benchmarks/q8_v1/` | Secondary Q8 extension: plan, barrier, driver, results, final report |
 | `docs/` | Protocol, reproducibility, results, artifact policy, inventory |
 | `FROZEN_ARTIFACT_HASHES.sha256` | SHA256 manifest of every frozen artifact tracked here |
