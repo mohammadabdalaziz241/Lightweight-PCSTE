@@ -22,6 +22,7 @@ Frozen artifacts are copied verbatim from the canonical scientific repository an
 | K1 per-cell validation summaries (9 cells: `completion.json`, `state.json`, `epoch_metrics.jsonl`) | `results/lightweight_k1/` | ~185 KiB |
 | Sealed TEST summaries and statistics | `results/final_test/publication_final_test_v1/` | ~49 KiB |
 | Per-model class-level / confusion-matrix reports (18 files) | `results/final_test/publication_final_test_v1/per_model_reports/` | ~535 KiB |
+| Efficiency benchmark plan, driver, results and report | `benchmarks/efficiency_v1/` | ~1.7 MiB |
 
 Per-model reports contain per-dataset confusion matrices, per-class precision/recall/F1 with support, macro one-vs-rest AUC, CWRU per-specimen recall, MaFaulDa per-configuration recall, per-severity breakdowns, and each checkpoint's path and SHA256. They are text JSON and comfortably Git-safe.
 
@@ -62,6 +63,14 @@ A future release or Zenodo deposit must contain, at minimum, the artifacts marke
 - Obsolete experiments and superseded protocols
 
 These are enforced by `.gitignore`. No binary artifact may be added without first verifying its identity, scientific necessity, licence, and storage destination.
+
+## Efficiency benchmark artifacts
+
+`benchmarks/efficiency_v1/` is tracked in full and hashed in `EFFICIENCY_ARTIFACT_HASHES.sha256`. The bulk is `latency_raw.csv` (~1.6 MiB): 32,000 individual timed iterations — 4 datasets x 2 scopes x 2 devices x 2 models x 1000 samples. It is plain text, it is the evidence behind every median and p95 in the report, and it is small enough to keep, so it is kept rather than summarised away.
+
+The benchmark **produces no binary artifact**. Standardized FP32 state_dict serializations are written to temporary files purely to measure their byte size and are deleted immediately; they never enter Git. The benchmark *reads* the two frozen `best.pt` checkpoints and the fold-1 normalizer `.npz` from the canonical scientific repository — those remain excluded here and are part of the archival deposit.
+
+Result files are marked read-only (mode 444). They must never be edited in place; a correction means re-running the benchmark and re-freezing.
 
 ## Optional Q8 artifact
 

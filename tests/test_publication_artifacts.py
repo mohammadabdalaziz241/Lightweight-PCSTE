@@ -375,3 +375,109 @@ def test_legacy_executor_paths_resolve():
     ]:
         assert (REPO / rel).is_file(), f"legacy executor path does not resolve: {rel}"
         assert sha256_of(REPO / rel) == sha256_of(REPO / real)
+
+
+# --------------------------------------------------------------------------
+# efficiency benchmark (efficiency_v1)
+# --------------------------------------------------------------------------
+
+BENCH = REPO / "benchmarks/efficiency_v1"
+
+
+def test_efficiency_artifact_hashes_are_correct():
+    manifest = BENCH / "EFFICIENCY_ARTIFACT_HASHES.sha256"
+    assert manifest.is_file()
+    n = 0
+    for line in manifest.read_text().splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        digest, rel = line.split(None, 1)
+        path = BENCH / rel.strip()
+        assert path.is_file(), f"missing efficiency artifact: {rel}"
+        assert sha256_of(path) == digest, f"efficiency artifact modified: {rel}"
+        n += 1
+    assert n >= 13, f"expected the full efficiency artifact set, got {n}"
+
+
+def test_efficiency_benchmark_never_touched_test_or_q8():
+    plan = json.loads((BENCH / "EFFICIENCY_BENCHMARK_PLAN.json").read_text())
+    assert plan["inputs"]["test_access"] is False
+    assert plan["inputs"]["rule"].startswith("first VALIDATION window")
+    for meta in plan["inputs"]["per_dataset"].values():
+        assert meta["split"] == "validation", "a non-validation input was pinned"
+    assert "no Q8 execution" in plan["prohibitions_observed"]
+    assert "no TEST access" in plan["prohibitions_observed"]
+    assert plan["size_convention"]["q8"].startswith("NOT measured")
+
+    # The raw latency samples must cover only the four datasets, never a TEST split.
+    with (BENCH / "latency_raw.csv").open() as fh:
+        rows = list(csv.DictReader(fh))
+    assert len(rows) == 32000, f"expected 32000 timed samples, got {len(rows)}"
+    assert {r["dataset"] for r in rows} == set(DATASETS)
+    assert {r["family"] for r in rows} == {"Full-S1", "K1"}
+    assert {r["scope"] for r in rows} == {"model_only", "end_to_end"}
+    assert {r["device"] for r in rows} == {"cpu", "cuda"}
+
+
+def test_efficiency_pair_is_the_deterministic_cell():
+    """The benchmarked pair must be GF1/seed42 with the frozen table's hashes."""
+    plan = json.loads((BENCH / "EFFICIENCY_BENCHMARK_PLAN.json").read_text())
+    sel = plan["model_pair_selection"]
+    assert sel["rule"] == "lowest fold, then lowest seed"
+    assert sel["fold"] == 1 and sel["seed"] == 42
+
+    with (PREREG / "PUBLICATION_FROZEN_MODEL_TABLE.csv").open() as fh:
+        row = next(r for r in csv.DictReader(fh) if r["fold"] == "1" and r["seed"] == "42")
+    assert sel["checkpoints"]["Full-S1"]["sha256"] == row["full_s1_sha256"]
+    assert sel["checkpoints"]["K1"]["sha256"] == row["k1_sha256"]
+
+
+def test_efficiency_results_are_internally_consistent():
+    ps = json.loads((BENCH / "parameter_size_results.json").read_text())
+    fl = json.loads((BENCH / "flops_results.json").read_text())
+    ag = json.loads((BENCH / "aggregates.json").read_text())
+
+    # K1 encoder must still be the frozen architectural identity.
+    assert ps["per_model"]["K1"]["encoder_only"]["total_params"] == 1_375_953
+    enc = ps["comparison"]["encoder_only"]
+    assert abs(enc["k1_reduction_fraction"] - (1 - enc["k1"] / enc["full_s1"])) < 1e-12
+
+    # FLOPs must be the explicit sum of the two terms, never the profiler alone.
+    for fam in ("Full-S1", "K1"):
+        for ds in DATASETS:
+            d = fl["per_model"][fam]["per_dataset"][ds]
+            assert abs(d["total_flops"] - (d["dense_flops"] + d["scan_flops"])) < 1.0
+            assert d["scan_flops"] > 0, "scan term must be counted"
+    # Direction handling: Full-S1 bidirectional (8), K1 forward-only (4).
+    assert fl["per_model"]["Full-S1"]["per_dataset"]["JNU"]["directions_summed_over_layers"] == 8
+    assert fl["per_model"]["K1"]["per_dataset"]["JNU"]["directions_summed_over_layers"] == 4
+    # CWRU must use the publication grid (9 bands), not the historical 33.
+    assert fl["per_model"]["K1"]["per_dataset"]["CWRU"]["n_bands"] == 9
+
+    # Headline latency = equal-domain mean of the four per-dataset medians.
+    for key, h in ag["latency_headline"].items():
+        for fam, field in (("Full-S1", "full_s1_macro4_median_ms"), ("K1", "k1_macro4_median_ms")):
+            want = sum(h["per_dataset_median_ms"][ds][fam] for ds in DATASETS) / 4
+            assert abs(h[field] - want) < 1e-9, f"{key}/{fam} is not the equal-domain mean"
+        assert h["speedup_full_over_k1"] > 1.0
+
+
+def test_historical_benchmark_source_was_not_edited():
+    assert sha256_of(REPO / "src/methodology_v2/compression/benchmark.py") == \
+        "641f437b670b03d5bffb3ed11bfa2c8a758266392beec1988b90b8f4cecd211b"
+
+
+def test_efficiency_report_agrees_with_result_files():
+    doc = (BENCH / "EFFICIENCY_FINAL_REPORT.md").read_text()
+    readme = (REPO / "README.md").read_text()
+    ps = json.loads((BENCH / "parameter_size_results.json").read_text())
+    ag = json.loads((BENCH / "aggregates.json").read_text())
+
+    assert f"{ps['comparison']['encoder_only']['full_s1']:,}" in doc
+    assert "1,375,953" in doc and "1,375,953" in readme
+    for key in ("cpu|model_only", "cuda|model_only"):
+        med = ag["latency_headline"][key]["full_s1_macro4_median_ms"]
+        assert f"{med:.3f}" in doc, f"{key} headline median missing from the report"
+        assert f"{med:.3f}" in readme, f"{key} headline median missing from the README"
+    # The reference-scan caveat must be carried, not dropped.
+    assert "reference selective scan" in doc and "reference selective scan" in readme

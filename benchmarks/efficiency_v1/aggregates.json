@@ -1,0 +1,145 @@
+{
+ "latency_headline": {
+  "cpu|model_only": {
+   "full_s1_macro4_median_ms": 91.8495253790752,
+   "k1_macro4_median_ms": 41.497666243230924,
+   "speedup_full_over_k1": 2.2133660442665892,
+   "latency_reduction_fraction": 0.5481994482610059,
+   "per_dataset_median_ms": {
+    "CWRU": {
+     "Full-S1": 39.7731680131983,
+     "K1": 17.426992009859532,
+     "speedup": 2.2822738422497784
+    },
+    "JNU": {
+     "Full-S1": 132.51825899351388,
+     "K1": 58.0098959908355,
+     "speedup": 2.284407801980016
+    },
+    "HIT": {
+     "Full-S1": 62.66978252097033,
+     "K1": 32.34833449823782,
+     "speedup": 1.9373418598841396
+    },
+    "MAFAULDA": {
+     "Full-S1": 132.4368919886183,
+     "K1": 58.20544247399084,
+     "speedup": 2.275335198212742
+    }
+   }
+  },
+  "cpu|end_to_end": {
+   "full_s1_macro4_median_ms": 93.32680712395813,
+   "k1_macro4_median_ms": 42.83687587303575,
+   "speedup_full_over_k1": 2.1786557778062416,
+   "latency_reduction_fraction": 0.5410013779198602,
+   "per_dataset_median_ms": {
+    "CWRU": {
+     "Full-S1": 40.37514398805797,
+     "K1": 18.05376200354658,
+     "speedup": 2.2363839724998287
+    },
+    "JNU": {
+     "Full-S1": 134.8201000073459,
+     "K1": 60.06402798811905,
+     "speedup": 2.2446063729527754
+    },
+    "HIT": {
+     "Full-S1": 63.81583650363609,
+     "K1": 33.40740199200809,
+     "speedup": 1.910230448895801
+    },
+    "MAFAULDA": {
+     "Full-S1": 134.29614799679257,
+     "K1": 59.822311508469284,
+     "speedup": 2.2449173997193292
+    }
+   }
+  },
+  "cuda|model_only": {
+   "full_s1_macro4_median_ms": 11.81066000572173,
+   "k1_macro4_median_ms": 6.3681043684482574,
+   "speedup_full_over_k1": 1.8546586742892346,
+   "latency_reduction_fraction": 0.4608172307590601,
+   "per_dataset_median_ms": {
+    "CWRU": {
+     "Full-S1": 11.354583519278094,
+     "K1": 6.124602514319122,
+     "speedup": 1.853929866098485
+    },
+    "JNU": {
+     "Full-S1": 11.980243492871523,
+     "K1": 6.444705475587398,
+     "speedup": 1.8589280050504702
+    },
+    "HIT": {
+     "Full-S1": 11.931121000088751,
+     "K1": 6.455683003878221,
+     "speedup": 1.8481578158223053
+    },
+    "MAFAULDA": {
+     "Full-S1": 11.976692010648549,
+     "K1": 6.447426480008289,
+     "speedup": 1.8575926453422933
+    }
+   }
+  },
+  "cuda|end_to_end": {
+   "full_s1_macro4_median_ms": 13.408970240561757,
+   "k1_macro4_median_ms": 7.804726745234802,
+   "speedup_full_over_k1": 1.7180576179362899,
+   "latency_reduction_fraction": 0.41794734381423837,
+   "per_dataset_median_ms": {
+    "CWRU": {
+     "Full-S1": 11.759825487388298,
+     "K1": 6.593267491552979,
+     "speedup": 1.7836111613027228
+    },
+    "JNU": {
+     "Full-S1": 14.219596516340971,
+     "K1": 8.470848988508806,
+     "speedup": 1.678650691994471
+    },
+    "HIT": {
+     "Full-S1": 13.491884979885072,
+     "K1": 7.749370503006503,
+     "speedup": 1.7410298003754834
+    },
+    "MAFAULDA": {
+     "Full-S1": 14.164573978632689,
+     "K1": 8.405419997870922,
+     "speedup": 1.6851714705773835
+    }
+   }
+  }
+ },
+ "throughput_b32_macro4": {
+  "Full-S1": 382.20858845463437,
+  "K1": 743.508885081876,
+  "speedup_k1_over_full": 1.9452961224342702
+ },
+ "memory_macro4": {
+  "Full-S1": {
+   "model_resident_bytes": 9552896,
+   "macro4_peak_bytes": 30897664.0,
+   "per_dataset_peak_bytes": {
+    "CWRU": 23795712,
+    "JNU": 35925504,
+    "HIT": 27943936,
+    "MAFAULDA": 35925504
+   }
+  },
+  "K1": {
+   "model_resident_bytes": 5528576,
+   "macro4_peak_bytes": 26028800.0,
+   "per_dataset_peak_bytes": {
+    "CWRU": 19452928,
+    "JNU": 30684672,
+    "HIT": 23292928,
+    "MAFAULDA": 30684672
+   }
+  },
+  "reduction_macro4_peak": 0.15758032710822412,
+  "reduction_model_resident": 0.42126701682924217
+ }
+}

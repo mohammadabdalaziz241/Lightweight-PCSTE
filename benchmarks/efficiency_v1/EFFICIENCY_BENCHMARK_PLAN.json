@@ -1,0 +1,324 @@
+{
+ "schema_version": "lightweight_pcste_efficiency_benchmark.v1",
+ "benchmark_identity": "lightweight_pcste_efficiency_v1",
+ "status": "FROZEN_BEFORE_MEASUREMENT",
+ "purpose": "Fresh publication-grade efficiency measurement of frozen Full-S1 vs frozen K1. No training, no TEST access, no Q8, no change to any frozen predictive artifact.",
+ "publication_git_head": "5bf74db7c6ed8587687746fa53f9221004372236",
+ "model_pair_selection": {
+  "rule": "lowest fold, then lowest seed",
+  "fold": 1,
+  "seed": 42,
+  "rationale": "Efficiency is an architectural property. The cell is fixed by a deterministic rule recorded before measurement, never chosen from efficiency outcomes.",
+  "checkpoints": {
+   "Full-S1": {
+    "path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf1_s42/best.pt",
+    "sha256": "7d6cea73ba61b3da23c73be14a8edae048276e88162517ee8d72a7c2a133ba0c",
+    "bytes": 9572428,
+    "run_id": "pcstev2_final_v1_s1_gf1_s42"
+   },
+   "K1": {
+    "path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s42/best.pt",
+    "sha256": "10770c5359337cae6e8f82665a3533b87548fa7f57fad42c5d4d6ba2f9952c5b",
+    "bytes": 5539611,
+    "run_id": "pcstev2_lightweight_v1_k1_gf1_s42"
+   }
+  }
+ },
+ "architectures": {
+  "Full-S1": {
+   "class": "src.methodology_v2.encoder.PCSTE",
+   "temporal_layer": "BiMambaLayer",
+   "directions": 2,
+   "n_blocks": 4,
+   "d_model": 192,
+   "d_inner": 384,
+   "d_state": 16,
+   "dt_rank": 12,
+   "d_conv": 4,
+   "load": "checkpoint['model'] with the 'core.' prefix stripped, strict=True; heads from checkpoint['heads']"
+  },
+  "K1": {
+   "class": "build_encoder(half_4x1_spec('mean_of_remaining'))",
+   "temporal_layer": "UniMambaLayer",
+   "directions": 1,
+   "n_blocks": 4,
+   "d_model": 192,
+   "d_inner": 384,
+   "d_state": 16,
+   "dt_rank": 12,
+   "d_conv": 4,
+   "load": "checkpoint['encoder'] strict=True; heads from checkpoint['heads']",
+   "frozen_encoder_param_identity": 1375953
+  },
+  "heads": "src.methodology_v2.experiment.heads.DatasetHeads (identical class and parameter count for both models)"
+ },
+ "inputs": {
+  "source": "frozen global fold manifest global_v2_fold_1.csv, split == 'validation' only",
+  "rule": "first VALIDATION window per dataset in frozen manifest order",
+  "test_access": false,
+  "same_input_for_both_models": true,
+  "per_dataset": {
+   "CWRU": {
+    "dataset": "CWRU",
+    "window_id": "n12L:CWRU:cwru_n12_DE_120:DE:validation:0-12000",
+    "recording_id": "cwru_n12_DE_120",
+    "source_file": "data/raw/ball/B007_2_DE12k.mat",
+    "split": "validation",
+    "start_sample": 0,
+    "end_sample": 12000,
+    "native_sampling_rate_hz": 12000,
+    "raw_samples": 12000,
+    "raw_seconds": 1.0,
+    "stft_key": "CWRU12",
+    "stft_n_fft": 256,
+    "stft_hop": 64,
+    "spec_shape_bins_frames": [
+     129,
+     184
+    ],
+    "patch_grid_bands_timepatches": [
+     9,
+     23
+    ],
+    "head_dataset": "CWRU",
+    "head_n_classes": 3,
+    "normalizer_sha256": "ba53bf230e9a0d9678df73da786e2df3dfc4aab19a42b288c574f6de3ed21f7e"
+   },
+   "JNU": {
+    "dataset": "JNU",
+    "window_id": "f1:JNU:jnu_ib1000_2:D:acc_vertical:validation:325300-375300",
+    "recording_id": "jnu_ib1000_2",
+    "source_file": "data/raw_jnu/JNU-Bearing-Dataset/ib1000_2.csv",
+    "split": "validation",
+    "start_sample": 325300,
+    "end_sample": 375300,
+    "native_sampling_rate_hz": 50000,
+    "raw_samples": 50000,
+    "raw_seconds": 1.0,
+    "stft_key": "JNU",
+    "stft_n_fft": 1024,
+    "stft_hop": 256,
+    "spec_shape_bins_frames": [
+     513,
+     192
+    ],
+    "patch_grid_bands_timepatches": [
+     33,
+     24
+    ],
+    "head_dataset": "JNU",
+    "head_n_classes": 4,
+    "normalizer_sha256": "87e49d9bedac90eb3e5a3dc784cf3f6c2205a933b66ab7848e2663f66ecee5a3"
+   },
+   "HIT": {
+    "dataset": "HIT",
+    "window_id": "f1:HIT:hit_data1_rec02:ch3:validation:0-25000",
+    "recording_id": "hit_data1_rec02",
+    "source_file": "data/raw_hit/gdrive_full/HIT-dataset/data1.npy",
+    "split": "validation",
+    "start_sample": 0,
+    "end_sample": 25000,
+    "native_sampling_rate_hz": 25000,
+    "raw_samples": 25000,
+    "raw_seconds": 1.0,
+    "stft_key": "HIT",
+    "stft_n_fft": 512,
+    "stft_hop": 128,
+    "spec_shape_bins_frames": [
+     257,
+     192
+    ],
+    "patch_grid_bands_timepatches": [
+     17,
+     24
+    ],
+    "head_dataset": "HIT",
+    "head_n_classes": 3,
+    "normalizer_sha256": "87c56806636dc54d2859564c551f6dcee88b1a1fabae4252740aa77b72e18670"
+   },
+   "MAFAULDA": {
+    "dataset": "MAFAULDA",
+    "window_id": "v2f1:MAFAULDA:mafaulda_horizontal-misalignment_1.5mm_12.288:col3:validation:0-50000",
+    "recording_id": "mafaulda_horizontal-misalignment_1.5mm_12.288",
+    "source_file": "data/raw_mafaulda/full/horizontal-misalignment/1.5mm/12.288.csv",
+    "split": "validation",
+    "start_sample": 0,
+    "end_sample": 50000,
+    "native_sampling_rate_hz": 50000,
+    "raw_samples": 50000,
+    "raw_seconds": 1.0,
+    "stft_key": "MAFAULDA",
+    "stft_n_fft": 1024,
+    "stft_hop": 256,
+    "spec_shape_bins_frames": [
+     513,
+     192
+    ],
+    "patch_grid_bands_timepatches": [
+     33,
+     24
+    ],
+    "head_dataset": "MAFAULDA",
+    "head_n_classes": 10,
+    "normalizer_sha256": "25f247f287182c7c5a79e8ee460f96d0341cf893727f29b2f2e840c830d45be3"
+   }
+  }
+ },
+ "hardware": {
+  "hostname": "otter135.eps.surrey.ac.uk",
+  "kernel": "6.8.0-136-generic",
+  "cpu_model": "Intel(R) Core(TM) i9-14900",
+  "cpu_physical_cores": "24",
+  "cpu_logical_cpus": 32,
+  "cpu_affinity_cpus": 32,
+  "ram_total_gib": 62.5,
+  "gpu_name": "NVIDIA RTX 4000 Ada Generation",
+  "gpu_capability": [
+   8,
+   9
+  ],
+  "gpu_query": "NVIDIA RTX 4000 Ada Generation, 580.126.09, 20475 MiB, P8, Enabled, 3105 MHz, 130.00 W",
+  "gpu_utilization_pct": "0 %, 0 %",
+  "gpu_compute_processes": "(none)",
+  "cuda_version_torch": "13.0",
+  "cudnn_version": 92000,
+  "python": "3.12.3",
+  "torch": "2.12.0+cu130",
+  "numpy": "2.4.4",
+  "pandas": "3.0.3",
+  "scipy": "1.18.0",
+  "sklearn": "1.9.0",
+  "torch_default_threads": 4,
+  "torch_interop_threads": 24,
+  "env_vars": {
+   "OMP_NUM_THREADS": "4",
+   "MKL_NUM_THREADS": null,
+   "OPENBLAS_NUM_THREADS": null,
+   "CUDA_VISIBLE_DEVICES": null,
+   "PYTORCH_CUDA_ALLOC_CONF": null
+  },
+  "loadavg": "0.28 0.16 0.14 1/738 154060"
+ },
+ "measurement": {
+  "precision": "FP32",
+  "mode": "torch.inference_mode(), model .eval()",
+  "cpu": {
+   "threads": 1,
+   "set_by": "torch.set_num_threads(1)",
+   "batch": 1,
+   "warmup": 100,
+   "timed": 1000,
+   "timer": "time.perf_counter (monotonic, high resolution)"
+  },
+  "gpu": {
+   "device": "cuda:0 NVIDIA RTX 4000 Ada Generation",
+   "batch": 1,
+   "warmup": 200,
+   "timed": 1000,
+   "timer": "time.perf_counter with torch.cuda.synchronize() around each timed region",
+   "timer_rationale": "preserves the synchronized host-timing method of the historical Part-6 harness (_time_forward); CUDA events are not substituted"
+  },
+  "throughput": {
+   "batch": 32,
+   "scope": "model-only",
+   "device": "cuda",
+   "warmup": 50,
+   "timed": 200,
+   "rule": "identical batch size for both models; not tuned per model"
+  },
+  "schedule_deviation_from_historical": {
+   "historical": "warmup=5, timed=20, batches (1,16) CPU / (16,64) GPU, threads (1,4)",
+   "adopted": "warmup=100/200, timed=1000, batch 1 primary, batch 32 throughput, threads=1",
+   "reason": "The requested publication schedule is strictly stronger (50x more timed samples). The historical schedule was not preserved because it is weaker, and batch-1 single-thread is the deployment-facing primary here."
+  },
+  "scopes": {
+   "model_only": "prepared resident representation -> encoder -> dataset head -> logits",
+   "end_to_end": "resident raw 1 s waveform -> stft_rep (log1p|STFT|) -> N2b normalisation -> collate -> encoder -> head -> logits",
+   "disk_io": "excluded from both scopes: the waveform is resident in memory and the normaliser lru_cache is warmed before timing"
+  },
+  "order_control": "ABAB interleaving within one process: for each dataset and scope, rounds alternate Full-S1 / K1 so thermal and load drift affect both models equally. Round count and per-round sample count recorded in the raw CSV.",
+  "aggregation": {
+   "per_dataset": [
+    "mean",
+    "median",
+    "sd_ddof1",
+    "p95",
+    "min",
+    "max"
+   ],
+   "primary_headline": "equal-domain mean of the four per-dataset medians (no weighting by sample count)",
+   "speedup": "Full-S1 / K1",
+   "latency_reduction": "1 - K1/Full-S1"
+  },
+  "rerun_policy": "A completed valid measurement is never repeated. Only infrastructure-invalid runs may be repeated, and the reason must be recorded."
+ },
+ "flop_convention": {
+  "reported_quantity": "FLOPs (not MACs)",
+  "dense_term": {
+   "tool": "torch.utils.flop_counter.FlopCounterMode",
+   "covers": [
+    "aten.convolution",
+    "aten.addmm",
+    "aten.mm",
+    "aten.bmm"
+   ],
+   "convention": "2 x MAC for matrix products (PyTorch FlopCounterMode default)",
+   "note": "This term alone is NOT the total: it does not count the selective-scan recurrence."
+  },
+  "scan_term": {
+   "method": "analytic, preserved from the historical Part-6 harness analytic_scan_flops",
+   "formula": "scan_flops = batch * n_bands * (sum over layers of directions) * T * d_inner * d_state * C",
+   "C": 6,
+   "C_meaning": "approximate elementary flops per (d_inner x d_state) state element per sequential step for h_t = exp(dt A) h_{t-1} + (dt B) x_t ; y_t = C h_t",
+   "C_sensitivity": "A strict per-operation tally of the reference scan gives about 8 rather than 6, which would scale the scan term by 4/3. The historical constant is preserved; because the identical constant applies to both models, the Full-S1/K1 ratio is unaffected.",
+   "n_bands_and_T": "derived empirically from the actual patch grid of each dataset's representation, NOT hardcoded",
+   "directions": "Full-S1 = 2 per layer (BiMambaLayer), K1 = 1 per layer (UniMambaLayer); the same formula covers both"
+  },
+  "total": "total_flops = dense_term + scan_term, reported explicitly as that sum and never as a profiler total alone",
+  "reporting_unit": "per one 1-second window, per dataset, plus the equal-domain Macro-4 mean",
+  "historical_implementation_not_used_verbatim": {
+   "function": "src/methodology_v2/compression/benchmark.py::analytic_scan_flops / compute_axis / synthetic_batch",
+   "reason": "Its DATASET_SHAPES and n_bands are bound to the dissertation-era representation. It assumes CWRU (513, 184) with 33 frequency bands, whereas the publication CWRU native-12 kHz representation is (129, 184) with 9 bands. Using it unchanged would overstate CWRU scan cost by 33/9 for BOTH models. The counting convention is preserved; only the input parameterisation is taken from the live model.",
+   "historical_source_edited": false
+  }
+ },
+ "size_convention": {
+  "raw_fp32_parameter_bytes": "sum(p.numel() * p.element_size()) over parameters",
+  "serialized_state_dict": "torch.save of a state_dict-only FP32 payload to a temporary file, identical procedure for both models, measured in bytes; temporary files deleted after measurement and never added to Git",
+  "note": "Training-checkpoint file sizes are NOT compared: checkpoint packaging differs between the two training stacks.",
+  "q8": "NOT measured. size_axis() in the historical harness calls apply_q8_simulated(); it is deliberately not used because Q8 must not be run."
+ },
+ "memory_convention": {
+  "device": "cuda",
+  "batch": 1,
+  "scope": "model-only",
+  "method": "each model measured in its own clean subprocess; torch.cuda.reset_peak_memory_stats() then synchronize; record allocated after model load, peak allocated during forward, and the increment",
+  "validity_rule": "reported as a headline claim only if the two clean-process measurements are self-consistent on repeat; otherwise labelled exploratory"
+ },
+ "source_hashes": {
+  "benchmarks/efficiency_v1/bench_common.py": "1de4d6081ba76b3f833369d8f21809540210899a2a1b6b8cf0899b06bab98b92",
+  "src/methodology_v2/compression/benchmark.py": "641f437b670b03d5bffb3ed11bfa2c8a758266392beec1988b90b8f4cecd211b",
+  "src/methodology_v2/compression/student.py": "ad990df666ed0ec63833b950d9c4607ad363e881610e5502177f18faebfe363e",
+  "src/methodology_v2/encoder/pcste.py": "a79891f8f689d79757a79b5143d74b01a642aaf79e03200e0f4588b44d1d0ac4",
+  "src/methodology_v2/encoder/ssm.py": "d40672b80fa7d19e7f2e17bee3453848148621db93d7b1dd2be0b4615ae47401",
+  "src/methodology_v2/encoder/patchify.py": "440455e592229d95aad194fc1170d6ca3c29d3a0e43f02f6bfc437147d7f939c",
+  "src/methodology_v2/encoder/mixer.py": "d353fbda2b53d23c4a51e8f403899fdcf90c1ba86eee2a7818d30adca4b13b08",
+  "src/methodology_v2/encoder/collate.py": "526b1d977892f274ce9318989b7b1028a46add805cf7b3352db944731ee85ce8",
+  "src/methodology_v2/encoder/coords.py": "dc22a1fc0e2722bba3c7cf2983c75fe76e6f3a74c7723a5fc7696a4323d8800f",
+  "src/methodology_v2/experiment/heads.py": "fd90680026ae2fd93bd95f83c24441013f76e3ed3b903fe57745a9a6e104c8a1",
+  "src/pcste_v2/representation.py": "7d68f6d8ad5e3a94769d914ab7c553eec5d918aa8e8d07da5a3a24115d0ce249",
+  "configs/lightweight_k1/final_test_v1/PUBLICATION_FROZEN_MODEL_TABLE.csv": "34c1a6b3ed2c9f545cb6b368c46e22a2bdf3b03a1a5134f3f73180b484ab5cd9",
+  "protocols/splits/global_v2_final_s0s1_v1/global_v2_fold_1.csv": "456a69474a3763647b7e0ad13f5538e8f630d268347671ad617134b08e830d0a"
+ },
+ "prohibitions_observed": [
+  "no retraining",
+  "no TEST access",
+  "no TEST rerun",
+  "no modification of frozen TEST artifacts",
+  "no modification of K1 training artifacts",
+  "no Q8 execution",
+  "no reuse of dissertation-era efficiency numbers as publication results",
+  "no modification of the dissertation repository",
+  "no edit of historical benchmark source"
+ ]
+}

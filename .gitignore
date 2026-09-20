@@ -2,7 +2,9 @@
 .env.*
 !.env.example
 /data/
+/data
 /datasets/
+/datasets
 /raw_data/
 /raw_datasets/
 *.pt

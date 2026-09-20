@@ -1,0 +1,126 @@
+{
+ "method": "clean subprocess per model; reset_peak_memory_stats + synchronize; batch 1 model-only",
+ "repeats": 2,
+ "runs": [
+  {
+   "family": "Full-S1",
+   "baseline_bytes": 0,
+   "allocated_after_model_load_bytes": 9552896,
+   "model_resident_bytes": 9552896,
+   "per_dataset": {
+    "CWRU": {
+     "allocated_before_forward_bytes": 19437056,
+     "peak_allocated_during_forward_bytes": 23795712,
+     "forward_increment_bytes": 4358656
+    },
+    "JNU": {
+     "allocated_before_forward_bytes": 19437056,
+     "peak_allocated_during_forward_bytes": 35925504,
+     "forward_increment_bytes": 16488448
+    },
+    "HIT": {
+     "allocated_before_forward_bytes": 19437056,
+     "peak_allocated_during_forward_bytes": 27943936,
+     "forward_increment_bytes": 8506880
+    },
+    "MAFAULDA": {
+     "allocated_before_forward_bytes": 19437056,
+     "peak_allocated_during_forward_bytes": 35925504,
+     "forward_increment_bytes": 16488448
+    }
+   },
+   "repeat": 0,
+   "status": "ok"
+  },
+  {
+   "family": "K1",
+   "baseline_bytes": 0,
+   "allocated_after_model_load_bytes": 5528576,
+   "model_resident_bytes": 5528576,
+   "per_dataset": {
+    "CWRU": {
+     "allocated_before_forward_bytes": 15412736,
+     "peak_allocated_during_forward_bytes": 19452928,
+     "forward_increment_bytes": 4040192
+    },
+    "JNU": {
+     "allocated_before_forward_bytes": 15412736,
+     "peak_allocated_during_forward_bytes": 30684672,
+     "forward_increment_bytes": 15271936
+    },
+    "HIT": {
+     "allocated_before_forward_bytes": 15412736,
+     "peak_allocated_during_forward_bytes": 23292928,
+     "forward_increment_bytes": 7880192
+    },
+    "MAFAULDA": {
+     "allocated_before_forward_bytes": 15412736,
+     "peak_allocated_during_forward_bytes": 30684672,
+     "forward_increment_bytes": 15271936
+    }
+   },
+   "repeat": 0,
+   "status": "ok"
+  },
+  {
+   "family": "Full-S1",
+   "baseline_bytes": 0,
+   "allocated_after_model_load_bytes": 9552896,
+   "model_resident_bytes": 9552896,
+   "per_dataset": {
+    "CWRU": {
+     "allocated_before_forward_bytes": 19437056,
+     "peak_allocated_during_forward_bytes": 23795712,
+     "forward_increment_bytes": 4358656
+    },
+    "JNU": {
+     "allocated_before_forward_bytes": 19437056,
+     "peak_allocated_during_forward_bytes": 35925504,
+     "forward_increment_bytes": 16488448
+    },
+    "HIT": {
+     "allocated_before_forward_bytes": 19437056,
+     "peak_allocated_during_forward_bytes": 27943936,
+     "forward_increment_bytes": 8506880
+    },
+    "MAFAULDA": {
+     "allocated_before_forward_bytes": 19437056,
+     "peak_allocated_during_forward_bytes": 35925504,
+     "forward_increment_bytes": 16488448
+    }
+   },
+   "repeat": 1,
+   "status": "ok"
+  },
+  {
+   "family": "K1",
+   "baseline_bytes": 0,
+   "allocated_after_model_load_bytes": 5528576,
+   "model_resident_bytes": 5528576,
+   "per_dataset": {
+    "CWRU": {
+     "allocated_before_forward_bytes": 15412736,
+     "peak_allocated_during_forward_bytes": 19452928,
+     "forward_increment_bytes": 4040192
+    },
+    "JNU": {
+     "allocated_before_forward_bytes": 15412736,
+     "peak_allocated_during_forward_bytes": 30684672,
+     "forward_increment_bytes": 15271936
+    },
+    "HIT": {
+     "allocated_before_forward_bytes": 15412736,
+     "peak_allocated_during_forward_bytes": 23292928,
+     "forward_increment_bytes": 7880192
+    },
+    "MAFAULDA": {
+     "allocated_before_forward_bytes": 15412736,
+     "peak_allocated_during_forward_bytes": 30684672,
+     "forward_increment_bytes": 15271936
+    }
+   },
+   "repeat": 1,
+   "status": "ok"
+  }
+ ]
+}

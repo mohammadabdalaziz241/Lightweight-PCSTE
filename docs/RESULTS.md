@@ -97,6 +97,27 @@ Raw per-window predictions and probabilities (18 CSV files, ~21.6 MiB total) are
 | K1 9-cell freeze manifest | `a9e5fb49a1f38a7d6e2649ff8d155cf619cd55572bf7238b06a1fcb120d64a8b` |
 | Historical evaluator (unchanged) | `dd3aa58ce5067298504b9e064cdb51e5f29d0f655b1ca3f4fa6af77600d7f517` |
 
+## Computational efficiency
+
+Efficiency was measured separately under `lightweight_pcste_efficiency_v1` and does not touch any predictive result above. Full detail and per-dataset tables: `benchmarks/efficiency_v1/EFFICIENCY_FINAL_REPORT.md`.
+
+| Metric | Full-S1 | K1 | Reduction / speed-up |
+|---|---:|---:|---:|
+| Encoder parameters | 2,382,033 | 1,375,953 | 42.24% (1.73x) |
+| Complete model parameters | 2,385,893 | 1,379,813 | 42.17% |
+| FP32 state_dict size | 9.135 MiB | 5.286 MiB | 42.14% |
+| Macro-4 FLOPs / 1 s window | 2.6067 GFLOP | 1.4236 GFLOP | 45.38% (1.83x) |
+| CPU batch-1 model-only latency | 91.850 ms | 41.498 ms | 54.82% (2.21x) |
+| CPU batch-1 end-to-end latency | 93.327 ms | 42.837 ms | 54.10% (2.18x) |
+| GPU batch-1 model-only latency | 11.811 ms | 6.368 ms | 46.08% (1.86x) |
+| GPU batch-1 end-to-end latency | 13.409 ms | 7.805 ms | 41.79% (1.72x) |
+| GPU batch-32 throughput | 382.2 windows/s | 743.5 windows/s | 1.95x |
+| GPU peak memory (batch 1) | 29.466 MiB | 24.823 MiB | 15.76% |
+
+Measured on the deterministically fixed GF1 / seed-42 pair on one idle RTX 4000 Ada host, with deterministic VALIDATION inputs. Latency is the equal-domain mean of four per-dataset batch-1 medians. All timings use the pure-PyTorch reference selective scan; fused Mamba kernels are unavailable on this stack.
+
+Pairing this with the sealed predictive result — K1 non-inferior at the frozen -0.02 margin, paired delta +0.020691 +/- 0.013509 — gives the performance-versus-efficiency trade-off the study set out to quantify. **No manuscript claim is drawn here.**
+
 ## Not claimed here
 
-No parameter-reduction ratio, FLOP count, latency, throughput, or memory figure is claimed as a publication result. The K1 encoder parameter count of 1,375,953 is an architectural property, not a benchmark. Efficiency measurement under the publication protocol is the next stage; dissertation-era efficiency numbers are not reused.
+Q8 quantization has not been executed, so no int8 size, latency, or accuracy figure exists. No dissertation-era efficiency number is reused anywhere in this repository. Efficiency was measured on one representative cell on one host; it was not measured across all nine cells or on other hardware.

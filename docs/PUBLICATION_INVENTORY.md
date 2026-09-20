@@ -1,6 +1,6 @@
 # Publication Inventory
 
-Status at finalization: the K1 nine-cell matrix and the sealed publication TEST are complete and imported. The remaining open items are the deployment/efficiency measurement stage, the optional Q8 decision, and the archival deposit of excluded binary artifacts.
+Status: the K1 nine-cell matrix, the sealed publication TEST, and the efficiency benchmark are all complete. The remaining open items are the optional Q8 decision and the archival deposit of excluded binary artifacts.
 
 Classification codes: `CORE` (implementation), `REPRO` (exact executor), `PROTOCOL` (frozen design/provenance), `RESULTS` (frozen outcome), `EXCLUDED_BINARY` (archival deposit), `EXCLUDED_HISTORICAL` (out of scope), `PENDING` (not yet produced).
 
@@ -50,7 +50,24 @@ Classification codes: `CORE` (implementation), `REPRO` (exact executor), `PROTOC
 | **Matched cells** | RESULTS | `.../matched_cells.csv` | 1 KiB | Yes | **Yes** |
 | **Aggregate summary and statistics** | RESULTS | `.../aggregate_summary.json` | 7 KiB | Yes | **Yes** |
 | **Per-model class-level / confusion reports (18)** | RESULTS | `.../per_model_reports/` | ~535 KiB | Yes | **Yes** |
-| Reader-facing results summary | RESULTS | `docs/RESULTS.md` | 8 KiB | Yes | Yes |
+| Reader-facing results summary | RESULTS | `docs/RESULTS.md` | 10 KiB | Yes | Yes |
+
+## Efficiency benchmark
+
+| Item | Class | Location | Size | In Git | Final |
+|---|---|---|---:|---|---|
+| **Efficiency benchmark plan (JSON + MD)** | PROTOCOL | `benchmarks/efficiency_v1/` | 25 KiB | Yes | **Yes** |
+| **Benchmark driver and setup module** | REPRO | `benchmarks/efficiency_v1/{run_benchmark,bench_common}.py` | 29 KiB | Yes | **Yes** |
+| **Environment record** | RESULTS | `benchmarks/efficiency_v1/environment.json` | 2 KiB | Yes | **Yes** |
+| **Parameter / size results** | RESULTS | `benchmarks/efficiency_v1/parameter_size_results.json` | 3 KiB | Yes | **Yes** |
+| **FLOP results** | RESULTS | `benchmarks/efficiency_v1/flops_results.json` | 6 KiB | Yes | **Yes** |
+| **Latency raw (32,000 timed iterations)** | RESULTS | `benchmarks/efficiency_v1/latency_raw.csv` | 1.6 MiB | Yes | **Yes** |
+| **Latency summary** | RESULTS | `benchmarks/efficiency_v1/latency_summary.csv` | 5 KiB | Yes | **Yes** |
+| **Throughput results** | RESULTS | `benchmarks/efficiency_v1/throughput_results.csv` | 1 KiB | Yes | **Yes** |
+| **Memory results** | RESULTS | `benchmarks/efficiency_v1/memory_results.json` | 4 KiB | Yes | **Yes** |
+| **Headline aggregates** | RESULTS | `benchmarks/efficiency_v1/aggregates.json` | 4 KiB | Yes | **Yes** |
+| **Efficiency final report** | RESULTS | `benchmarks/efficiency_v1/EFFICIENCY_FINAL_REPORT.md` | 15 KiB | Yes | **Yes** |
+| **Efficiency artifact hash manifest** | PROTOCOL | `benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256` | 1 KiB | Yes | **Yes** |
 
 ## Excluded binary artifacts (archival deposit)
 
@@ -80,8 +97,9 @@ The dissertation repository is a separate project and is deliberately **not** co
 
 | Item | Class | Notes |
 |---|---|---|
-| Deployment/efficiency benchmarking under the publication protocol | PENDING | Parameters/FLOPs/latency/throughput/memory. No figure may be carried over from the dissertation-era measurements. |
 | Q8 quantization arm | PENDING | Excluded from the publication evaluation; frozen comparison margin `-0.01` if it is ever run. Scientific inclusion undecided. |
+| Efficiency across all nine cells / other hardware | PENDING | The benchmark covers the deterministic GF1/seed-42 pair on one host. Efficiency is architectural, so transfer is expected but unmeasured. |
+| Fused Mamba kernel timings | PENDING | All current timings use the pure-PyTorch reference selective scan. |
 | Zenodo / release deposit | PENDING | Must contain the artifacts marked Required above, with a DOI referenced from `README.md` and `docs/ARTIFACTS.md`. |
 | `PCSTE_DATA_ROOT` support in the dataset registry | PENDING | Currently documented as a provenance annotation only; `src/methodology_v2/registry.py` resolves `<repo root>/data` directly. |
 | Licence file | PENDING | To be decided before the repository is made public. |

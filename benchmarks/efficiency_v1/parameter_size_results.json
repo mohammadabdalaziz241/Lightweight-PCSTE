@@ -1,0 +1,83 @@
+{
+ "note": "device-independent; measured on CPU-resident FP32 parameters",
+ "per_model": {
+  "Full-S1": {
+   "encoder_only": {
+    "total_params": 2382033,
+    "trainable_params": 2382033,
+    "raw_fp32_bytes": 9528132,
+    "serialized_state_dict_bytes": 9559777,
+    "raw_fp32_mib": 9.086734771728516,
+    "serialized_state_dict_mib": 9.116913795471191
+   },
+   "heads_only": {
+    "total_params": 3860,
+    "trainable_params": 3860,
+    "raw_fp32_bytes": 15440,
+    "serialized_state_dict_bytes": 18885,
+    "raw_fp32_mib": 0.0147247314453125,
+    "serialized_state_dict_mib": 0.01801013946533203
+   },
+   "complete_inference_model": {
+    "total_params": 2385893,
+    "trainable_params": 2385893,
+    "raw_fp32_bytes": 9543572,
+    "serialized_state_dict_bytes": 9578353,
+    "raw_fp32_mib": 9.101459503173828,
+    "serialized_state_dict_mib": 9.134629249572754
+   }
+  },
+  "K1": {
+   "encoder_only": {
+    "total_params": 1375953,
+    "trainable_params": 1375953,
+    "raw_fp32_bytes": 5503812,
+    "serialized_state_dict_bytes": 5524156,
+    "raw_fp32_mib": 5.248844146728516,
+    "serialized_state_dict_mib": 5.268245697021484
+   },
+   "heads_only": {
+    "total_params": 3860,
+    "trainable_params": 3860,
+    "raw_fp32_bytes": 15440,
+    "serialized_state_dict_bytes": 18885,
+    "raw_fp32_mib": 0.0147247314453125,
+    "serialized_state_dict_mib": 0.01801013946533203
+   },
+   "complete_inference_model": {
+    "total_params": 1379813,
+    "trainable_params": 1379813,
+    "raw_fp32_bytes": 5519252,
+    "serialized_state_dict_bytes": 5542468,
+    "raw_fp32_mib": 5.263568878173828,
+    "serialized_state_dict_mib": 5.285709381103516
+   }
+  }
+ },
+ "comparison": {
+  "encoder_only": {
+   "full_s1": 2382033,
+   "k1": 1375953,
+   "k1_reduction_fraction": 0.42236190682496844,
+   "ratio_full_over_k1": 1.7311877658611885,
+   "full_s1_serialized_bytes": 9559777,
+   "k1_serialized_bytes": 5524156,
+   "serialized_reduction_fraction": 0.42214593499409037,
+   "full_s1_raw_fp32_bytes": 9528132,
+   "k1_raw_fp32_bytes": 5503812,
+   "raw_fp32_reduction_fraction": 0.42236190682496844
+  },
+  "complete_inference_model": {
+   "full_s1": 2385893,
+   "k1": 1379813,
+   "k1_reduction_fraction": 0.42167859162166954,
+   "ratio_full_over_k1": 1.729142282323764,
+   "full_s1_serialized_bytes": 9578353,
+   "k1_serialized_bytes": 5542468,
+   "serialized_reduction_fraction": 0.42135479867989833,
+   "full_s1_raw_fp32_bytes": 9543572,
+   "k1_raw_fp32_bytes": 5519252,
+   "raw_fp32_reduction_fraction": 0.42167859162166954
+  }
+ }
+}

@@ -16,7 +16,7 @@ K1 uses **one shared 1,375,953-parameter encoder** across CWRU, JNU, HIT, and Ma
 - **The final sealed publication TEST is complete** under protocol `lightweight_pcste_final_test_v1`, status `PUBLICATION_FINAL_SEALED_TEST_COMPLETE`.
 - Checkpoint selection used **validation only** (maximum validation Macro-Domain F1, strict improvement, earliest-epoch tie retention, no early stopping). No TEST metric entered training or selection.
 - **TEST remained sealed** until all eighteen checkpoints *and* the publication evaluation plan were frozen and externally hash-pinned. TEST was then executed exactly once under that frozen plan.
-- Deployment/efficiency benchmarking and the optional Q8 quantization extension have **not** been run for publication.
+- **Efficiency benchmarking is complete** under `lightweight_pcste_efficiency_v1` (see below). The optional Q8 quantization extension has **not** been run.
 
 ## Design
 
@@ -78,9 +78,28 @@ Authoritative artifacts: `results/final_test/publication_final_test_v1/`.
 
 ## Efficiency and deployment
 
-**No final parameter-reduction, FLOP, or latency claim is made in this repository yet.** The only verified efficiency-relevant quantity is the K1 encoder parameter count of 1,375,953, which is a frozen architectural property rather than a benchmark.
+Fresh publication-grade efficiency measurements were taken under `lightweight_pcste_efficiency_v1` on a single idle RTX 4000 Ada host, using the deterministically fixed **GF1 / seed 42** checkpoint pair (rule: lowest fold, then lowest seed) and deterministic VALIDATION inputs. No dissertation-era efficiency number is reused.
 
-Efficiency numbers from the earlier dissertation-era work are **not** reused as publication measurements. Deployment and efficiency benchmarking under the publication protocol is the next publication-stage measurement, and the optional Q8 quantization arm remains a separate, not-yet-executed decision.
+| Metric | Full-S1 | K1 | Reduction / speed-up |
+|---|---:|---:|---:|
+| Encoder parameters | 2,382,033 | 1,375,953 | 42.24% (1.73×) |
+| Complete model parameters | 2,385,893 | 1,379,813 | 42.17% |
+| FP32 state_dict size | 9.135 MiB | 5.286 MiB | 42.14% |
+| Macro-4 FLOPs / 1 s window | 2.6067 GFLOP | 1.4236 GFLOP | 45.38% (1.83×) |
+| CPU batch-1 model-only latency | 91.850 ms | 41.498 ms | 54.82% (2.21×) |
+| CPU batch-1 end-to-end latency | 93.327 ms | 42.837 ms | 54.10% (2.18×) |
+| GPU batch-1 model-only latency | 11.811 ms | 6.368 ms | 46.08% (1.86×) |
+| GPU batch-1 end-to-end latency | 13.409 ms | 7.805 ms | 41.79% (1.72×) |
+| GPU batch-32 throughput | 382.2 windows/s | 743.5 windows/s | 1.95× |
+| GPU peak memory (batch 1) | 29.466 MiB | 24.823 MiB | 15.76% |
+
+Latency figures are batch-1 medians aggregated as the equal-domain mean of the four per-dataset medians (CPU single-thread; 100/200 warm-up and 1000 timed iterations per cell, ABAB-interleaved). Model-only and end-to-end scopes are reported separately and never mixed; disk I/O is excluded from both. FLOPs are the explicit sum of a profiler dense term and an analytic selective-scan term — never a profiler count alone.
+
+**Caveat carried on every timing figure:** all measurements use the pure-PyTorch reference selective scan, as fused Mamba kernels are unavailable on this stack. Absolute latency, and possibly the Full-S1 / K1 ratio, would differ with fused kernels. Results are from one representative cell on one host.
+
+Full detail: [`benchmarks/efficiency_v1/EFFICIENCY_FINAL_REPORT.md`](benchmarks/efficiency_v1/EFFICIENCY_FINAL_REPORT.md).
+
+The optional Q8 quantization arm remains a separate, not-yet-executed decision.
 
 ## Layout
 
@@ -96,6 +115,7 @@ Efficiency numbers from the earlier dissertation-era work are **not** reused as 
 | `protocols/` | Frozen dataset and split manifests |
 | `results/lightweight_k1/` | Per-cell validation-stage summaries (9 cells, no checkpoints) |
 | `results/final_test/publication_final_test_v1/` | Sealed final TEST results and per-model class-level reports |
+| `benchmarks/efficiency_v1/` | Frozen efficiency benchmark: plan, driver, results, final report |
 | `docs/` | Protocol, reproducibility, results, artifact policy, inventory |
 | `FROZEN_ARTIFACT_HASHES.sha256` | SHA256 manifest of every frozen artifact tracked here |
 

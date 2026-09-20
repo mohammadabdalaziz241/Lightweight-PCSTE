@@ -170,6 +170,32 @@ Bit-exact reproduction of the sealed TEST numbers requires artifacts that are de
 
 Everything needed to *audit* those artifacts — their SHA256 values, selection rules, epochs, and provenance — is tracked here in text form. What is missing is only the bytes.
 
-## 9. Not yet measured
+## 9. Efficiency benchmark
 
-Deployment and efficiency benchmarking (parameters, FLOPs, latency, throughput, memory) has not been run under the publication protocol, and dissertation-era efficiency numbers are not carried over. The optional Q8 quantization arm has not been executed.
+`benchmarks/efficiency_v1/` holds the frozen efficiency benchmark: its pre-registered plan, the driver, the results, and the final report. Verify with:
+
+```bash
+sha256sum -c benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256
+```
+
+Reproduce (stages are independent; each writes its own result file):
+
+```bash
+python benchmarks/efficiency_v1/run_benchmark.py --stage env
+python benchmarks/efficiency_v1/run_benchmark.py --stage params
+python benchmarks/efficiency_v1/run_benchmark.py --stage flops
+python benchmarks/efficiency_v1/run_benchmark.py --stage latency --device cpu
+python benchmarks/efficiency_v1/run_benchmark.py --stage latency --device cuda
+python benchmarks/efficiency_v1/run_benchmark.py --stage throughput --device cuda
+python benchmarks/efficiency_v1/run_benchmark.py --stage memory
+```
+
+**What this needs that Git does not contain.** `bench_common.py` reads the two GF1/seed-42 `best.pt` checkpoints and the fold-1 normalizer `.npz` from the canonical scientific repository (override its location with `PCSTE_CANONICAL_REPO`), and the raw datasets must be reachable at `<repo root>/data`. Without those, the benchmark cannot run here — it is not reproducible from this repository alone until the archival deposit exists. The `params` and `flops` stages need the checkpoints but no GPU; `latency --device cpu` needs neither GPU nor network.
+
+Hardware matters: the published figures are from one idle host (`otter135`, Intel i9-14900, NVIDIA RTX 4000 Ada, driver 580.126.09, CUDA 13.0, PyTorch 2.12.0+cu130). Absolute latency will differ elsewhere. All timings use the pure-PyTorch reference selective scan, since fused Mamba kernels are unavailable on this stack.
+
+The historical Part-6 harness `src/methodology_v2/compression/benchmark.py` was **not edited** and remains at SHA256 `641f437b670b03d5bffb3ed11bfa2c8a758266392beec1988b90b8f4cecd211b`. Section 9 of `benchmarks/efficiency_v1/EFFICIENCY_BENCHMARK_PLAN.md` records why it could not be called verbatim.
+
+## 10. Not yet measured
+
+The optional Q8 quantization arm has not been executed, so no int8 size or latency figure exists. Efficiency was measured on one representative cell (GF1/seed 42) on one host; it was not measured across all nine cells, on other hardware, or with multi-thread CPU scaling.

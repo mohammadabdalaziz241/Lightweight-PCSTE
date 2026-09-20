@@ -89,9 +89,24 @@ Barrier record: `configs/lightweight_k1/final_test_v1/PUBLICATION_FINAL_EVALUATI
 - All nine matched cells were retained; none was dropped.
 - No training, checkpoint selection, tuning, protocol change, Q8 run, or scientific rerun occurred during or after the sealed TEST.
 
+## Efficiency benchmark protocol
+
+A separate, independently pre-registered protocol, `lightweight_pcste_efficiency_v1`, measures computational cost. It reads no TEST data, trains nothing, and alters no frozen predictive artifact.
+
+- **Model pair fixed by rule before measurement:** lowest fold, then lowest seed -> GF1 / seed 42. Both checkpoint hashes recomputed against `PUBLICATION_FROZEN_MODEL_TABLE.csv`.
+- **Inputs:** first VALIDATION window per dataset in frozen manifest order, one second each, identical for both models. Every selected row is asserted to be a validation row.
+- **Two scopes, never mixed:** model-only (prepared representation -> logits) and end-to-end (raw waveform -> STFT -> N2b normalisation -> logits). Disk I/O excluded from both.
+- **Schedule:** FP32, `.eval()`, `torch.inference_mode()`, batch 1; CPU single-thread with 100 warm-up / 1000 timed, GPU with 200 warm-up / 1000 timed, ABAB-interleaved over four rounds; throughput at a fixed batch 32 for both models.
+- **Aggregation:** equal-domain mean of the four per-dataset medians; speed-up = Full-S1 / K1.
+- **FLOP convention:** FLOPs, not MACs, as the explicit sum `dense + scan`. Dense is `FlopCounterMode` (2xMAC for matrix products) and is never reported alone as a total; scan is analytic, `n_bands x sum_layers(directions) x T x d_inner x d_state x 6`, with the constant preserved from the historical Part-6 harness and the grid parameters taken from the live representation.
+- **Size convention:** raw FP32 parameter bytes and a state_dict-only FP32 serialization written by an identical procedure for both models. Training-checkpoint file sizes are not compared. Q8 is not measured.
+
+The plan was frozen and hashed before any latency result was collected: `benchmarks/efficiency_v1/EFFICIENCY_BENCHMARK_PLAN.json` (SHA256 `f88db6d957a1f6eec4b3dc8199f7606eb7c73be0958a87322fa297124ff6595b`).
+
+The historical Part-6 harness (`src/methodology_v2/compression/benchmark.py`) was audited and left **unedited**. Its counting conventions are preserved, but it could not be called verbatim: its `DATASET_SHAPES`/`n_bands` are bound to the dissertation-era representation (CWRU `(513,184)` with 33 bands, versus the publication native-12 kHz `(129,184)` with 9 bands), its latency schedule is 50x weaker, it has no end-to-end scope, and its `size_axis()` invokes Q8. The audit is recorded in section 9 of `EFFICIENCY_BENCHMARK_PLAN.md`.
+
 ## Not yet executed
 
-- Deployment and efficiency benchmarking (parameters/FLOPs/latency/memory) under the publication protocol.
 - The optional Q8 arm.
 
-Neither may reuse dissertation-era numbers as a publication measurement, and neither may alter any frozen artifact listed in `FROZEN_ARTIFACT_HASHES.sha256`.
+It may not reuse dissertation-era numbers as a publication measurement, and may not alter any frozen artifact listed in `FROZEN_ARTIFACT_HASHES.sha256` or `benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256`.

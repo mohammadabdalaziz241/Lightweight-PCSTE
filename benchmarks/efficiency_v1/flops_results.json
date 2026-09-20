@@ -1,0 +1,219 @@
+{
+ "convention": {
+  "reported_quantity": "FLOPs (not MACs)",
+  "dense_term": "torch.utils.flop_counter.FlopCounterMode (conv/addmm/mm/bmm), 2 x MAC for matrix products",
+  "scan_term_formula": "batch * n_bands * sum_layers(directions) * T * d_inner * d_state * C",
+  "scan_constant_C": 6,
+  "scan_constant_provenance": "preserved from the historical Part-6 analytic_scan_flops",
+  "scan_constant_sensitivity": "a strict per-op tally gives ~8, scaling the scan term by 4/3; identical for both models so the ratio is unchanged",
+  "total": "total = dense + scan (never the profiler alone)",
+  "n_bands_and_T": "derived from the live patch grid, not hardcoded",
+  "unit": "per one 1-second window"
+ },
+ "per_model": {
+  "Full-S1": {
+   "per_dataset": {
+    "CWRU": {
+     "n_bands": 9,
+     "time_patches": 23,
+     "directions_summed_over_layers": 8,
+     "d_inner": 384,
+     "d_state": 16,
+     "dense_flops": 920592000.0,
+     "scan_flops": 61046784.0,
+     "total_flops": 981638784.0,
+     "dense_gflops": 0.920592,
+     "scan_gflops": 0.061046784,
+     "total_gflops": 0.981638784,
+     "dense_op_breakdown": {
+      "aten.convolution": 9566208,
+      "aten.addmm": 85563648,
+      "aten.mm": 733224960,
+      "aten.bmm": 92237184
+     }
+    },
+    "JNU": {
+     "n_bands": 33,
+     "time_patches": 24,
+     "directions_summed_over_layers": 8,
+     "d_inner": 384,
+     "d_state": 16,
+     "dense_flops": 3521685504.0,
+     "scan_flops": 233570304.0,
+     "total_flops": 3755255808.0,
+     "dense_gflops": 3.521685504,
+     "scan_gflops": 0.233570304,
+     "total_gflops": 3.755255808,
+     "dense_op_breakdown": {
+      "aten.convolution": 36495360,
+      "aten.addmm": 327112320,
+      "aten.mm": 2805276672,
+      "aten.bmm": 352801152
+     }
+    },
+    "HIT": {
+     "n_bands": 17,
+     "time_patches": 24,
+     "directions_summed_over_layers": 8,
+     "d_inner": 384,
+     "d_state": 16,
+     "dense_flops": 1814201984.0,
+     "scan_flops": 120324096.0,
+     "total_flops": 1934526080.0,
+     "dense_gflops": 1.814201984,
+     "scan_gflops": 0.120324096,
+     "total_gflops": 1.93452608,
+     "dense_op_breakdown": {
+      "aten.convolution": 18800640,
+      "aten.addmm": 168512768,
+      "aten.mm": 1445142528,
+      "aten.bmm": 181746048
+     }
+    },
+    "MAFAULDA": {
+     "n_bands": 33,
+     "time_patches": 24,
+     "directions_summed_over_layers": 8,
+     "d_inner": 384,
+     "d_state": 16,
+     "dense_flops": 3521687808.0,
+     "scan_flops": 233570304.0,
+     "total_flops": 3755258112.0,
+     "dense_gflops": 3.521687808,
+     "scan_gflops": 0.233570304,
+     "total_gflops": 3.755258112,
+     "dense_op_breakdown": {
+      "aten.convolution": 36495360,
+      "aten.addmm": 327114624,
+      "aten.mm": 2805276672,
+      "aten.bmm": 352801152
+     }
+    }
+   },
+   "macro4_equal_domain_mean": {
+    "dense_gflops": 2.444541824,
+    "scan_gflops": 0.162127872,
+    "total_gflops": 2.606669696
+   }
+  },
+  "K1": {
+   "per_dataset": {
+    "CWRU": {
+     "n_bands": 9,
+     "time_patches": 23,
+     "directions_summed_over_layers": 4,
+     "d_inner": 384,
+     "d_state": 16,
+     "dense_flops": 505650816.0,
+     "scan_flops": 30523392.0,
+     "total_flops": 536174208.0,
+     "dense_gflops": 0.505650816,
+     "scan_gflops": 0.030523392,
+     "total_gflops": 0.536174208,
+     "dense_op_breakdown": {
+      "aten.convolution": 6690816,
+      "aten.addmm": 85563648,
+      "aten.mm": 366944256,
+      "aten.bmm": 46452096
+     }
+    },
+    "JNU": {
+     "n_bands": 33,
+     "time_patches": 24,
+     "directions_summed_over_layers": 4,
+     "d_inner": 384,
+     "d_state": 16,
+     "dense_flops": 1934137344.0,
+     "scan_flops": 116785152.0,
+     "total_flops": 2050922496.0,
+     "dense_gflops": 1.934137344,
+     "scan_gflops": 0.116785152,
+     "total_gflops": 2.050922496,
+     "dense_op_breakdown": {
+      "aten.convolution": 25546752,
+      "aten.addmm": 327112320,
+      "aten.mm": 1403854848,
+      "aten.bmm": 177623424
+     }
+    },
+    "HIT": {
+     "n_bands": 17,
+     "time_patches": 24,
+     "directions_summed_over_layers": 4,
+     "d_inner": 384,
+     "d_state": 16,
+     "dense_flops": 996374144.0,
+     "scan_flops": 60162048.0,
+     "total_flops": 1056536192.0,
+     "dense_gflops": 0.996374144,
+     "scan_gflops": 0.060162048,
+     "total_gflops": 1.056536192,
+     "dense_op_breakdown": {
+      "aten.convolution": 13160448,
+      "aten.addmm": 168512768,
+      "aten.mm": 723197952,
+      "aten.bmm": 91502976
+     }
+    },
+    "MAFAULDA": {
+     "n_bands": 33,
+     "time_patches": 24,
+     "directions_summed_over_layers": 4,
+     "d_inner": 384,
+     "d_state": 16,
+     "dense_flops": 1934139648.0,
+     "scan_flops": 116785152.0,
+     "total_flops": 2050924800.0,
+     "dense_gflops": 1.934139648,
+     "scan_gflops": 0.116785152,
+     "total_gflops": 2.0509248,
+     "dense_op_breakdown": {
+      "aten.convolution": 25546752,
+      "aten.addmm": 327114624,
+      "aten.mm": 1403854848,
+      "aten.bmm": 177623424
+     }
+    }
+   },
+   "macro4_equal_domain_mean": {
+    "dense_gflops": 1.342575488,
+    "scan_gflops": 0.081063936,
+    "total_gflops": 1.423639424
+   }
+  }
+ },
+ "comparison": {
+  "per_dataset": {
+   "CWRU": {
+    "full_s1_total_gflops": 0.981638784,
+    "k1_total_gflops": 0.536174208,
+    "ratio_full_over_k1": 1.8308205977710885,
+    "k1_reduction_fraction": 0.4537968377581951
+   },
+   "JNU": {
+    "full_s1_total_gflops": 3.755255808,
+    "k1_total_gflops": 2.050922496,
+    "ratio_full_over_k1": 1.8310081513679977,
+    "k1_reduction_fraction": 0.45385278637188375
+   },
+   "HIT": {
+    "full_s1_total_gflops": 1.93452608,
+    "k1_total_gflops": 1.056536192,
+    "ratio_full_over_k1": 1.831007867641509,
+    "k1_reduction_fraction": 0.45385270174284753
+   },
+   "MAFAULDA": {
+    "full_s1_total_gflops": 3.755258112,
+    "k1_total_gflops": 2.0509248,
+    "ratio_full_over_k1": 1.8310072178170549,
+    "k1_reduction_fraction": 0.4538525079151736
+   }
+  },
+  "macro4": {
+   "full_s1_total_gflops": 2.606669696,
+   "k1_total_gflops": 1.423639424,
+   "ratio_full_over_k1": 1.8309901032917728,
+   "k1_reduction_fraction": 0.4538474029967776
+  }
+ }
+}
