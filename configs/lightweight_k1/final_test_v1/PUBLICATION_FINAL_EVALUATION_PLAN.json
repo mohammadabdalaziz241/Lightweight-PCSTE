@@ -1,0 +1,176 @@
+{
+  "schema_version": "lightweight_pcste_publication_plan.v1",
+  "protocol_identity": "lightweight_pcste_final_test_v1",
+  "created_at_utc": "2026-09-20T08:11:47+00:00",
+  "purpose": "New publication-specific, pre-TEST comparison of frozen Full-S1 versus frozen K1 over 3 global folds x 3 seeds.",
+  "model_families": ["Full-S1", "K1"],
+  "excluded_families": ["S0", "Q8"],
+  "test_access_at_freeze": {
+    "test_loader_invoked": false,
+    "test_inference_performed": false,
+    "test_metrics_computed": false,
+    "test_predictions_accessed": false,
+    "test_samples_accessed": false
+  },
+  "cells": [
+    {
+      "fold": 1,
+      "seed": 42,
+      "full_s1": {"run_id": "pcstev2_final_v1_s1_gf1_s42", "checkpoint_path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf1_s42/best.pt", "checkpoint_sha256": "7d6cea73ba61b3da23c73be14a8edae048276e88162517ee8d72a7c2a133ba0c", "selected_epoch": 17, "validation_macro_domain_f1": 0.9868458425449396},
+      "k1": {"run_id": "pcstev2_lightweight_v1_k1_gf1_s42", "checkpoint_path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s42/best.pt", "checkpoint_sha256": "10770c5359337cae6e8f82665a3533b87548fa7f57fad42c5d4d6ba2f9952c5b", "selected_epoch": 23, "validation_macro_domain_f1": 0.9934071749256772}
+    },
+    {
+      "fold": 1,
+      "seed": 1337,
+      "full_s1": {"run_id": "pcstev2_final_v1_s1_gf1_s1337", "checkpoint_path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf1_s1337/best.pt", "checkpoint_sha256": "a14075f0234c232f98d9acb0b02f6094b36c6990a85f5b44c4602c3a95920799", "selected_epoch": 22, "validation_macro_domain_f1": 0.9802577166808426},
+      "k1": {"run_id": "pcstev2_lightweight_v1_k1_gf1_s1337", "checkpoint_path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s1337/best.pt", "checkpoint_sha256": "bda95639ad23241c6b047cbec0c825ee53a31bab4bed147484ad615062714725", "selected_epoch": 25, "validation_macro_domain_f1": 0.9905436529191768}
+    },
+    {
+      "fold": 1,
+      "seed": 2026,
+      "full_s1": {"run_id": "pcstev2_final_v1_s1_gf1_s2026", "checkpoint_path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf1_s2026/best.pt", "checkpoint_sha256": "cfb742f74eb4d55e8f7afceac78e176376b206619f07c6119d02d1d704cc94d2", "selected_epoch": 15, "validation_macro_domain_f1": 0.9718257879529507},
+      "k1": {"run_id": "pcstev2_lightweight_v1_k1_gf1_s2026", "checkpoint_path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s2026/best.pt", "checkpoint_sha256": "665fa67f9521a4239c9a727e0633276e5eba56c0ed8dd0513fd77c64c2b21cf5", "selected_epoch": 1, "validation_macro_domain_f1": 0.9886525380030676}
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "full_s1": {"run_id": "pcstev2_final_v1_s1_gf2_s42", "checkpoint_path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf2_s42/best.pt", "checkpoint_sha256": "ce6becd8eb0a23a6c4e3c65a2ae8c88f02aff8101a7cb48721c17292170166c2", "selected_epoch": 16, "validation_macro_domain_f1": 0.9780534725609579},
+      "k1": {"run_id": "pcstev2_lightweight_v1_k1_gf2_s42", "checkpoint_path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf2_s42/best.pt", "checkpoint_sha256": "51cd8364afcd10a5657760c4b3493d0a104929d5347efb7b279ee94738eba1fe", "selected_epoch": 11, "validation_macro_domain_f1": 0.9917302455105466}
+    },
+    {
+      "fold": 2,
+      "seed": 1337,
+      "full_s1": {"run_id": "pcstev2_final_v1_s1_gf2_s1337", "checkpoint_path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf2_s1337/best.pt", "checkpoint_sha256": "0e01d16be6a01b971aadcbf84df2960eb9e55435a6b3d617cf91367a27dd8a20", "selected_epoch": 23, "validation_macro_domain_f1": 0.976303995163966},
+      "k1": {"run_id": "pcstev2_lightweight_v1_k1_gf2_s1337", "checkpoint_path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf2_s1337/best.pt", "checkpoint_sha256": "7018d01c48d1b2c11e96f53cee8c4e8d6579f8f95a9f905dfdcbc2e85c23dfca", "selected_epoch": 20, "validation_macro_domain_f1": 0.9841301559829307}
+    },
+    {
+      "fold": 2,
+      "seed": 2026,
+      "full_s1": {"run_id": "pcstev2_final_v1_s1_gf2_s2026", "checkpoint_path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf2_s2026/best.pt", "checkpoint_sha256": "847b7190d095f8734eb4c2aecc5bce34cf05a4d7e587a9dc6f7e32a9e1ee92eb", "selected_epoch": 17, "validation_macro_domain_f1": 0.9672445710612501},
+      "k1": {"run_id": "pcstev2_lightweight_v1_k1_gf2_s2026", "checkpoint_path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf2_s2026/best.pt", "checkpoint_sha256": "c5e88907837768cfe25ea3a05fdd3eee6386f586e94f48c908d155fec022af25", "selected_epoch": 2, "validation_macro_domain_f1": 0.9785258384983887}
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "full_s1": {"run_id": "pcstev2_final_v1_s1_gf3_s42", "checkpoint_path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf3_s42/best.pt", "checkpoint_sha256": "7ed58dacc4f7cdc35b4f313396a03b30dfe23d59e20cab1477d56335d8c13b89", "selected_epoch": 32, "validation_macro_domain_f1": 0.9806567946683948},
+      "k1": {"run_id": "pcstev2_lightweight_v1_k1_gf3_s42", "checkpoint_path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf3_s42/best.pt", "checkpoint_sha256": "10a0b2b24facf2093c8f65cb0fb362f6a5fc7e5477454b4c77a1c8b0f56c016e", "selected_epoch": 33, "validation_macro_domain_f1": 0.9870684656766702}
+    },
+    {
+      "fold": 3,
+      "seed": 1337,
+      "full_s1": {"run_id": "pcstev2_final_v1_s1_gf3_s1337", "checkpoint_path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf3_s1337/best.pt", "checkpoint_sha256": "9b0b6e7f60e06755382f48a40537d2c9860398b17e9bc68809876a6533052cb4", "selected_epoch": 29, "validation_macro_domain_f1": 0.9592586369694797},
+      "k1": {"run_id": "pcstev2_lightweight_v1_k1_gf3_s1337", "checkpoint_path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf3_s1337/best.pt", "checkpoint_sha256": "e74e71f26eabb69272e851ce2e08b9439a4f3d6990bf7b674174c3299ea90e34", "selected_epoch": 17, "validation_macro_domain_f1": 0.9714522759323951}
+    },
+    {
+      "fold": 3,
+      "seed": 2026,
+      "full_s1": {"run_id": "pcstev2_final_v1_s1_gf3_s2026", "checkpoint_path": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf3_s2026/best.pt", "checkpoint_sha256": "57caf78847b988f0a46fea21260043422681c6b28af435b82a8e4a2b8d3eb515", "selected_epoch": 14, "validation_macro_domain_f1": 0.9692022412509442},
+      "k1": {"run_id": "pcstev2_lightweight_v1_k1_gf3_s2026", "checkpoint_path": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf3_s2026/best.pt", "checkpoint_sha256": "4840188f9ff5e6cdc60d1c820fcfc266c908d8e47a743208583eb6939719bae1", "selected_epoch": 7, "validation_macro_domain_f1": 0.987262678921944}
+    }
+  ],
+  "authoritative_registries": {
+    "full_s1_selected_checkpoint_registry": {"path": "analysis/pcste_v2_final_s0_s1_v1/FINAL_SELECTED_CHECKPOINTS.csv", "sha256": "321bdedddec7613bcfc40f17175f427882f28e45c50a7241b1fd2f66365aa2a3"},
+    "k1_9_cell_freeze_manifest": {"path": "analysis/pcste_v2_lightweight_v1/K1_9_CELL_FREEZE_MANIFEST.md", "sha256": "a9e5fb49a1f38a7d6e2649ff8d155cf619cd55572bf7238b06a1fcb120d64a8b"},
+    "global_fold_seed_mapping": {"path": "analysis/pcste_v2_final_s0_s1_v1/FINAL_GLOBAL_FOLD_MAPPING.csv", "sha256": "6e2e5cfe64260281bda2bd0debeaa50e25dc3ab8c3aeecfe2b4a241c7f4f99cb"},
+    "global_matching_audit": {"path": "analysis/pcste_v2_final_s0_s1_v1/FINAL_MATCHING_AUDIT.csv", "sha256": "6f55fdf803f36cf855e10e7053dd1c25b849a8a34f151856d9d7aa2e49ec6808"},
+    "frozen_statistical_plan": {"path": "analysis/pcste_v2_final_s0_s1_v1/FINAL_STATISTICAL_PLAN.yaml", "sha256": "7d4ba32d9f1df2283c98c012a7268dd7d3664fa52017a84adf9f0b2e9a373629"},
+    "publication_frozen_model_table": {"path": "analysis/pcste_v2_lightweight_v1/final_test_v1/PUBLICATION_FROZEN_MODEL_TABLE.csv", "sha256": "34c1a6b3ed2c9f545cb6b368c46e22a2bdf3b03a1a5134f3f73180b484ab5cd9"}
+  },
+  "test_membership": {
+    "global_protocol_identity": "global_v2_final_s0s1_v1",
+    "global_protocol_directory": "pcste_v2/protocol/global_v2_final_s0s1_v1",
+    "global_hash_registry": {"path": "pcste_v2/protocol/global_v2_final_s0s1_v1/global_v2_hashes.json", "sha256": "4b6884b10d30b9b169502a9561e7eed8a0de24dcd29985d5bbca6f718e4165d0"},
+    "global_fold_manifests": {
+      "GF1": {"path": "pcste_v2/protocol/global_v2_final_s0s1_v1/global_v2_fold_1.csv", "sha256": "456a69474a3763647b7e0ad13f5538e8f630d268347671ad617134b08e830d0a"},
+      "GF2": {"path": "pcste_v2/protocol/global_v2_final_s0s1_v1/global_v2_fold_2.csv", "sha256": "74029f81a4b5617b13218812aa26568b0f3a268f8f6b450b5ab0293b17f71f93"},
+      "GF3": {"path": "pcste_v2/protocol/global_v2_final_s0s1_v1/global_v2_fold_3.csv", "sha256": "fe622f3bc1146998d00fe070ea045f0790145b55a028effea52de00f94000f0e"}
+    },
+    "cwru": {
+      "protocol_identity": "pcste_v2_cwru_native12_load_v1",
+      "protocol_directory": "pcste_v2/protocol/cwru_native12_load_v1",
+      "freeze_index_path": "pcste_v2/protocol/cwru_native12_load_v1/FREEZE_BUNDLE_INDEX.txt",
+      "freeze_digest_sha256": "ddf4d32573c016b08da65b4f878ee0511a9bae4b15444626e1d932d24ebf39e4"
+    },
+    "inspection_rule_at_freeze": "Manifest and registry byte hashes only. No TEST dataframe, label access through an evaluation loader, representation, waveform, prediction, or inference."
+  },
+  "metrics": {
+    "datasets": ["CWRU", "JNU", "HIT", "MAFAULDA"],
+    "per_dataset": ["Macro-F1", "accuracy", "balanced accuracy", "macro precision", "macro recall", "macro one-vs-rest ROC-AUC where defined", "per-class precision", "per-class recall", "per-class F1", "confusion matrix"],
+    "class_metric_source": "src.methodology_v2.experiment.metrics.classification_report",
+    "auc_source": "src.pcste_v2.metrics_v2.macro_ovr_auc",
+    "metric_wrapper": "src.pcste_v2.metrics_v2.evaluate_split",
+    "macro_precision_definition": "arithmetic mean of the frozen per-class precision vector emitted by classification_report",
+    "macro_recall_definition": "arithmetic mean of the frozen per-class recall vector; identical to the frozen balanced_accuracy implementation",
+    "auc_undefined_policy": "Within a dataset, one-vs-rest classes lacking both outcomes are skipped by the frozen evaluator; the dataset AUC is undefined only if no class AUC is defined.",
+    "macro_4": {"formula": "(CWRU + JNU + HIT + MaFaulDa) / 4", "domain_weights": [0.25, 0.25, 0.25, 0.25], "window_weighted": false, "auc_rule": "Defined only when all four dataset Macro-AUC values are finite; otherwise null, with no domain silently dropped."},
+    "primary_endpoint": "Macro-4 Macro-F1",
+    "secondary_aggregate_endpoint": "Macro-4 Macro-AUC",
+    "primary_matched_difference": "K1 - Full-S1"
+  },
+  "statistics": {
+    "frozen_statistical_plan_sha256": "7d4ba32d9f1df2283c98c012a7268dd7d3664fa52017a84adf9f0b2e9a373629",
+    "implementation_path": "src/methodology_v2/compression/stats.py",
+    "implementation_sha256": "efb3d20c777e4ab0eda15491147950c77c816610d1f71ca0072f8dfa36e3cfcb",
+    "descriptive_reporting": "Across the 9 matched cells: Full-S1 mean and sample SD (ddof=1), K1 mean and sample SD, paired delta mean and sample SD, and exact positive/tie/negative counts.",
+    "non_inferiority": {
+      "endpoint": "Macro-4 Macro-F1",
+      "delta": "K1 - Full-S1",
+      "margin": -0.02,
+      "implementation_function": "src.methodology_v2.compression.stats.contrast",
+      "implementation_call": "contrast('K1 vs Full-S1', k1, full_s1, 'ni_then_superiority', 0.02)",
+      "null_hypothesis": "mean(delta) <= -0.02",
+      "procedure": "Shift each of the nine paired deltas by +0.02, enumerate all 2^9=512 sign patterns, and compute the exact one-sided sign-flip p-value as the fraction of flipped means >= the observed shifted mean (1e-12 comparison tolerance).",
+      "alpha": 0.05,
+      "pass_rule": "p_one_sided < 0.05 and observed shifted mean > 0",
+      "superiority_gate": "Only if non-inferiority passes, report the existing exact two-sided 512-pattern sign-flip superiority test.",
+      "formal_inference_supported": true
+    },
+    "multiplicity": "This publication protocol has one pre-registered confirmatory contrast only. The historical Part-6 three-hypothesis Holm family cannot be evaluated because S0/Q8 and other compression arms are explicitly excluded; no replacement hypothesis or post-TEST test will be added.",
+    "dataset_sensitivity": "For each dataset and for Macro-AUC where valid, report Full-S1 and K1 mean +/- sample SD and the matched K1-Full-S1 delta mean +/- sample SD."
+  },
+  "scientific_source_hashes": {
+    "analysis/pcste_v2_lightweight_v1/final_test_v1/publication_test_driver.py": "8f2de50a52ce83fefa8dcd1516ec3c348d9f5c1a6b561b38070fe9f94d149f3e",
+    "analysis/pcste_v2_lightweight_v1/scripts/02_k1_production.py": "1f5d86a1c6b7f2b637ecdd6d61c279a0b86e9edb54bdbe0490d2a4b20fd62308",
+    "scripts/pcste_v2/evaluate_test.py": "dd3aa58ce5067298504b9e064cdb51e5f29d0f655b1ca3f4fa6af77600d7f517",
+    "src/methodology_v2/compression/protocol.py": "5d2ac582b16ec8f49d3d5f155f38c457aedddb53fc14754cb98fae98016664a1",
+    "src/methodology_v2/compression/stats.py": "efb3d20c777e4ab0eda15491147950c77c816610d1f71ca0072f8dfa36e3cfcb",
+    "src/methodology_v2/compression/student.py": "ad990df666ed0ec63833b950d9c4607ad363e881610e5502177f18faebfe363e",
+    "src/methodology_v2/compression/trainer.py": "6ce73a0ad9ce582cb5b8a46e433653231179e1fb9d6f15a94c9845b7c7ee6dbe",
+    "src/methodology_v2/encoder/__init__.py": "0a42a525dca151b0081631ce20f1f53751c43dc0262f148646cb54395df0ddcb",
+    "src/methodology_v2/encoder/collate.py": "526b1d977892f274ce9318989b7b1028a46add805cf7b3352db944731ee85ce8",
+    "src/methodology_v2/encoder/coords.py": "dc22a1fc0e2722bba3c7cf2983c75fe76e6f3a74c7723a5fc7696a4323d8800f",
+    "src/methodology_v2/encoder/mixer.py": "d353fbda2b53d23c4a51e8f403899fdcf90c1ba86eee2a7818d30adca4b13b08",
+    "src/methodology_v2/encoder/patchify.py": "440455e592229d95aad194fc1170d6ca3c29d3a0e43f02f6bfc437147d7f939c",
+    "src/methodology_v2/encoder/pcste.py": "a79891f8f689d79757a79b5143d74b01a642aaf79e03200e0f4588b44d1d0ac4",
+    "src/methodology_v2/encoder/ssm.py": "d40672b80fa7d19e7f2e17bee3453848148621db93d7b1dd2be0b4615ae47401",
+    "src/methodology_v2/experiment/heads.py": "fd90680026ae2fd93bd95f83c24441013f76e3ed3b903fe57745a9a6e104c8a1",
+    "src/methodology_v2/experiment/metrics.py": "970480d1b30bfee871fcafedcfb7da669167ff7240c7f8d66d4258bfad6889d0",
+    "src/methodology_v2/part3b_reader.py": "d6f9435b6383aeedc64c1c3b77984613cef8bcba0fdff23d033b7f53dfada4af",
+    "src/methodology_v2/part4a_repdesign.py": "e0532ba528637bf9ff871b5e222c26c307e9d39962043177a4a0dcbf171bd0d8",
+    "src/methodology_v2/registry.py": "785d8185c17848f536d3292943cc6b25293fb84faefc2a934bb42c47bd5a352a",
+    "src/pcste_v2/envelope.py": "6ebdc5694eadd648ff61e6afb685249d4adce4d0821dac4c405d80b4ec4d73a0",
+    "src/pcste_v2/metrics_v2.py": "dbfcdc290e2a13b7997d9f03e8385fd5ef19c9dc3591940a5d2242f491e14ccd",
+    "src/pcste_v2/model.py": "aaec4c10084609503cdd517b99c00bd6ed67e51dc0c3ae724d2ec78959d2f9e6",
+    "src/pcste_v2/native12_freeze.py": "f1a122b950e6c848cc0a9405f719854ec2926169aee0e54991914b21c833319d",
+    "src/pcste_v2/protocol.py": "53b865ec7046ef91aba9be4ef65d923e7ed92d635ce541183acd6f5626cd70ea",
+    "src/pcste_v2/protocol_cwru_native12.py": "66d1b7b433855d0fbc492804a485f40eff5bf8077fbfe9e9f9801be3e52b33cc",
+    "src/pcste_v2/representation.py": "7d68f6d8ad5e3a94769d914ab7c553eec5d918aa8e8d07da5a3a24115d0ce249"
+  },
+  "software_environment": {"python": "3.12.3", "torch": "2.12.0+cu130", "numpy": "2.4.4", "pandas": "3.0.3", "scikit_learn": "1.9.0", "scipy": "1.18.0"},
+  "execution": {
+    "driver_path": "analysis/pcste_v2_lightweight_v1/final_test_v1/publication_test_driver.py",
+    "authorization_token": "AUTHORIZE_LIGHTWEIGHT_PCSTE_FINAL_TEST_V1",
+    "fail_closed_rules": ["External expected barrier SHA256 is mandatory", "Every pinned file is rehashed before TEST manifest parsing", "All 18 checkpoints strict-load on CPU before TEST manifest parsing", "Any existing output directory is refused rather than overwritten", "Checkpoint bytes are rehashed after inference", "Exact TEST membership is required for every model/cell"],
+    "model_loading": "Full-S1 uses unchanged PCSTEv2(PCSTEv2Config()) + DatasetHeads; K1 uses unchanged half_4x1_spec('mean_of_remaining') + build_encoder/build_heads.",
+    "representation": "Both families use the frozen ItemBuilder v1 g0_c0 representation and frozen TRAIN-only normalizers; the matched pair shares the same immutable fold manifest and item construction.",
+    "inference": "model.eval() and torch.no_grad(); no optimizer, fitting, calibration, threshold search, test-time augmentation, ensemble, or checkpoint selection.",
+    "validation_only_mode": "--preflight/--self-test perform hashes, JSON/schema checks, CPU checkpoint metadata/state-dict loading, and in-memory negative mutation probes only; they do not import an evaluation dataframe or invoke ItemBuilder."
+  },
+  "historical_barrier_provenance": {
+    "historical_protocol": "dissertation-era S0/S1 final evaluator",
+    "historical_barrier_available": false,
+    "historical_evaluator_modified": false,
+    "historical_barrier_bypassed": false,
+    "statement": "The historical S0/S1 barrier remains unavailable and was not reconstructed, weakened, modified, or bypassed. This is a distinct publication evaluation pre-registered while TEST remained sealed."
+  }
+}

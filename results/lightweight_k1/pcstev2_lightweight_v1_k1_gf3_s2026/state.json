@@ -1,0 +1,109 @@
+{
+ "arm_config": {
+  "architecture": {
+   "d_inner": 384,
+   "d_model": 192,
+   "d_state": 16,
+   "directions": 1,
+   "dt_rank": 12,
+   "n_blocks": 4,
+   "name": "half_4x1",
+   "stem_rank": null,
+   "uni_residual": "mean_of_remaining"
+  },
+  "arm": "k1",
+  "fold": 3,
+  "head_init_seed": 3952061223,
+  "init_source": "s1",
+  "kept_direction": "fwd",
+  "loss": {
+   "alpha": 0.5,
+   "ensemble_rule": "mean_prob_at_T",
+   "kind": "kd_ensemble+relational",
+   "kl_direction": "KL(teacher_T || student_T), sum over classes",
+   "label_smoothing": 0.0,
+   "reduction": "mean over datasets of per-dataset window means",
+   "relational_weight": 1.0,
+   "temperature": 4.0
+  },
+  "retained_layers": null,
+  "seed": 2026,
+  "teacher_set": "s1"
+ },
+ "best_checkpoint_sha256": "4840188f9ff5e6cdc60d1c820fcfc266c908d8e47a743208583eb6939719bae1",
+ "best_epoch": 7,
+ "best_val_macro_f1": 0.987262678921944,
+ "config_hash": "dc0871797b6581c1913ce96957de5aaae5cab48e0dcb9f5fd4fc1dc4dee0f526",
+ "device": "cuda",
+ "encoder_params": 1375953,
+ "finished_at": "2026-09-19T23:12:42.905547+00:00",
+ "fold": 3,
+ "frozen_settings": {
+  "checkpoint_rule": "max MacroDomainF1_val, strict >, tie -> earlier epoch, no early stopping",
+  "effective_batch": 64,
+  "epochs": 50,
+  "optimizer": {
+   "betas": [
+    0.9,
+    0.95
+   ],
+   "eps": 1e-08,
+   "grad_clip_global_norm": 1.0,
+   "lr": 0.0003,
+   "min_lr": 1e-06,
+   "optimizer": "AdamW",
+   "warmup_epochs": 5,
+   "weight_decay": 0.05
+  }
+ },
+ "git_head": "3b34449e7abc6371579d9452547e4af4d77a559b",
+ "gpu": "NVIDIA RTX 4000 Ada Generation",
+ "host": "otter135.eps.surrey.ac.uk",
+ "kind": "pcste_v2_lightweight_k1",
+ "pid": 111839,
+ "preload_windows": 16744,
+ "production_protocol_sha256": "f2417ad057709b10b9d928ffc84114b5bfc135d818be58e664fb89e2d9134cb3",
+ "registered_cells_sha256": "6d7e91b0bbd4ade3befbb97fccf18394526be33e8b7e54ef9c9fbcd0a5cee753",
+ "run_id": "pcstev2_lightweight_v1_k1_gf3_s2026",
+ "seed": 2026,
+ "source_s1_checkpoint": "results/pcste_v2/final_v1/pcstev2_final_v1_s1_gf3_s2026/best.pt",
+ "source_s1_sha256": "57caf78847b988f0a46fea21260043422681c6b28af435b82a8e4a2b8d3eb515",
+ "started_at": "2026-09-19T21:13:50.978210+00:00",
+ "status": "COMPLETE",
+ "stream_sha256": "6574aa23907ff47a2c441a6770c2c8329c92da989009b113a03292a600b56309",
+ "surgery_report": {
+  "dropped": "one direction per layer",
+  "kept_direction": "fwd",
+  "n_student_tensors": 65,
+  "n_teacher_tensors": 101
+ },
+ "teacher_cache": {
+  "ensemble_rule": "mean_prob_at_T",
+  "fold": 3,
+  "members": [
+   {
+    "best_epoch": 32,
+    "fold": 3,
+    "run_id": "pcstev2_final_v1_s1_gf3_s42",
+    "seed": 42,
+    "sha256": "7ed58dacc4f7cdc35b4f313396a03b30dfe23d59e20cab1477d56335d8c13b89"
+   },
+   {
+    "best_epoch": 29,
+    "fold": 3,
+    "run_id": "pcstev2_final_v1_s1_gf3_s1337",
+    "seed": 1337,
+    "sha256": "9b0b6e7f60e06755382f48a40537d2c9860398b17e9bc68809876a6533052cb4"
+   },
+   {
+    "best_epoch": 14,
+    "fold": 3,
+    "run_id": "pcstev2_final_v1_s1_gf3_s2026",
+    "seed": 2026,
+    "sha256": "57caf78847b988f0a46fea21260043422681c6b28af435b82a8e4a2b8d3eb515"
+   }
+  ],
+  "name": "s1"
+ },
+ "test_used": false
+}

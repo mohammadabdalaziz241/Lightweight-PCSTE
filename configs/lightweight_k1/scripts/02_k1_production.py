@@ -1,0 +1,1 @@
+../../../scripts/train_k1/02_k1_production.py

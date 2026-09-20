@@ -33,3 +33,25 @@ slurm-*.out
 .idea/
 .vscode/
 
+
+# Credentials and keys (belong outside the repository)
+id_rsa*
+id_ecdsa*
+id_ed25519*
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+.ssh/
+*deploy_key*
+
+# Large scientific binaries beyond the patterns above
+*.safetensors
+*.h5
+*.hdf5
+*.mat
+*.zip
+*.tar
+*.tar.gz
+*.tgz
