@@ -1,0 +1,41 @@
+{
+ "schema_version": "lightweight_pcste_q8_barrier.v1",
+ "protocol_identity": "lightweight_pcste_q8_v1",
+ "status": "FROZEN_BEFORE_Q8_EVALUATION",
+ "created_at_utc": "2026-09-20T11:11:19+00:00",
+ "stage": "SECONDARY post-primary extension; the primary Full-S1-vs-K1 sealed study and the efficiency benchmark were both complete and frozen before this barrier was written.",
+ "evaluation_plan_path": "benchmarks/q8_v1/Q8_EVALUATION_PLAN.json",
+ "evaluation_plan_sha256": "5904c3657e5ba68987caca2b204b725e153607883d98116fd25b9ed6b8220be4",
+ "human_plan_path": "benchmarks/q8_v1/Q8_EVALUATION_PLAN.md",
+ "human_plan_sha256": "989c0bb249924b8071c00a9b19bd9be768c457e2b362efca6a531f227e12d5b0",
+ "model_table_path": "benchmarks/q8_v1/Q8_FROZEN_MODEL_TABLE.csv",
+ "model_table_sha256": "b1f2035759d8c314e0db951088e0cb05e1f5a7294f1a4cea38160465c6ecb668",
+ "quantization_implementation_sha256": "c91e0eaa970534a5099ce27f8a44f94d9c6b35442dccf56e8b809d98bbb0578d",
+ "statistics_implementation_sha256": "efb3d20c777e4ab0eda15491147950c77c816610d1f71ca0072f8dfa36e3cfcb",
+ "k1_freeze_manifest_sha256": "a9e5fb49a1f38a7d6e2649ff8d155cf619cd55572bf7238b06a1fcb120d64a8b",
+ "k1_reference_results_sha256": {
+  "matched_cells.csv": "af62d51c0c299b6e4a17de775015c259b6e575af0e3dc1d2c1e59ad9be74d239",
+  "PER_DATASET_SUMMARY.csv": "62fb8bfe5603cf2525c2d1500157e5dc4c889539051e1a5b403affb2ff706520",
+  "aggregate_summary.json": "fffc6c28a42c25d35c85c1515be48b5ab7da0d0767450bfb31d9dbc903a1cf28",
+  "PUBLICATION_FINAL_RESULTS.json": "b6f14ff707a952ae860812a2bfa2f099fc8d3c39ab579c8d2605057b5699a527"
+ },
+ "global_fold_manifest_sha256": {
+  "GF1": "456a69474a3763647b7e0ad13f5538e8f630d268347671ad617134b08e830d0a",
+  "GF2": "74029f81a4b5617b13218812aa26568b0f3a268f8f6b450b5ab0293b17f71f93",
+  "GF3": "fe622f3bc1146998d00fe070ea045f0790145b55a028effea52de00f94000f0e"
+ },
+ "ni_margin": 0.01,
+ "ni_margin_source": "quantization_spec.yaml ni_margin AND protocol.py NI_MARGIN_PTQ (both verified)",
+ "primary_architecture_margin_does_not_apply": -0.02,
+ "n_cells": 9,
+ "n_k1_checkpoints": 9,
+ "checkpoint_kind": "best.pt only",
+ "calibration": "none",
+ "q8_evaluated_before_freeze": false,
+ "q8_result_observed_before_freeze": false,
+ "test_membership_changed": false,
+ "k1_inference_rerun": false,
+ "full_s1_inference_rerun": false,
+ "q8_tuned_on_test": false,
+ "execution_rule": "The Q8 driver requires this file's externally supplied SHA256 and refuses if any plan, source, model-table, checkpoint, fold manifest, or frozen K1 reference artifact differs. Existing output directories are refused."
+}

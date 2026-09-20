@@ -1,0 +1,139 @@
+{
+ "primary_mode": "inference_mode",
+ "note": "Q8-vs-K1 speed-ups come from within-process ABAB-paired measurement. Absolute ms are NOT comparable across the q8_v1 and efficiency_v1 runs, because efficiency_v1's latency implementation omitted torch.inference_mode(); the Full-S1->Q8 figure is therefore a CHAINED RATIO, never a cross-run division.",
+ "latency": {
+  "inference_mode": {
+   "model_only": {
+    "k1_macro4_median_ms": 31.04563451051945,
+    "q8_macro4_median_ms": 28.646740000112914,
+    "speedup_k1_over_q8": 1.08374057607941,
+    "latency_reduction": 0.07726994626551109,
+    "per_dataset": {
+     "CWRU": {
+      "K1": 10.513187502510846,
+      "Q8": 9.748479991685599,
+      "speedup": 1.0784437688211352
+     },
+     "JNU": {
+      "K1": 47.824153531109914,
+      "Q8": 44.27637450862676,
+      "speedup": 1.0801280380757443
+     },
+     "HIT": {
+      "K1": 19.92264250293374,
+      "Q8": 18.28585600014776,
+      "speedup": 1.0895110681596067
+     },
+     "MAFAULDA": {
+      "K1": 45.922554505523294,
+      "Q8": 42.276249499991536,
+      "speedup": 1.0862494911127933
+     }
+    }
+   },
+   "end_to_end": {
+    "k1_macro4_median_ms": 32.34339626214933,
+    "q8_macro4_median_ms": 29.966358735691756,
+    "speedup_k1_over_q8": 1.0793235356829114,
+    "latency_reduction": 0.07349375146602521,
+    "per_dataset": {
+     "CWRU": {
+      "K1": 10.9193955140654,
+      "Q8": 10.145868989638984,
+      "speedup": 1.0762405393974972
+     },
+     "JNU": {
+      "K1": 48.40071898070164,
+      "Q8": 44.90282846381888,
+      "speedup": 1.0778991131861824
+     },
+     "HIT": {
+      "K1": 20.811966533074155,
+      "Q8": 19.14239997859113,
+      "speedup": 1.0872182462152222
+     },
+     "MAFAULDA": {
+      "K1": 49.24150402075611,
+      "Q8": 45.67433751071803,
+      "speedup": 1.0781000164304737
+     }
+    }
+   }
+  },
+  "no_inference_mode": {
+   "model_only": {
+    "k1_macro4_median_ms": 77.34942562092328,
+    "q8_macro4_median_ms": 65.89951810019556,
+    "speedup_k1_over_q8": 1.1737479704072942,
+    "latency_reduction": 0.1480283457674504,
+    "per_dataset": {
+     "CWRU": {
+      "K1": 22.712018486345187,
+      "Q8": 21.346529480069876,
+      "speedup": 1.0639677286909892
+     },
+     "JNU": {
+      "K1": 130.28141699032858,
+      "Q8": 95.28022597078234,
+      "speedup": 1.3673500000963406
+     },
+     "HIT": {
+      "K1": 43.24132049805485,
+      "Q8": 40.296977473190054,
+      "speedup": 1.0730661009705675
+     },
+     "MAFAULDA": {
+      "K1": 113.16294650896452,
+      "Q8": 106.67433947673999,
+      "speedup": 1.0608263155324187
+     }
+    }
+   },
+   "end_to_end": {
+    "k1_macro4_median_ms": 79.9104853940662,
+    "q8_macro4_median_ms": 75.61315350903897,
+    "speedup_k1_over_q8": 1.0568331260580677,
+    "latency_reduction": 0.053776821199816305,
+    "per_dataset": {
+     "CWRU": {
+      "K1": 23.27863100799732,
+      "Q8": 21.848845499334857,
+      "speedup": 1.065439865401858
+     },
+     "JNU": {
+      "K1": 135.24130050791427,
+      "Q8": 128.9146195340436,
+      "speedup": 1.0490765205431176
+     },
+     "HIT": {
+      "K1": 44.19699602294713,
+      "Q8": 41.52450751280412,
+      "speedup": 1.0643593065930752
+     },
+     "MAFAULDA": {
+      "K1": 116.92501403740607,
+      "Q8": 110.16464148997329,
+      "speedup": 1.0613660831279343
+     }
+    }
+   }
+  }
+ },
+ "throughput_cpu_b32": {
+  "K1-FP32": 26.557238261804777,
+  "Q8-cpu_dynamic": 27.337914596900635,
+  "speedup_q8_over_k1": 1.0293959909309789
+ },
+ "chained_cpu_speedup": {
+  "model_only": {
+   "full_s1_over_k1_from_efficiency_v1": 2.2133660442665892,
+   "k1_over_q8_from_q8_v1": 1.08374057607941,
+   "chained_full_s1_over_q8": 2.3987145918880786
+  },
+  "end_to_end": {
+   "full_s1_over_k1_from_efficiency_v1": 2.1786557778062416,
+   "k1_over_q8_from_q8_v1": 1.0793235356829114,
+   "chained_full_s1_over_q8": 2.351474457137836
+  }
+ }
+}

@@ -1,0 +1,1368 @@
+{
+ "per_dataset_reports": {
+  "CWRU": {
+   "dataset": "CWRU",
+   "classes": [
+    "inner_race",
+    "outer_race",
+    "ball"
+   ],
+   "accuracy": 0.9153846153846154,
+   "macro_f1": 0.9141148929978223,
+   "per_class_precision": [
+    0.967742,
+    0.92437,
+    0.860759
+   ],
+   "per_class_recall": [
+    0.857143,
+    0.916667,
+    0.971429
+   ],
+   "per_class_f1": [
+    0.909091,
+    0.920502,
+    0.912752
+   ],
+   "support": [
+    70,
+    120,
+    70
+   ],
+   "confusion_matrix": [
+    [
+     60,
+     9,
+     1
+    ],
+    [
+     0,
+     110,
+     10
+    ],
+    [
+     2,
+     0,
+     68
+    ]
+   ],
+   "zero_division_policy": "undefined precision/recall/F1 := 0.0",
+   "macro_ovr_auc": 0.9847451963241437,
+   "balanced_accuracy": 0.9150796666666667,
+   "macro_precision": 0.9176236666666666,
+   "macro_recall": 0.9150796666666667
+  },
+  "JNU": {
+   "dataset": "JNU",
+   "classes": [
+    "n",
+    "ib",
+    "ob",
+    "tb"
+   ],
+   "accuracy": 0.9583333333333334,
+   "macro_f1": 0.9142857142857144,
+   "per_class_precision": [
+    1.0,
+    1.0,
+    0.75,
+    1.0
+   ],
+   "per_class_recall": [
+    1.0,
+    1.0,
+    1.0,
+    0.666667
+   ],
+   "per_class_f1": [
+    1.0,
+    1.0,
+    0.857143,
+    0.8
+   ],
+   "support": [
+    15,
+    3,
+    3,
+    3
+   ],
+   "confusion_matrix": [
+    [
+     15,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     3,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     3,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     2
+    ]
+   ],
+   "zero_division_policy": "undefined precision/recall/F1 := 0.0",
+   "macro_ovr_auc": 1.0,
+   "balanced_accuracy": 0.91666675,
+   "macro_precision": 0.9375,
+   "macro_recall": 0.91666675
+  },
+  "HIT": {
+   "dataset": "HIT",
+   "classes": [
+    "0",
+    "1",
+    "2"
+   ],
+   "accuracy": 1.0,
+   "macro_f1": 1.0,
+   "per_class_precision": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "per_class_recall": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "per_class_f1": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "support": [
+    112,
+    112,
+    56
+   ],
+   "confusion_matrix": [
+    [
+     112,
+     0,
+     0
+    ],
+    [
+     0,
+     112,
+     0
+    ],
+    [
+     0,
+     0,
+     56
+    ]
+   ],
+   "zero_division_policy": "undefined precision/recall/F1 := 0.0",
+   "macro_ovr_auc": 1.0,
+   "balanced_accuracy": 1.0,
+   "macro_precision": 1.0,
+   "macro_recall": 1.0
+  },
+  "MAFAULDA": {
+   "dataset": "MAFAULDA",
+   "classes": [
+    "normal",
+    "imbalance",
+    "horizontal-misalignment",
+    "vertical-misalignment",
+    "underhang/ball_fault",
+    "underhang/cage_fault",
+    "underhang/outer_race",
+    "overhang/ball_fault",
+    "overhang/cage_fault",
+    "overhang/outer_race"
+   ],
+   "accuracy": 0.9484633569739953,
+   "macro_f1": 0.9367701880284518,
+   "per_class_precision": [
+    0.686275,
+    0.782759,
+    1.0,
+    0.915751,
+    0.995935,
+    1.0,
+    1.0,
+    1.0,
+    0.976096,
+    1.0
+   ],
+   "per_class_recall": [
+    1.0,
+    0.965957,
+    0.612245,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.97551
+   ],
+   "per_class_f1": [
+    0.813953,
+    0.864762,
+    0.759494,
+    0.956023,
+    0.997963,
+    1.0,
+    1.0,
+    1.0,
+    0.987903,
+    0.987603
+   ],
+   "support": [
+    35,
+    235,
+    245,
+    250,
+    245,
+    245,
+    245,
+    125,
+    245,
+    245
+   ],
+   "confusion_matrix": [
+    [
+     35,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     227,
+     0,
+     7,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     16,
+     63,
+     150,
+     16,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     250,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     245,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     245,
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     245,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     125,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     245,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     6,
+     239
+    ]
+   ],
+   "zero_division_policy": "undefined precision/recall/F1 := 0.0",
+   "macro_ovr_auc": 0.999413474952261,
+   "balanced_accuracy": 0.9553712000000001,
+   "macro_precision": 0.9356816,
+   "macro_recall": 0.9553712000000001
+  }
+ },
+ "macro_domain_f1": 0.941292698827997,
+ "macro3_f1_excl_cwru": 0.9503519674380554,
+ "per_specimen": [
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_B007",
+   "y_true": "ball",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.9999999523162841
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_B014",
+   "y_true": "ball",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.9947059869766235
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_B021",
+   "y_true": "ball",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.9998669266700745
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_B028",
+   "y_true": "ball",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.9999999403953552
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "FE_B007",
+   "y_true": "ball",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.999976634979248
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "FE_B014",
+   "y_true": "ball",
+   "n": 10,
+   "recall": 0.8,
+   "main_pred": "ball",
+   "mean_pmax": 0.9689217150211334
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "FE_B021",
+   "y_true": "ball",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.9999996423721313
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_IR007",
+   "y_true": "inner_race",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "inner_race",
+   "mean_pmax": 0.9998824954032898
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_IR014",
+   "y_true": "inner_race",
+   "n": 10,
+   "recall": 0.0,
+   "main_pred": "outer_race",
+   "mean_pmax": 0.9275742173194885
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_IR021",
+   "y_true": "inner_race",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "inner_race",
+   "mean_pmax": 0.9998421669006348
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_IR028",
+   "y_true": "inner_race",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "inner_race",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "FE_IR007",
+   "y_true": "inner_race",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "inner_race",
+   "mean_pmax": 0.9993624091148376
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "FE_IR014",
+   "y_true": "inner_race",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "inner_race",
+   "mean_pmax": 0.9939073383808136
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "FE_IR021",
+   "y_true": "inner_race",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "inner_race",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_OR007",
+   "y_true": "outer_race",
+   "n": 30,
+   "recall": 1.0,
+   "main_pred": "outer_race",
+   "mean_pmax": 0.9981960316499074
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_OR014",
+   "y_true": "outer_race",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "outer_race",
+   "mean_pmax": 0.9999986529350281
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "DE_OR021",
+   "y_true": "outer_race",
+   "n": 30,
+   "recall": 1.0,
+   "main_pred": "outer_race",
+   "mean_pmax": 0.9999998052914937
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "FE_OR007",
+   "y_true": "outer_race",
+   "n": 30,
+   "recall": 1.0,
+   "main_pred": "outer_race",
+   "mean_pmax": 0.975868570804596
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "FE_OR014",
+   "y_true": "outer_race",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "outer_race",
+   "mean_pmax": 0.9824251770973206
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "physical_specimen",
+   "group": "FE_OR021",
+   "y_true": "outer_race",
+   "n": 10,
+   "recall": 0.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.8295800805091857
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data1_rec12",
+   "y_true": "0",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "0",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data1_rec13",
+   "y_true": "0",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "0",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data1_rec23",
+   "y_true": "0",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "0",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data1_rec24",
+   "y_true": "0",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "0",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data2_rec02",
+   "y_true": "0",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "0",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data2_rec07",
+   "y_true": "0",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "0",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data2_rec15",
+   "y_true": "0",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "0",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data2_rec19",
+   "y_true": "0",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "0",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data3_rec02",
+   "y_true": "1",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 0.9658483607428414
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data3_rec05",
+   "y_true": "1",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 0.9999164257730756
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data3_rec18",
+   "y_true": "1",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data3_rec24",
+   "y_true": "1",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data4_rec09",
+   "y_true": "1",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data4_rec13",
+   "y_true": "1",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data4_rec15",
+   "y_true": "1",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data4_rec26",
+   "y_true": "1",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data5_rec01",
+   "y_true": "2",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "2",
+   "mean_pmax": 0.9999852691377912
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data5_rec02",
+   "y_true": "2",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "2",
+   "mean_pmax": 0.9999987057277134
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data5_rec03",
+   "y_true": "2",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "2",
+   "mean_pmax": 0.9999999318804059
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "physical_specimen",
+   "group": "hit_data5_rec05",
+   "y_true": "2",
+   "n": 14,
+   "recall": 1.0,
+   "main_pred": "2",
+   "mean_pmax": 0.9999999318804059
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_ib1000_2",
+   "y_true": "ib",
+   "n": 1,
+   "recall": 1.0,
+   "main_pred": "ib",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_ib600_2",
+   "y_true": "ib",
+   "n": 1,
+   "recall": 1.0,
+   "main_pred": "ib",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_ib800_2",
+   "y_true": "ib",
+   "n": 1,
+   "recall": 1.0,
+   "main_pred": "ib",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_n1000_3_2",
+   "y_true": "n",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "n",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_n600_3_2",
+   "y_true": "n",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "n",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_n800_3_2",
+   "y_true": "n",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "n",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_ob1000_2",
+   "y_true": "ob",
+   "n": 1,
+   "recall": 1.0,
+   "main_pred": "ob",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_ob600_2",
+   "y_true": "ob",
+   "n": 1,
+   "recall": 1.0,
+   "main_pred": "ob",
+   "mean_pmax": 0.9999997615814209
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_ob800_2",
+   "y_true": "ob",
+   "n": 1,
+   "recall": 1.0,
+   "main_pred": "ob",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_tb1000_2",
+   "y_true": "tb",
+   "n": 1,
+   "recall": 0.0,
+   "main_pred": "ob",
+   "mean_pmax": 0.9999035596847534
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_tb600_2",
+   "y_true": "tb",
+   "n": 1,
+   "recall": 1.0,
+   "main_pred": "tb",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "physical_specimen",
+   "group": "jnu_tb800_2",
+   "y_true": "tb",
+   "n": 1,
+   "recall": 1.0,
+   "main_pred": "tb",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_horizontal-misalignment_1.0mm",
+   "y_true": "horizontal-misalignment",
+   "n": 245,
+   "recall": 0.6122448979591837,
+   "main_pred": "horizontal-misalignment",
+   "mean_pmax": 0.9169486387651794
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_imbalance_25g",
+   "y_true": "imbalance",
+   "n": 235,
+   "recall": 0.9659574468085106,
+   "main_pred": "imbalance",
+   "mean_pmax": 0.9840380276771302
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_normal_29.4912",
+   "y_true": "normal",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "normal",
+   "mean_pmax": 0.9999601721763611
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_normal_30.72",
+   "y_true": "normal",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "normal",
+   "mean_pmax": 0.9999526739120483
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_normal_34.2016",
+   "y_true": "normal",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "normal",
+   "mean_pmax": 0.9039606094360352
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_normal_35.4304",
+   "y_true": "normal",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "normal",
+   "mean_pmax": 0.9999985694885254
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_normal_43.6224",
+   "y_true": "normal",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "normal",
+   "mean_pmax": 0.9999997615814209
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_normal_45.4656",
+   "y_true": "normal",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "normal",
+   "mean_pmax": 0.9999993085861206
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_normal_47.7184",
+   "y_true": "normal",
+   "n": 5,
+   "recall": 1.0,
+   "main_pred": "normal",
+   "mean_pmax": 0.9999789237976074
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_overhang_ball_fault_20g",
+   "y_true": "overhang/ball_fault",
+   "n": 125,
+   "recall": 1.0,
+   "main_pred": "overhang/ball_fault",
+   "mean_pmax": 0.9999994888305664
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_overhang_cage_fault_20g",
+   "y_true": "overhang/cage_fault",
+   "n": 245,
+   "recall": 1.0,
+   "main_pred": "overhang/cage_fault",
+   "mean_pmax": 0.9998862899079615
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_overhang_outer_race_20g",
+   "y_true": "overhang/outer_race",
+   "n": 245,
+   "recall": 0.9755102040816327,
+   "main_pred": "overhang/outer_race",
+   "mean_pmax": 0.9894778030259269
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_underhang_ball_fault_20g",
+   "y_true": "underhang/ball_fault",
+   "n": 245,
+   "recall": 1.0,
+   "main_pred": "underhang/ball_fault",
+   "mean_pmax": 0.9999945715982087
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_underhang_cage_fault_20g",
+   "y_true": "underhang/cage_fault",
+   "n": 245,
+   "recall": 1.0,
+   "main_pred": "underhang/cage_fault",
+   "mean_pmax": 0.9988985188153325
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_underhang_outer_race_20g",
+   "y_true": "underhang/outer_race",
+   "n": 245,
+   "recall": 1.0,
+   "main_pred": "underhang/outer_race",
+   "mean_pmax": 0.9996448064336971
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "physical_specimen",
+   "group": "mafaulda_vertical-misalignment_1.40mm",
+   "y_true": "vertical-misalignment",
+   "n": 250,
+   "recall": 1.0,
+   "main_pred": "vertical-misalignment",
+   "mean_pmax": 0.9999993777275086
+  }
+ ],
+ "per_severity": [
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "14 mil",
+   "y_true": "ball",
+   "n": 20,
+   "recall": 0.9,
+   "main_pred": "ball",
+   "mean_pmax": 0.9818138509988785
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "21 mil",
+   "y_true": "ball",
+   "n": 20,
+   "recall": 1.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.9999332845211029
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "28 mil",
+   "y_true": "ball",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.9999999403953552
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "7 mil",
+   "y_true": "ball",
+   "n": 20,
+   "recall": 1.0,
+   "main_pred": "ball",
+   "mean_pmax": 0.9999882936477661
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "14 mil",
+   "y_true": "inner_race",
+   "n": 20,
+   "recall": 0.5,
+   "main_pred": "inner_race",
+   "mean_pmax": 0.9607407778501511
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "21 mil",
+   "y_true": "inner_race",
+   "n": 20,
+   "recall": 1.0,
+   "main_pred": "inner_race",
+   "mean_pmax": 0.9999210834503174
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "28 mil",
+   "y_true": "inner_race",
+   "n": 10,
+   "recall": 1.0,
+   "main_pred": "inner_race",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "7 mil",
+   "y_true": "inner_race",
+   "n": 20,
+   "recall": 1.0,
+   "main_pred": "inner_race",
+   "mean_pmax": 0.9996224522590638
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "14 mil",
+   "y_true": "outer_race",
+   "n": 20,
+   "recall": 1.0,
+   "main_pred": "outer_race",
+   "mean_pmax": 0.9912119150161743
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "21 mil",
+   "y_true": "outer_race",
+   "n": 40,
+   "recall": 0.75,
+   "main_pred": "outer_race",
+   "mean_pmax": 0.9573948740959167
+  },
+  {
+   "dataset": "CWRU",
+   "group_key": "fault_severity",
+   "group": "7 mil",
+   "y_true": "outer_race",
+   "n": 60,
+   "recall": 1.0,
+   "main_pred": "outer_race",
+   "mean_pmax": 0.9870323012272517
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "fault_severity",
+   "group": "depth 0.5 mm, length 0.5 mm",
+   "y_true": "1",
+   "n": 56,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 0.9914411966289792
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "fault_severity",
+   "group": "depth 0.5 mm, length 1.0 mm",
+   "y_true": "1",
+   "n": 56,
+   "recall": 1.0,
+   "main_pred": "1",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "HIT",
+   "group_key": "fault_severity",
+   "group": "depth 0.5 mm, length 0.5 mm",
+   "y_true": "2",
+   "n": 56,
+   "recall": 1.0,
+   "main_pred": "2",
+   "mean_pmax": 0.9999959596565792
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "fault_severity",
+   "group": "0.3mm x 0.05mm wire-cut dent",
+   "y_true": "ib",
+   "n": 3,
+   "recall": 1.0,
+   "main_pred": "ib",
+   "mean_pmax": 1.0
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "fault_severity",
+   "group": "0.3mm x 0.05mm wire-cut dent",
+   "y_true": "ob",
+   "n": 3,
+   "recall": 1.0,
+   "main_pred": "ob",
+   "mean_pmax": 0.9999999205271403
+  },
+  {
+   "dataset": "JNU",
+   "group_key": "fault_severity",
+   "group": "0.3mm x 0.05mm wire-cut dent",
+   "y_true": "tb",
+   "n": 3,
+   "recall": 0.6666666666666666,
+   "main_pred": "tb",
+   "mean_pmax": 0.9999678532282511
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "fault_severity",
+   "group": "1.0mm",
+   "y_true": "horizontal-misalignment",
+   "n": 245,
+   "recall": 0.6122448979591837,
+   "main_pred": "horizontal-misalignment",
+   "mean_pmax": 0.9169486387651794
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "fault_severity",
+   "group": "25g",
+   "y_true": "imbalance",
+   "n": 235,
+   "recall": 0.9659574468085106,
+   "main_pred": "imbalance",
+   "mean_pmax": 0.9840380276771302
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "fault_severity",
+   "group": "added_mass_20g",
+   "y_true": "overhang/ball_fault",
+   "n": 125,
+   "recall": 1.0,
+   "main_pred": "overhang/ball_fault",
+   "mean_pmax": 0.9999994888305664
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "fault_severity",
+   "group": "added_mass_20g",
+   "y_true": "overhang/cage_fault",
+   "n": 245,
+   "recall": 1.0,
+   "main_pred": "overhang/cage_fault",
+   "mean_pmax": 0.9998862899079615
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "fault_severity",
+   "group": "added_mass_20g",
+   "y_true": "overhang/outer_race",
+   "n": 245,
+   "recall": 0.9755102040816327,
+   "main_pred": "overhang/outer_race",
+   "mean_pmax": 0.9894778030259269
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "fault_severity",
+   "group": "added_mass_20g",
+   "y_true": "underhang/ball_fault",
+   "n": 245,
+   "recall": 1.0,
+   "main_pred": "underhang/ball_fault",
+   "mean_pmax": 0.9999945715982087
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "fault_severity",
+   "group": "added_mass_20g",
+   "y_true": "underhang/cage_fault",
+   "n": 245,
+   "recall": 1.0,
+   "main_pred": "underhang/cage_fault",
+   "mean_pmax": 0.9988985188153325
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "fault_severity",
+   "group": "added_mass_20g",
+   "y_true": "underhang/outer_race",
+   "n": 245,
+   "recall": 1.0,
+   "main_pred": "underhang/outer_race",
+   "mean_pmax": 0.9996448064336971
+  },
+  {
+   "dataset": "MAFAULDA",
+   "group_key": "fault_severity",
+   "group": "1.40mm",
+   "y_true": "vertical-misalignment",
+   "n": 250,
+   "recall": 1.0,
+   "main_pred": "vertical-misalignment",
+   "mean_pmax": 0.9999993777275086
+  }
+ ],
+ "cwru_per_specimen_recall": {
+  "DE_B007": 1.0,
+  "DE_B014": 1.0,
+  "DE_B021": 1.0,
+  "DE_B028": 1.0,
+  "DE_IR007": 1.0,
+  "DE_IR014": 0.0,
+  "DE_IR021": 1.0,
+  "DE_IR028": 1.0,
+  "DE_OR007": 1.0,
+  "DE_OR014": 1.0,
+  "DE_OR021": 1.0,
+  "FE_B007": 1.0,
+  "FE_B014": 0.8,
+  "FE_B021": 1.0,
+  "FE_IR007": 1.0,
+  "FE_IR014": 1.0,
+  "FE_IR021": 1.0,
+  "FE_OR007": 1.0,
+  "FE_OR014": 1.0,
+  "FE_OR021": 0.0
+ },
+ "cwru_per_class_f1": {
+  "inner_race": 0.909091,
+  "outer_race": 0.920502,
+  "ball": 0.912752
+ },
+ "cwru_race_recall_min": 0.857143,
+ "mafaulda_per_configuration_recall": {
+  "mafaulda_horizontal-misalignment_1.0mm": 0.6122448979591837,
+  "mafaulda_imbalance_25g": 0.9659574468085106,
+  "mafaulda_normal_29.4912": 1.0,
+  "mafaulda_normal_30.72": 1.0,
+  "mafaulda_normal_34.2016": 1.0,
+  "mafaulda_normal_35.4304": 1.0,
+  "mafaulda_normal_43.6224": 1.0,
+  "mafaulda_normal_45.4656": 1.0,
+  "mafaulda_normal_47.7184": 1.0,
+  "mafaulda_overhang_ball_fault_20g": 1.0,
+  "mafaulda_overhang_cage_fault_20g": 1.0,
+  "mafaulda_overhang_outer_race_20g": 0.9755102040816327,
+  "mafaulda_underhang_ball_fault_20g": 1.0,
+  "mafaulda_underhang_cage_fault_20g": 1.0,
+  "mafaulda_underhang_outer_race_20g": 1.0,
+  "mafaulda_vertical-misalignment_1.40mm": 1.0
+ },
+ "macro_4_macro_f1": 0.941292698827997,
+ "macro_4_macro_auc": 0.9960396678191011,
+ "protocol_identity": "lightweight_pcste_q8_v1",
+ "family": "Q8",
+ "run_id": "pcstev2_lightweight_v1_k1_gf1_s2026",
+ "fold": 1,
+ "seed": 2026,
+ "partition": "test",
+ "source_k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s2026/best.pt",
+ "source_k1_sha256": "665fa67f9521a4239c9a727e0633276e5eba56c0ed8dd0513fd77c64c2b21cf5"
+}

@@ -1,6 +1,8 @@
 # Publication Inventory
 
-Status: the K1 nine-cell matrix, the sealed publication TEST, and the efficiency benchmark are all complete. The remaining open items are the optional Q8 decision and the archival deposit of excluded binary artifacts.
+Status: all three stages are complete and frozen - the **primary study** (K1 nine-cell matrix + sealed publication TEST), the **efficiency benchmark**, and the **secondary Q8 deployment extension**. The remaining open item is the archival deposit of excluded binary artifacts.
+
+The primary study and the Q8 extension are deliberately kept separate throughout this repository: Q8 was frozen and evaluated only after the primary sealed comparison was complete, and is never presented as part of it.
 
 Classification codes: `CORE` (implementation), `REPRO` (exact executor), `PROTOCOL` (frozen design/provenance), `RESULTS` (frozen outcome), `EXCLUDED_BINARY` (archival deposit), `EXCLUDED_HISTORICAL` (out of scope), `PENDING` (not yet produced).
 
@@ -69,6 +71,26 @@ Classification codes: `CORE` (implementation), `REPRO` (exact executor), `PROTOC
 | **Efficiency final report** | RESULTS | `benchmarks/efficiency_v1/EFFICIENCY_FINAL_REPORT.md` | 15 KiB | Yes | **Yes** |
 | **Efficiency artifact hash manifest** | PROTOCOL | `benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256` | 1 KiB | Yes | **Yes** |
 
+## Q8 secondary extension
+
+| Item | Class | Location | Size | In Git | Final |
+|---|---|---|---:|---|---|
+| **Q8 evaluation plan (JSON + MD)** | PROTOCOL | `benchmarks/q8_v1/` | 27 KiB | Yes | **Yes** |
+| **Q8 evaluation barrier** | PROTOCOL | `benchmarks/q8_v1/Q8_EVALUATION_BARRIER.json` | 2 KiB | Yes | **Yes** |
+| **Q8 frozen model table (9 K1 checkpoints)** | PROTOCOL | `benchmarks/q8_v1/Q8_FROZEN_MODEL_TABLE.csv` | 2 KiB | Yes | **Yes** |
+| **Q8 fail-closed driver** | REPRO | `benchmarks/q8_v1/q8_driver.py` | 21 KiB | Yes | **Yes** |
+| **Q8 deployment bench** | REPRO | `benchmarks/q8_v1/q8_bench.py` | 17 KiB | Yes | **Yes** |
+| **Q8 conversion manifest (9 cells)** | RESULTS | `benchmarks/q8_v1/results/q8_conversion_manifest.json` | 56 KiB | Yes | **Yes** |
+| **Q8 matched cells / per-dataset / aggregate** | RESULTS | `benchmarks/q8_v1/results/` | 10 KiB | Yes | **Yes** |
+| **Q8 per-cell class-level reports (9)** | RESULTS | `benchmarks/q8_v1/results/gf*_q8_report.json` | ~236 KiB | Yes | **Yes** |
+| **Q8 size / GPU probe / agreement / memory** | RESULTS | `benchmarks/q8_v1/results/` | 5 KiB | Yes | **Yes** |
+| **Q8 latency raw + summary (both modes)** | RESULTS | `benchmarks/q8_v1/results/q8_latency_*` | ~1.9 MiB | Yes | **Yes** |
+| **Q8 throughput** | RESULTS | `benchmarks/q8_v1/results/q8_throughput_results.csv` | 1 KiB | Yes | **Yes** |
+| **Q8 final report** | RESULTS | `benchmarks/q8_v1/Q8_FINAL_REPORT.md` | 20 KiB | Yes | **Yes** |
+| **Q8 artifact hash manifest (30 entries)** | PROTOCOL | `benchmarks/q8_v1/Q8_ARTIFACT_HASHES.sha256` | 3 KiB | Yes | **Yes** |
+
+No Q8 binary model artifact is stored: Q8 is regenerated deterministically from the frozen K1 checkpoints, and the conversion manifest carries a content digest for byte-level verification.
+
 ## Excluded binary artifacts (archival deposit)
 
 Sizes audited in `docs/ARTIFACTS.md`. Text-level identity (SHA256, selection rule, provenance) for every item below is tracked in Git.
@@ -97,8 +119,9 @@ The dissertation repository is a separate project and is deliberately **not** co
 
 | Item | Class | Notes |
 |---|---|---|
-| Q8 quantization arm | PENDING | Excluded from the publication evaluation; frozen comparison margin `-0.01` if it is ever run. Scientific inclusion undecided. |
-| Efficiency across all nine cells / other hardware | PENDING | The benchmark covers the deterministic GF1/seed-42 pair on one host. Efficiency is architectural, so transfer is expected but unmeasured. |
+| Efficiency and Q8 deployment across all nine cells / other hardware | PENDING | Both benchmarks cover the deterministic GF1/seed-42 pair on one host. Efficiency is architectural, so transfer is expected but unmeasured. |
+| TEST evaluation of the Q8 `cpu_dynamic` representation | PENDING | TEST accuracy was evaluated on the frozen `sim` accuracy representation. A deployment accuracy claim for the CPU int8 artifact would need its own pre-registered TEST evaluation. |
+| `inference_mode` correction for `efficiency_v1` absolute latencies | PENDING | Its ratios are valid; its absolute milliseconds are inflated because the latency/throughput stages omitted `torch.inference_mode()`. The frozen results were not modified. |
 | Fused Mamba kernel timings | PENDING | All current timings use the pure-PyTorch reference selective scan. |
 | Zenodo / release deposit | PENDING | Must contain the artifacts marked Required above, with a DOI referenced from `README.md` and `docs/ARTIFACTS.md`. |
 | `PCSTE_DATA_ROOT` support in the dataset registry | PENDING | Currently documented as a provenance annotation only; `src/methodology_v2/registry.py` resolves `<repo root>/data` directly. |

@@ -1,0 +1,347 @@
+{
+ "protocol_identity": "lightweight_pcste_q8_v1",
+ "schema_version": "lightweight_pcste_q8_aggregate.v1",
+ "stage": "SECONDARY post-primary extension",
+ "completed_at_utc": "2026-09-20T11:17:35+00:00",
+ "device": "cuda",
+ "n_cells": 9,
+ "k1_reference": "already-frozen primary TEST results; K1 inference was NOT rerun",
+ "macro_4_macro_f1": {
+  "k1": {
+   "mean": 0.955334478950123,
+   "sd": 0.018393186066359115
+  },
+  "q8": {
+   "mean": 0.9553335893033648,
+   "sd": 0.018404753780728138
+  },
+  "paired_delta_q8_minus_k1": {
+   "n": 9,
+   "deltas": [
+    -0.00014416325702582,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -0.00011497262124304797,
+    0.0002511290574445102,
+    0.0
+   ],
+   "mean": -8.896467582619749e-07,
+   "median": 0.0,
+   "sd": 0.00011014787138352228,
+   "fraction_positive": 0.1111111111111111,
+   "n_positive": 1,
+   "n_negative": 2,
+   "n_ties": 6,
+   "effect_size_mean_over_sd": -0.00807684022475865
+  }
+ },
+ "macro_4_macro_auc": {
+  "k1": {
+   "mean": 0.9963981070513372,
+   "sd": 0.0023669235180763934
+  },
+  "q8": {
+   "mean": 0.996395011507709,
+   "sd": 0.00237575189727572
+  },
+  "paired_delta_q8_minus_k1": {
+   "n": 9,
+   "deltas": [
+    1.053055681987658e-05,
+    -7.980858921508016e-07,
+    -2.4169244277727486e-05,
+    4.341707820487706e-06,
+    -1.7719945639704804e-06,
+    -2.7977091132558307e-05,
+    1.270843691425494e-05,
+    1.3420763032789829e-05,
+    -1.414494137419453e-05
+   ],
+   "mean": -3.0955436281325057e-06,
+   "median": -7.980858921508016e-07,
+   "sd": 1.563589244030905e-05,
+   "fraction_positive": 0.4444444444444444,
+   "n_positive": 4,
+   "n_negative": 5,
+   "n_ties": 0,
+   "effect_size_mean_over_sd": -0.19797677938435096
+  }
+ },
+ "non_inferiority": {
+  "defined_by_historical_protocol": true,
+  "margin": 0.01,
+  "margin_provenance": "quantization_spec.yaml ni_margin AND protocol.py NI_MARGIN_PTQ",
+  "call": "stats.contrast('H3 Q8(K1) vs K1', q8, k1, 'ni', 0.01)",
+  "result": {
+   "contrast": "H3 Q8(K1) vs K1",
+   "kind": "ni",
+   "n": 9,
+   "deltas": [
+    -0.00014416325702582,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -0.00011497262124304797,
+    0.0002511290574445102,
+    0.0
+   ],
+   "mean": -8.896467582619749e-07,
+   "median": 0.0,
+   "sd": 0.00011014787138352228,
+   "fraction_positive": 0.1111111111111111,
+   "n_positive": 1,
+   "n_negative": 2,
+   "n_ties": 6,
+   "effect_size_mean_over_sd": -0.00807684022475865,
+   "non_inferiority": {
+    "margin": 0.01,
+    "shifted_mean": 0.009999110353241738,
+    "p_one_sided": 0.001953125,
+    "passes": true,
+    "h0": "mean(delta) <= -0.01",
+    "method": "exact one-sided sign-flip on margin-shifted deltas"
+   },
+   "p_for_holm": 0.001953125
+  },
+  "holm_family_applied": false,
+  "holm_note": "The historical Holm m=3 family is not executable (C_small never evaluated) and the primary study used a single confirmatory contrast. H3 is run standalone as a secondary contrast and carries no family-wise error control from that family.",
+  "primary_margin_does_not_apply": -0.02
+ },
+ "per_dataset": {
+  "CWRU|macro_f1": {
+   "k1_mean": 0.9189454082927347,
+   "k1_sd": 0.07343181463755588,
+   "q8_mean": 0.9189454082927347,
+   "q8_sd": 0.07343181463755588,
+   "delta": {
+    "n": 9,
+    "deltas": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "mean": 0.0,
+    "median": 0.0,
+    "sd": 0.0,
+    "fraction_positive": 0.0,
+    "n_positive": 0,
+    "n_negative": 0,
+    "n_ties": 9,
+    "effect_size_mean_over_sd": null
+   }
+  },
+  "CWRU|macro_auc": {
+   "k1_mean": 0.9903792467279311,
+   "k1_sd": 0.009921483503972468,
+   "q8_mean": 0.9903640466908011,
+   "q8_sd": 0.009949814706683277,
+   "delta": {
+    "n": 9,
+    "deltas": [
+     5.0125313283189143e-05,
+     -5.221386800258188e-06,
+     -9.398496240597964e-05,
+     0.0,
+     0.0,
+     -5.90016708438279e-05,
+     4.4903926482819934e-05,
+     0.0,
+     -7.362155388479508e-05
+    ],
+    "mean": -1.5200037129872416e-05,
+    "median": 0.0,
+    "sd": 5.026343835721121e-05,
+    "fraction_positive": 0.2222222222222222,
+    "n_positive": 2,
+    "n_negative": 4,
+    "n_ties": 3,
+    "effect_size_mean_over_sd": -0.3024074282751827
+   }
+  },
+  "JNU|macro_f1": {
+   "k1_mean": 0.980952380952381,
+   "k1_sd": 0.037796447300922686,
+   "q8_mean": 0.980952380952381,
+   "q8_sd": 0.037796447300922686,
+   "delta": {
+    "n": 9,
+    "deltas": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "mean": 0.0,
+    "median": 0.0,
+    "sd": 0.0,
+    "fraction_positive": 0.0,
+    "n_positive": 0,
+    "n_negative": 0,
+    "n_ties": 9,
+    "effect_size_mean_over_sd": null
+   }
+  },
+  "JNU|macro_auc": {
+   "k1_mean": 1.0,
+   "k1_sd": 0.0,
+   "q8_mean": 1.0,
+   "q8_sd": 0.0,
+   "delta": {
+    "n": 9,
+    "deltas": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "mean": 0.0,
+    "median": 0.0,
+    "sd": 0.0,
+    "fraction_positive": 0.0,
+    "n_positive": 0,
+    "n_negative": 0,
+    "n_ties": 9,
+    "effect_size_mean_over_sd": null
+   }
+  },
+  "HIT|macro_f1": {
+   "k1_mean": 0.9887280625492271,
+   "k1_sd": 0.016133426812473366,
+   "q8_mean": 0.9887280625492271,
+   "q8_sd": 0.016133426812473366,
+   "delta": {
+    "n": 9,
+    "deltas": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "mean": 0.0,
+    "median": 0.0,
+    "sd": 0.0,
+    "fraction_positive": 0.0,
+    "n_positive": 0,
+    "n_negative": 0,
+    "n_ties": 9,
+    "effect_size_mean_over_sd": null
+   }
+  },
+  "HIT|macro_auc": {
+   "k1_mean": 0.9996023872511969,
+   "k1_sd": 0.0010819507041850084,
+   "q8_mean": 0.9996023872511969,
+   "q8_sd": 0.0010693318028870606,
+   "delta": {
+    "n": 9,
+    "deltas": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     -3.543083900225952e-05,
+     0.0,
+     3.543083900225952e-05,
+     0.0
+    ],
+    "mean": 0.0,
+    "median": 0.0,
+    "sd": 1.771541950112976e-05,
+    "fraction_positive": 0.1111111111111111,
+    "n_positive": 1,
+    "n_negative": 1,
+    "n_ties": 7,
+    "effect_size_mean_over_sd": 0.0
+   }
+  },
+  "MAFAULDA|macro_f1": {
+   "k1_mean": 0.9327120640061497,
+   "k1_sd": 0.01732130377177575,
+   "q8_mean": 0.9327085054191167,
+   "q8_sd": 0.01741647865454253,
+   "delta": {
+    "n": 9,
+    "deltas": [
+     -0.00057665302810328,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     -0.00045989048497252494,
+     0.0010045162297778187,
+     0.0
+    ],
+    "mean": -3.558587033109579e-06,
+    "median": 0.0,
+    "sd": 0.0004405914855340687,
+    "fraction_positive": 0.1111111111111111,
+    "n_positive": 1,
+    "n_negative": 2,
+    "n_ties": 6,
+    "effect_size_mean_over_sd": -0.008076840224899016
+   }
+  },
+  "MAFAULDA|macro_auc": {
+   "k1_mean": 0.9956107942262212,
+   "k1_sd": 0.004731858268926874,
+   "q8_mean": 0.9956136120888386,
+   "q8_sd": 0.004723669440202623,
+   "delta": {
+    "n": 9,
+    "deltas": [
+     -8.003086003571802e-06,
+     2.0290432318770257e-06,
+     -2.6920147047082565e-06,
+     1.736683128228389e-05,
+     -7.087978256326011e-06,
+     -1.7475854684478875e-05,
+     5.929821174421868e-06,
+     1.825221312912184e-05,
+     1.7041788388461043e-05
+    ],
+    "mean": 2.8178626174534137e-06,
+    "median": 2.0290432318770257e-06,
+    "sd": 1.2844894773125177e-05,
+    "fraction_positive": 0.5555555555555556,
+    "n_positive": 5,
+    "n_negative": 4,
+    "n_ties": 0,
+    "effect_size_mean_over_sd": 0.2193760764275864
+   }
+  }
+ },
+ "conversion": {
+  "calibration": "none",
+  "n_int8_params": 1322816,
+  "n_fp32_params": 56160,
+  "fraction_int8": 0.959274128048639
+ }
+}

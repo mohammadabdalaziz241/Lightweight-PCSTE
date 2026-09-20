@@ -1,0 +1,15 @@
+{
+ "question": "does the preserved Q8 implementation provide true hardware INT8 CUDA execution?",
+ "cpu_dynamic_engine": "fbgemm",
+ "cpu_dynamic_backend_is_cpu_only": true,
+ "cpu_dynamic_on_cuda": "NotImplementedError: Could not run 'quantized::linear_dynamic' with arguments from the 'CUDA' backend. This could be because the operator doesn't exist for this backend, or was omitted during the selective/custom build process (if using custom build). If you are a Facebook employee using PyTorch on mobile, please visit ",
+ "true_int8_cuda": false,
+ "sim_representation_compute_dtype": "float32 (weights are dequantised before compute)",
+ "conclusion": "NO true hardware INT8 CUDA execution. The 'sim' representation dequantises int8 weights to fp32 and computes in fp32; the 'cpu_dynamic' representation uses a CPU-only torch.ao backend. Any GPU timing of Q8 is therefore SIMULATED Q8 (fp32 arithmetic on quantised-then-dequantised weights) and must not be presented as INT8 GPU acceleration.",
+ "forbidden_alternatives_not_used": [
+  "TensorRT",
+  "torch.compile",
+  "custom kernels",
+  "new quantization library"
+ ]
+}

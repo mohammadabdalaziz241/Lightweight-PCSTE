@@ -196,6 +196,40 @@ Hardware matters: the published figures are from one idle host (`otter135`, Inte
 
 The historical Part-6 harness `src/methodology_v2/compression/benchmark.py` was **not edited** and remains at SHA256 `641f437b670b03d5bffb3ed11bfa2c8a758266392beec1988b90b8f4cecd211b`. Section 9 of `benchmarks/efficiency_v1/EFFICIENCY_BENCHMARK_PLAN.md` records why it could not be called verbatim.
 
-## 10. Not yet measured
+## 10. Q8 secondary extension
 
-The optional Q8 quantization arm has not been executed, so no int8 size or latency figure exists. Efficiency was measured on one representative cell (GF1/seed 42) on one host; it was not measured across all nine cells, on other hardware, or with multi-thread CPU scaling.
+`benchmarks/q8_v1/` holds the secondary Q8 deployment extension: its pre-registered plan, barrier, fail-closed driver, results and final report. Verify with:
+
+```bash
+cd benchmarks/q8_v1 && sha256sum -c Q8_ARTIFACT_HASHES.sha256
+```
+
+Reproduce:
+
+```bash
+# barrier check only - never opens TEST
+python benchmarks/q8_v1/q8_driver.py --stage verify \
+    --expected-barrier-sha256 d3b6898a109e571ff721f18f0d21ddd1649afdf235d315cc20b63f7ba141373d
+
+# Q8 conversion + TEST evaluation of all nine cells (refuses a non-empty output dir)
+python benchmarks/q8_v1/q8_driver.py --stage evaluate \
+    --expected-barrier-sha256 d3b6898a109e571ff721f18f0d21ddd1649afdf235d315cc20b63f7ba141373d \
+    --output-dir <new directory> --device auto
+
+# deployment measurements (VALIDATION inputs only, never TEST)
+python benchmarks/q8_v1/q8_bench.py --stage size
+python benchmarks/q8_v1/q8_bench.py --stage gpu_probe
+python benchmarks/q8_v1/q8_bench.py --stage agreement
+python benchmarks/q8_v1/q8_bench.py --stage latency                      # primary, with inference_mode
+python benchmarks/q8_v1/q8_bench.py --stage latency --no-inference-mode  # secondary, matches efficiency_v1
+python benchmarks/q8_v1/q8_bench.py --stage throughput
+python benchmarks/q8_v1/q8_bench.py --stage memory
+```
+
+The driver fails closed if any pinned plan byte, source hash, K1 checkpoint hash, TEST membership manifest, or frozen K1 reference artifact differs. It needs the nine frozen K1 `best.pt` checkpoints and the fold normalizers from the canonical scientific repository, plus raw datasets at `<repo root>/data` - the same external prerequisites as section 8.
+
+**A measurement-mode caveat that also affects `efficiency_v1`.** `efficiency_v1`'s latency and throughput stages never applied `torch.inference_mode()`, although its plan states that mode; it *is* applied in its FLOPs and memory stages. Measured effect on this host: K1/JNU model-only 78.5 ms without it versus 38.6 ms with it. Its reported **ratios remain valid** (both models measured identically, ABAB-interleaved in one process), but its **absolute milliseconds are inflated**. Those results are frozen and were not modified. Q8 CPU latency was therefore measured both ways, and absolute milliseconds are never compared across the two benchmarks; the Full-S1 to Q8 speed-up is reported as a chained ratio.
+
+## 11. Not measured
+
+No TEST evaluation of the `cpu_dynamic` Q8 representation was performed, so no accuracy claim exists for the deployed CPU int8 artifact. There is no true INT8 GPU path in the preserved implementation, so no Q8 GPU latency or memory figure exists. Efficiency and Q8 deployment figures come from one representative cell (GF1/seed 42) on one host; they were not measured across all nine cells, on other hardware, or with multi-thread CPU scaling.

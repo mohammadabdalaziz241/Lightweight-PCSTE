@@ -1,0 +1,302 @@
+{
+ "schema_version": "lightweight_pcste_q8_extension.v1",
+ "protocol_identity": "lightweight_pcste_q8_v1",
+ "status": "FROZEN_BEFORE_Q8_EVALUATION",
+ "created_at_utc": "2026-09-20T11:10:15+00:00",
+ "publication_git_head_at_freeze": "6fee10a39aa23cecd2fe1a454e09045af91f5619",
+ "stage_declaration": {
+  "primary_study": "Full-S1 vs K1, protocol lightweight_pcste_final_test_v1, pre-registered and sealed, COMPLETED AND FROZEN BEFORE this extension was created.",
+  "primary_study_status": "PUBLICATION_FINAL_SEALED_TEST_COMPLETE",
+  "primary_efficiency_benchmark": "lightweight_pcste_efficiency_v1, COMPLETED AND FROZEN BEFORE this extension.",
+  "this_stage": "SECONDARY post-primary deployment/compression extension.",
+  "q8_evaluated_when_this_plan_was_frozen": false,
+  "q8_result_observed_when_this_plan_was_frozen": false,
+  "k1_checkpoints_already_fixed": true,
+  "test_membership_unchanged": true,
+  "q8_specific_tuning_permitted": false,
+  "retroactive_inclusion_in_primary_claim_permitted": false,
+  "note": "Q8 must never be presented as part of the original sealed Full-S1-vs-K1 comparison. The primary confirmatory claim and its -0.02 margin are unaffected by anything in this extension."
+ },
+ "chain": "Full-S1 -> K1 FP32 -> Q8(K1); Q8 is derived deterministically from each frozen K1 checkpoint, not trained.",
+ "source_models": {
+  "n_cells": 9,
+  "checkpoint_kind": "best.pt (selected); last.pt is forbidden",
+  "identity_source": "configs/lightweight_k1/K1_9_CELL_FREEZE_MANIFEST.md",
+  "cells": [
+   {
+    "fold": 1,
+    "seed": 42,
+    "k1_run_id": "pcstev2_lightweight_v1_k1_gf1_s42",
+    "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s42/best.pt",
+    "k1_sha256": "10770c5359337cae6e8f82665a3533b87548fa7f57fad42c5d4d6ba2f9952c5b",
+    "selected_epoch": 23,
+    "validation_macro_domain_f1": "0.9934071749256772"
+   },
+   {
+    "fold": 1,
+    "seed": 1337,
+    "k1_run_id": "pcstev2_lightweight_v1_k1_gf1_s1337",
+    "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s1337/best.pt",
+    "k1_sha256": "bda95639ad23241c6b047cbec0c825ee53a31bab4bed147484ad615062714725",
+    "selected_epoch": 25,
+    "validation_macro_domain_f1": "0.9905436529191768"
+   },
+   {
+    "fold": 1,
+    "seed": 2026,
+    "k1_run_id": "pcstev2_lightweight_v1_k1_gf1_s2026",
+    "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s2026/best.pt",
+    "k1_sha256": "665fa67f9521a4239c9a727e0633276e5eba56c0ed8dd0513fd77c64c2b21cf5",
+    "selected_epoch": 1,
+    "validation_macro_domain_f1": "0.9886525380030676"
+   },
+   {
+    "fold": 2,
+    "seed": 42,
+    "k1_run_id": "pcstev2_lightweight_v1_k1_gf2_s42",
+    "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf2_s42/best.pt",
+    "k1_sha256": "51cd8364afcd10a5657760c4b3493d0a104929d5347efb7b279ee94738eba1fe",
+    "selected_epoch": 11,
+    "validation_macro_domain_f1": "0.9917302455105466"
+   },
+   {
+    "fold": 2,
+    "seed": 1337,
+    "k1_run_id": "pcstev2_lightweight_v1_k1_gf2_s1337",
+    "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf2_s1337/best.pt",
+    "k1_sha256": "7018d01c48d1b2c11e96f53cee8c4e8d6579f8f95a9f905dfdcbc2e85c23dfca",
+    "selected_epoch": 20,
+    "validation_macro_domain_f1": "0.9841301559829307"
+   },
+   {
+    "fold": 2,
+    "seed": 2026,
+    "k1_run_id": "pcstev2_lightweight_v1_k1_gf2_s2026",
+    "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf2_s2026/best.pt",
+    "k1_sha256": "c5e88907837768cfe25ea3a05fdd3eee6386f586e94f48c908d155fec022af25",
+    "selected_epoch": 2,
+    "validation_macro_domain_f1": "0.9785258384983887"
+   },
+   {
+    "fold": 3,
+    "seed": 42,
+    "k1_run_id": "pcstev2_lightweight_v1_k1_gf3_s42",
+    "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf3_s42/best.pt",
+    "k1_sha256": "10a0b2b24facf2093c8f65cb0fb362f6a5fc7e5477454b4c77a1c8b0f56c016e",
+    "selected_epoch": 33,
+    "validation_macro_domain_f1": "0.9870684656766702"
+   },
+   {
+    "fold": 3,
+    "seed": 1337,
+    "k1_run_id": "pcstev2_lightweight_v1_k1_gf3_s1337",
+    "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf3_s1337/best.pt",
+    "k1_sha256": "e74e71f26eabb69272e851ce2e08b9439a4f3d6990bf7b674174c3299ea90e34",
+    "selected_epoch": 17,
+    "validation_macro_domain_f1": "0.9714522759323951"
+   },
+   {
+    "fold": 3,
+    "seed": 2026,
+    "k1_run_id": "pcstev2_lightweight_v1_k1_gf3_s2026",
+    "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf3_s2026/best.pt",
+    "k1_sha256": "4840188f9ff5e6cdc60d1c820fcfc266c908d8e47a743208583eb6939719bae1",
+    "selected_epoch": 7,
+    "validation_macro_domain_f1": "0.987262678921944"
+   }
+  ]
+ },
+ "quantization": {
+  "implementation": "src/methodology_v2/compression/quantization.py (historical Part-6, UNMODIFIED)",
+  "implementation_sha256": "c91e0eaa970534a5099ce27f8a44f94d9c6b35442dccf56e8b809d98bbb0578d",
+  "recipe": "Q8 registered recipe",
+  "weights": "per-output-channel symmetric int8, zero-point 0, scale = max|w_row| / 127, axis = output channel (dim 0)",
+  "scope": "nn.Linear modules matching the frozen allowlist only",
+  "stays_fp32": [
+   "*.dt_proj (an nn.Linear, explicitly denylisted)",
+   "A_log",
+   "D",
+   "conv1d",
+   "all LayerNorms",
+   "stem.conv (Conv2d: not an nn.Linear, so outside the allowlist by construction)",
+   "recurrent state / exp(delta*A) selective-scan path (not a parameterised module)"
+  ],
+  "calibration": "none",
+  "calibration_rationale": "The registered recipe is weight-only for the accuracy representation, and the CPU deployment representation uses DYNAMIC activation quantization whose scales are computed at runtime. No calibration dataset is required or used. The static W8A8 variant that would need TRAIN calibration is an exploratory VAL-only scaffold and is NOT part of this extension.",
+  "representations": {
+   "sim": "int8 weight-only, dequantised to fp32 for compute; identical numerics on CPU and GPU; THE ACCURACY REPRESENTATION (frozen designation in quantization_spec.yaml)",
+   "cpu_dynamic": "torch.ao dynamic quantization, per-channel int8 weights + dynamic int8 activations, allowlisted modules only; THE CPU DEPLOYMENT REPRESENTATION"
+  },
+  "predictive_evaluation_uses": "sim",
+  "numerics_gap_disclosure": "cpu_dynamic additionally quantizes activations, so its numerics differ from sim. TEST accuracy is evaluated for sim only, per the frozen designation. The sim-vs-cpu_dynamic prediction agreement is quantified on VALIDATION only, never on TEST, to bound the deployment gap without a second TEST touch."
+ },
+ "evaluation": {
+  "test_membership": {
+   "protocol": "global_v2_final_s0s1_v1",
+   "unchanged_from_primary": true,
+   "global_fold_manifests": {
+    "GF1": {
+     "path": "protocols/splits/global_v2_final_s0s1_v1/global_v2_fold_1.csv",
+     "sha256": "456a69474a3763647b7e0ad13f5538e8f630d268347671ad617134b08e830d0a"
+    },
+    "GF2": {
+     "path": "protocols/splits/global_v2_final_s0s1_v1/global_v2_fold_2.csv",
+     "sha256": "74029f81a4b5617b13218812aa26568b0f3a268f8f6b450b5ab0293b17f71f93"
+    },
+    "GF3": {
+     "path": "protocols/splits/global_v2_final_s0s1_v1/global_v2_fold_3.csv",
+     "sha256": "fe622f3bc1146998d00fe070ea045f0790145b55a028effea52de00f94000f0e"
+    }
+   },
+   "rule": "split == 'test' rows of the frozen fold manifest, exactly as the primary study used; membership is re-asserted per cell"
+  },
+  "datasets": [
+   "CWRU",
+   "JNU",
+   "HIT",
+   "MAFAULDA"
+  ],
+  "per_dataset_metrics": [
+   "macro_f1",
+   "accuracy",
+   "balanced_accuracy",
+   "macro_precision",
+   "macro_recall",
+   "macro_ovr_auc where defined",
+   "per_class_precision",
+   "per_class_recall",
+   "per_class_f1",
+   "confusion_matrix"
+  ],
+  "macro_4": "(CWRU + JNU + HIT + MaFaulDa) / 4, equal domain weights, no window weighting",
+  "endpoints": [
+   "Macro-4 Macro-F1",
+   "Macro-4 Macro-AUC"
+  ],
+  "metric_module": "src/pcste_v2/metrics_v2.evaluate_split + the primary driver's add_macro_fields aggregation",
+  "k1_reference": "the ALREADY-FROZEN K1 TEST results; K1 inference is NOT rerun",
+  "k1_reference_artifacts": {
+   "matched_cells.csv": "af62d51c0c299b6e4a17de775015c259b6e575af0e3dc1d2c1e59ad9be74d239",
+   "PER_DATASET_SUMMARY.csv": "62fb8bfe5603cf2525c2d1500157e5dc4c889539051e1a5b403affb2ff706520",
+   "aggregate_summary.json": "fffc6c28a42c25d35c85c1515be48b5ab7da0d0767450bfb31d9dbc903a1cf28",
+   "PUBLICATION_FINAL_RESULTS.json": "b6f14ff707a952ae860812a2bfa2f099fc8d3c39ab579c8d2605057b5699a527"
+  },
+  "delta": "Q8 - K1, paired within the same (fold, seed) cell",
+  "device": "cuda (matches the primary driver's --device auto resolution on this host); the sim representation is fp32 compute so CPU and GPU numerics agree"
+ },
+ "statistics": {
+  "formal_ni_defined": true,
+  "provenance": [
+   {
+    "item": "margin",
+    "value": 0.01,
+    "source": "configs/lightweight_k1/quantization_spec.yaml key 'ni_margin'",
+    "sha256": "2b629ae2ba61a62ea35abd04148759a2009e4943aec9af53f13a57809feb2181"
+   },
+   {
+    "item": "margin",
+    "value": 0.01,
+    "source": "src/methodology_v2/compression/protocol.py constant NI_MARGIN_PTQ",
+    "sha256": "5d2ac582b16ec8f49d3d5f155f38c457aedddb53fc14754cb98fae98016664a1"
+   },
+   {
+    "item": "hypothesis",
+    "value": "H3: Q8(K1) vs K1: NI 0.01",
+    "source": "configs/lightweight_k1/statistics_spec.yaml key confirmatory_family_holm_m3.H3",
+    "sha256": "943b8f96489273e0c7441742f2920f487dbce432507618f5631c746639de3419"
+   },
+   {
+    "item": "paired_unit",
+    "value": "fold x seed (9 cells)",
+    "source": "configs/lightweight_k1/statistics_spec.yaml key paired_unit",
+    "sha256": "943b8f96489273e0c7441742f2920f487dbce432507618f5631c746639de3419"
+   },
+   {
+    "item": "procedure",
+    "value": "one-sided exact sign-flip on MARGIN-SHIFTED deltas (delta + m); H0: mean(delta) <= -m; exact, all 512 patterns",
+    "source": "configs/lightweight_k1/statistics_spec.yaml keys non_inferiority + sign_flip",
+    "sha256": "943b8f96489273e0c7441742f2920f487dbce432507618f5631c746639de3419"
+   }
+  ],
+  "call": "src.methodology_v2.compression.stats.contrast('H3 Q8(K1) vs K1', q8, k1, 'ni', 0.01) \u2014 the exact historical call signature used by stats.confirmatory_family",
+  "implementation_sha256": "efb3d20c777e4ab0eda15491147950c77c816610d1f71ca0072f8dfa36e3cfcb",
+  "superiority_tested": false,
+  "superiority_rationale": "kind='ni' in the historical family runs non-inferiority only; no superiority test is defined for Q8 and none is added.",
+  "holm_family": "NOT APPLIED. The historical Holm m=3 family (H1 K1 vs S1, H2 K1 vs C_small, H3 Q8 vs K1) is not executable: C_small was never evaluated, and the primary study already established its single confirmatory contrast without that family. H3 is therefore run STANDALONE as a secondary contrast and carries no family-wise error control from the historical family. This is disclosed rather than reconstructed.",
+  "margin_separation": "The primary Full-S1-vs-K1 architecture margin of -0.02 does NOT apply to Q8. The PTQ margin is -0.01.",
+  "alpha": 0.05
+ },
+ "size": {
+  "representative_cell": {
+   "fold": 1,
+   "seed": 42,
+   "rule": "the same deterministic cell used by lightweight_pcste_efficiency_v1 (lowest fold, then lowest seed)"
+  },
+  "measurements": [
+   "K1 FP32 standardized state_dict bytes",
+   "Q8 compact int8 state bytes (int8 tensors + fp32 per-channel scales + untouched fp32 tensors)",
+   "torch.ao cpu_dynamic packed state bytes (reported SEPARATELY: includes runtime packing overhead)",
+   "theoretical int8 weight bytes"
+  ],
+  "method": "actual torch.save bytes, never an estimate (frozen rule in quantization_spec.yaml)",
+  "separation_rule": "packed-runtime bytes and theoretical int8 weight bytes are never mixed into one number"
+ },
+ "latency": {
+  "host": "same physical host as lightweight_pcste_efficiency_v1",
+  "inputs": "the same deterministic VALIDATION windows as efficiency_v1 (never TEST)",
+  "cpu": {
+   "backend": "torch.ao dynamic, engine selected by the historical cpu_dynamic_quantize (fbgemm if available)",
+   "batch": 1,
+   "threads": 1,
+   "warmup": 100,
+   "timed": 1000,
+   "scopes": [
+    "model_only",
+    "end_to_end"
+   ]
+  },
+  "aggregation": "equal-domain mean of per-dataset medians, matching efficiency_v1",
+  "gpu": "Determined empirically before timing. The registered Q8 provides NO true INT8 CUDA kernel: 'sim' dequantises to fp32 and torch.ao dynamic quantization is a CPU backend. Any GPU number is therefore SIMULATED Q8 and must not be presented as INT8 GPU acceleration.",
+  "historical_latency_claim": "quantization_spec.yaml states: latency_claim = 'NONE for Q8 (weight-only int8 does not speed the reference scan)'. Measured CPU latency is reported as a deployment observation, not as a retro-fit to that historical statement.",
+  "forbidden": [
+   "TensorRT",
+   "torch.compile",
+   "custom kernels",
+   "any new quantization library"
+  ]
+ },
+ "source_hashes": {
+  "src/methodology_v2/compression/quantization.py": "c91e0eaa970534a5099ce27f8a44f94d9c6b35442dccf56e8b809d98bbb0578d",
+  "src/methodology_v2/compression/stats.py": "efb3d20c777e4ab0eda15491147950c77c816610d1f71ca0072f8dfa36e3cfcb",
+  "src/methodology_v2/compression/protocol.py": "5d2ac582b16ec8f49d3d5f155f38c457aedddb53fc14754cb98fae98016664a1",
+  "src/methodology_v2/compression/student.py": "ad990df666ed0ec63833b950d9c4607ad363e881610e5502177f18faebfe363e",
+  "src/methodology_v2/compression/guards.py": "d0ecfb2e78c4ad4b386228e540167992a5111cbd3a7e11366665c65e3031631d",
+  "src/methodology_v2/encoder/pcste.py": "a79891f8f689d79757a79b5143d74b01a642aaf79e03200e0f4588b44d1d0ac4",
+  "src/methodology_v2/encoder/ssm.py": "d40672b80fa7d19e7f2e17bee3453848148621db93d7b1dd2be0b4615ae47401",
+  "src/methodology_v2/encoder/patchify.py": "440455e592229d95aad194fc1170d6ca3c29d3a0e43f02f6bfc437147d7f939c",
+  "src/methodology_v2/encoder/mixer.py": "d353fbda2b53d23c4a51e8f403899fdcf90c1ba86eee2a7818d30adca4b13b08",
+  "src/methodology_v2/encoder/collate.py": "526b1d977892f274ce9318989b7b1028a46add805cf7b3352db944731ee85ce8",
+  "src/methodology_v2/encoder/coords.py": "dc22a1fc0e2722bba3c7cf2983c75fe76e6f3a74c7723a5fc7696a4323d8800f",
+  "src/methodology_v2/experiment/heads.py": "fd90680026ae2fd93bd95f83c24441013f76e3ed3b903fe57745a9a6e104c8a1",
+  "src/pcste_v2/metrics_v2.py": "dbfcdc290e2a13b7997d9f03e8385fd5ef19c9dc3591940a5d2242f491e14ccd",
+  "src/pcste_v2/representation.py": "7d68f6d8ad5e3a94769d914ab7c553eec5d918aa8e8d07da5a3a24115d0ce249",
+  "configs/lightweight_k1/quantization_spec.yaml": "2b629ae2ba61a62ea35abd04148759a2009e4943aec9af53f13a57809feb2181",
+  "configs/lightweight_k1/statistics_spec.yaml": "943b8f96489273e0c7441742f2920f487dbce432507618f5631c746639de3419",
+  "configs/lightweight_k1/K1_9_CELL_FREEZE_MANIFEST.md": "a9e5fb49a1f38a7d6e2649ff8d155cf619cd55572bf7238b06a1fcb120d64a8b",
+  "configs/lightweight_k1/final_test_v1/PUBLICATION_FROZEN_MODEL_TABLE.csv": "34c1a6b3ed2c9f545cb6b368c46e22a2bdf3b03a1a5134f3f73180b484ab5cd9",
+  "benchmarks/q8_v1/Q8_FROZEN_MODEL_TABLE.csv": "b1f2035759d8c314e0db951088e0cb05e1f5a7294f1a4cea38160465c6ecb668"
+ },
+ "prohibitions_observed": [
+  "no retraining of Full-S1 or K1",
+  "no modification of K1 checkpoints",
+  "no rerun of Full-S1 inference",
+  "no rerun of K1 inference to reproduce existing metrics",
+  "no change to TEST membership",
+  "no quantization tuning on TEST",
+  "no change to existing Full-S1-vs-K1 statistical claims",
+  "no modification of historical frozen TEST artifacts",
+  "no reuse of dissertation-era Q8 results",
+  "no modification of the dissertation repository",
+  "no edit of the historical quantization implementation"
+ ]
+}

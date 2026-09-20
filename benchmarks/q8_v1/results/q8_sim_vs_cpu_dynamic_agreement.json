@@ -1,0 +1,30 @@
+{
+ "scope": "VALIDATION only - TEST is never used for this check",
+ "fold": 1,
+ "seed": 42,
+ "selection": "first up to 200 validation windows per dataset in frozen manifest order",
+ "purpose": "bound the numerics gap between the evaluated accuracy representation (sim) and the CPU deployment representation (cpu_dynamic), without a second TEST touch",
+ "per_dataset": {
+  "CWRU": {
+   "n_validation_windows": 200,
+   "top1_agreement": 1.0,
+   "max_abs_prob_diff": 0.004483222961425781
+  },
+  "JNU": {
+   "n_validation_windows": 24,
+   "top1_agreement": 1.0,
+   "max_abs_prob_diff": 4.454115696717054e-06
+  },
+  "HIT": {
+   "n_validation_windows": 200,
+   "top1_agreement": 0.995,
+   "max_abs_prob_diff": 0.10196053981781006
+  },
+  "MAFAULDA": {
+   "n_validation_windows": 200,
+   "top1_agreement": 0.95,
+   "max_abs_prob_diff": 0.49396637082099915
+  }
+ },
+ "overall_top1_agreement": 0.9862500000000001
+}

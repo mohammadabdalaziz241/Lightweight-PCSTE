@@ -16,9 +16,15 @@ Knowledge distillation uses temperature 4, alpha 0.5, relational weight 1.0, `me
 
 All nine cells are frozen in `configs/lightweight_k1/K1_9_CELL_FREEZE_MANIFEST.md`.
 
-## Q8 (optional extension)
+## Q8(K1) — secondary deployment extension
 
-An 8-bit quantized variant of K1. **Not executed for publication.** Its inclusion is an open scientific decision with a separately frozen comparison margin of `-0.01`.
+An 8-bit post-training quantized variant of K1, derived deterministically from each frozen K1 checkpoint by the historical Part-6 recipe. **It is a secondary extension, frozen and evaluated after the primary sealed Full-S1-vs-K1 study, and is not part of that comparison.**
+
+Per-output-channel symmetric int8 weights (zero-point 0, `scale = max|w_row| / 127`) on 23 allowlisted `nn.Linear` modules; **no calibration**. Retained in FP32: `dt_proj`, `A_log`, `D`, `conv1d`, all LayerNorms, `stem.conv`, and the selective-scan recurrence. The parameter count is unchanged at 1,379,813 — only storage precision changes.
+
+Two registered representations: `sim` (weight-only, fp32 compute) is the accuracy representation used for TEST evaluation; `cpu_dynamic` (`torch.ao`, int8 weights + dynamic int8 activations) is the CPU deployment representation. They are not numerically identical.
+
+Result: accuracy retained essentially exactly (paired ΔMacro-4 Macro-F1 −0.0000009; non-inferiority at the historical −0.01 margin satisfied), storage 71.12% smaller than K1 FP32, CPU batch-1 latency 1.084×, and **no true INT8 GPU path**. See `docs/RESULTS.md` and `benchmarks/q8_v1/Q8_FINAL_REPORT.md`.
 
 ## Efficiency
 

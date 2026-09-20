@@ -105,8 +105,20 @@ The plan was frozen and hashed before any latency result was collected: `benchma
 
 The historical Part-6 harness (`src/methodology_v2/compression/benchmark.py`) was audited and left **unedited**. Its counting conventions are preserved, but it could not be called verbatim: its `DATASET_SHAPES`/`n_bands` are bound to the dissertation-era representation (CWRU `(513,184)` with 33 bands, versus the publication native-12 kHz `(129,184)` with 9 bands), its latency schedule is 50x weaker, it has no end-to-end scope, and its `size_axis()` invokes Q8. The audit is recorded in section 9 of `EFFICIENCY_BENCHMARK_PLAN.md`.
 
-## Not yet executed
+## Secondary extension protocol — Q8(K1)
 
-- The optional Q8 arm.
+`lightweight_pcste_q8_v1` is a **secondary, post-primary** deployment/compression extension. It was created only after the primary sealed study *and* the efficiency benchmark were complete and frozen; its plan and barrier were hashed before any Q8 inference. It must never be presented as part of the primary sealed comparison.
 
-It may not reuse dissertation-era numbers as a publication measurement, and may not alter any frozen artifact listed in `FROZEN_ARTIFACT_HASHES.sha256` or `benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256`.
+- **Source models:** all nine frozen K1 `best.pt` checkpoints (`last.pt` forbidden), re-hashed against the 9-cell freeze manifest before conversion. No checkpoint may be chosen on Q8 behaviour.
+- **Conversion:** the unmodified historical `src/methodology_v2/compression/quantization.py` (SHA256 `c91e0eaa970534a5099ce27f8a44f94d9c6b35442dccf56e8b809d98bbb0578d`). Per-output-channel symmetric int8, zero-point 0, `scale = max|w_row| / 127`, on 23 allowlisted `nn.Linear` modules. **Calibration = none.** Retained FP32: `dt_proj`, `A_log`, `D`, `conv1d`, all LayerNorms, `stem.conv`, and the selective-scan path.
+- **Representations:** `sim` (weight-only, fp32 compute) is the frozen *accuracy* representation and is what TEST accuracy is evaluated on; `cpu_dynamic` (`torch.ao`, int8 weights + dynamic int8 activations, fbgemm) is the *CPU deployment* representation. They are not numerically identical - the gap is quantified on VALIDATION only.
+- **Evaluation:** TEST membership unchanged from the primary study and re-asserted per cell. K1 is **not** rerun; the frozen K1 results are the reference. `delta = Q8 - K1` paired within each (fold, seed) cell.
+- **Statistics:** the historical definition is reused exactly - margin `0.01` (`quantization_spec.yaml` `ni_margin`, `protocol.py` `NI_MARGIN_PTQ`), paired unit fold x seed, `stats.contrast(..., "ni", 0.01)` = exact one-sided sign-flip on margin-shifted deltas. Non-inferiority only; no superiority test is defined for Q8. **Holm is not applied**: the historical m=3 family is not executable, so H3 runs standalone with no family-wise error control. The primary -0.02 margin does not apply.
+- **Deployment measurement:** same host and the same deterministic VALIDATION inputs as `efficiency_v1`; never TEST. No TensorRT, `torch.compile`, custom kernels, or new quantization library.
+- **GPU:** established empirically that the preserved implementation has **no true INT8 CUDA path**; no GPU latency or memory figure is reported for Q8.
+
+Plan `benchmarks/q8_v1/Q8_EVALUATION_PLAN.json` (SHA256 `5904c3657e5ba68987caca2b204b725e153607883d98116fd25b9ed6b8220be4`), barrier SHA256 `d3b6898a109e571ff721f18f0d21ddd1649afdf235d315cc20b63f7ba141373d`.
+
+## Nothing further is pending
+
+All three stages - primary sealed study, efficiency benchmark, and the Q8 extension - are complete and frozen. Any future work may not reuse dissertation-era numbers as a publication measurement, and may not alter any frozen artifact listed in `FROZEN_ARTIFACT_HASHES.sha256`, `benchmarks/efficiency_v1/EFFICIENCY_ARTIFACT_HASHES.sha256`, or `benchmarks/q8_v1/Q8_ARTIFACT_HASHES.sha256`.

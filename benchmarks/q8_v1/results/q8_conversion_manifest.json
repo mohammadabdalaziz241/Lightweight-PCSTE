@@ -1,0 +1,1798 @@
+{
+ "protocol_identity": "lightweight_pcste_q8_v1",
+ "calibration": "none",
+ "quantization_implementation_sha256": "c91e0eaa970534a5099ce27f8a44f94d9c6b35442dccf56e8b809d98bbb0578d",
+ "cells": [
+  {
+   "fold": 1,
+   "seed": 42,
+   "k1_run_id": "pcstev2_lightweight_v1_k1_gf1_s42",
+   "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s42/best.pt",
+   "k1_sha256": "10770c5359337cae6e8f82665a3533b87548fa7f57fad42c5d4d6ba2f9952c5b",
+   "calibration": "none",
+   "int8_modules": [
+    "coords.proj",
+    "heads::heads.CWRU",
+    "heads::heads.HIT",
+    "heads::heads.JNU",
+    "heads::heads.MAFAULDA",
+    "mixer.context",
+    "mixer.gate",
+    "mixer.score.0",
+    "mixer.score.2",
+    "mixer.value",
+    "stem.proj",
+    "temporal.layers.0.fwd.in_proj",
+    "temporal.layers.0.fwd.out_proj",
+    "temporal.layers.0.fwd.x_proj",
+    "temporal.layers.1.fwd.in_proj",
+    "temporal.layers.1.fwd.out_proj",
+    "temporal.layers.1.fwd.x_proj",
+    "temporal.layers.2.fwd.in_proj",
+    "temporal.layers.2.fwd.out_proj",
+    "temporal.layers.2.fwd.x_proj",
+    "temporal.layers.3.fwd.in_proj",
+    "temporal.layers.3.fwd.out_proj",
+    "temporal.layers.3.fwd.x_proj"
+   ],
+   "fp32_modules": [
+    "mixer.norm",
+    "mixer.score.1",
+    "stem.act",
+    "stem.conv",
+    "temporal.layers.0.fwd.conv1d",
+    "temporal.layers.0.fwd.dt_proj",
+    "temporal.layers.0.norm",
+    "temporal.layers.1.fwd.conv1d",
+    "temporal.layers.1.fwd.dt_proj",
+    "temporal.layers.1.norm",
+    "temporal.layers.2.fwd.conv1d",
+    "temporal.layers.2.fwd.dt_proj",
+    "temporal.layers.2.norm",
+    "temporal.layers.3.fwd.conv1d",
+    "temporal.layers.3.fwd.dt_proj",
+    "temporal.layers.3.norm",
+    "temporal.norm"
+   ],
+   "n_int8_params": 1322816,
+   "n_fp32_params": 56160,
+   "fraction_int8": 0.959274128048639,
+   "max_weight_abs_err": 0.0010076388716697693,
+   "n_scale_tensors": 23,
+   "per_channel_scales": {
+    "encoder.stem.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000587651738896966,
+     "max": 0.001770550268702209,
+     "mean": 0.0010349712101742625
+    },
+    "encoder.coords.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0008910692995414138,
+     "max": 0.0015978575684130192,
+     "mean": 0.001159691484645009
+    },
+    "encoder.temporal.layers.0.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006402097060345113,
+     "max": 0.0016339800786226988,
+     "mean": 0.0009803887223824859
+    },
+    "encoder.temporal.layers.0.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0007004583021625876,
+     "max": 0.0014506676234304905,
+     "mean": 0.0009925431804731488
+    },
+    "encoder.temporal.layers.0.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007170274038799107,
+     "max": 0.0013077262556180358,
+     "mean": 0.0008916432852856815
+    },
+    "encoder.temporal.layers.1.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006586918025277555,
+     "max": 0.001742898253723979,
+     "mean": 0.0010129036381840706
+    },
+    "encoder.temporal.layers.1.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0007268948829732835,
+     "max": 0.0018445017049089074,
+     "mean": 0.0010729936184361577
+    },
+    "encoder.temporal.layers.1.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000673441041726619,
+     "max": 0.001383165828883648,
+     "mean": 0.0008966703317128122
+    },
+    "encoder.temporal.layers.2.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0007161637768149376,
+     "max": 0.0018749312730506063,
+     "mean": 0.001042563351802528
+    },
+    "encoder.temporal.layers.2.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0009394417284056544,
+     "max": 0.001533591072075069,
+     "mean": 0.0011707504745572805
+    },
+    "encoder.temporal.layers.2.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000708952487912029,
+     "max": 0.0013641695259138942,
+     "mean": 0.0009193080477416515
+    },
+    "encoder.temporal.layers.3.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006892795208841562,
+     "max": 0.002022387692704797,
+     "mean": 0.00104083854239434
+    },
+    "encoder.temporal.layers.3.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0009325026185251772,
+     "max": 0.0015883344458416104,
+     "mean": 0.0012835371308028698
+    },
+    "encoder.temporal.layers.3.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006872638477943838,
+     "max": 0.001431823242455721,
+     "mean": 0.0008859329973347485
+    },
+    "encoder.mixer.score.0.weight.scale": {
+     "n_channels": 64,
+     "min": 0.0005421994719654322,
+     "max": 0.0019771705847233534,
+     "mean": 0.0011657476425170898
+    },
+    "encoder.mixer.score.2.weight.scale": {
+     "n_channels": 1,
+     "min": 0.001049892045557499,
+     "max": 0.001049892045557499,
+     "mean": 0.001049892045557499
+    },
+    "encoder.mixer.value.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007485055830329657,
+     "max": 0.0014339984627440572,
+     "mean": 0.0010520457290112972
+    },
+    "encoder.mixer.gate.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0008327197283506393,
+     "max": 0.0019238142995163798,
+     "mean": 0.001285894657485187
+    },
+    "encoder.mixer.context.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006823406438343227,
+     "max": 0.0015600442420691252,
+     "mean": 0.0009548013913445175
+    },
+    "heads.heads.CWRU.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0012045324547216296,
+     "max": 0.001493785995990038,
+     "mean": 0.0013901094207540154
+    },
+    "heads.heads.JNU.weight.scale": {
+     "n_channels": 4,
+     "min": 0.0013805191265419126,
+     "max": 0.0019321967847645283,
+     "mean": 0.0016101751243695617
+    },
+    "heads.heads.HIT.weight.scale": {
+     "n_channels": 3,
+     "min": 0.00142650306224823,
+     "max": 0.0016072549624368548,
+     "mean": 0.0014959381660446525
+    },
+    "heads.heads.MAFAULDA.weight.scale": {
+     "n_channels": 10,
+     "min": 0.000752499618101865,
+     "max": 0.0013752046506851912,
+     "mean": 0.0010016767773777246
+    }
+   },
+   "q8_encoder_state_digest": "056368f48fe97fc2b38176e9e9b723307ea9d041b15f0238e8b204efa9dfde0d",
+   "q8_heads_state_digest": "7b3959bb9412b07a4ffe267540fa4c0464128824b3acd92f628ba77b0fbe096c"
+  },
+  {
+   "fold": 1,
+   "seed": 1337,
+   "k1_run_id": "pcstev2_lightweight_v1_k1_gf1_s1337",
+   "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s1337/best.pt",
+   "k1_sha256": "bda95639ad23241c6b047cbec0c825ee53a31bab4bed147484ad615062714725",
+   "calibration": "none",
+   "int8_modules": [
+    "coords.proj",
+    "heads::heads.CWRU",
+    "heads::heads.HIT",
+    "heads::heads.JNU",
+    "heads::heads.MAFAULDA",
+    "mixer.context",
+    "mixer.gate",
+    "mixer.score.0",
+    "mixer.score.2",
+    "mixer.value",
+    "stem.proj",
+    "temporal.layers.0.fwd.in_proj",
+    "temporal.layers.0.fwd.out_proj",
+    "temporal.layers.0.fwd.x_proj",
+    "temporal.layers.1.fwd.in_proj",
+    "temporal.layers.1.fwd.out_proj",
+    "temporal.layers.1.fwd.x_proj",
+    "temporal.layers.2.fwd.in_proj",
+    "temporal.layers.2.fwd.out_proj",
+    "temporal.layers.2.fwd.x_proj",
+    "temporal.layers.3.fwd.in_proj",
+    "temporal.layers.3.fwd.out_proj",
+    "temporal.layers.3.fwd.x_proj"
+   ],
+   "fp32_modules": [
+    "mixer.norm",
+    "mixer.score.1",
+    "stem.act",
+    "stem.conv",
+    "temporal.layers.0.fwd.conv1d",
+    "temporal.layers.0.fwd.dt_proj",
+    "temporal.layers.0.norm",
+    "temporal.layers.1.fwd.conv1d",
+    "temporal.layers.1.fwd.dt_proj",
+    "temporal.layers.1.norm",
+    "temporal.layers.2.fwd.conv1d",
+    "temporal.layers.2.fwd.dt_proj",
+    "temporal.layers.2.norm",
+    "temporal.layers.3.fwd.conv1d",
+    "temporal.layers.3.fwd.dt_proj",
+    "temporal.layers.3.norm",
+    "temporal.norm"
+   ],
+   "n_int8_params": 1322816,
+   "n_fp32_params": 56160,
+   "fraction_int8": 0.959274128048639,
+   "max_weight_abs_err": 0.001129903830587864,
+   "n_scale_tensors": 23,
+   "per_channel_scales": {
+    "encoder.stem.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006490079686045647,
+     "max": 0.0022628747392445803,
+     "mean": 0.0011793270241469145
+    },
+    "encoder.coords.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0008575922693125904,
+     "max": 0.0014734773430973291,
+     "mean": 0.0011599235003814101
+    },
+    "encoder.temporal.layers.0.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006572420243173838,
+     "max": 0.001861733733676374,
+     "mean": 0.000976759591139853
+    },
+    "encoder.temporal.layers.0.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006555695435963571,
+     "max": 0.0014242898905649781,
+     "mean": 0.000997714581899345
+    },
+    "encoder.temporal.layers.0.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007090394501574337,
+     "max": 0.001283117919228971,
+     "mean": 0.0008924370631575584
+    },
+    "encoder.temporal.layers.1.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006451749941334128,
+     "max": 0.0017143962904810905,
+     "mean": 0.001009139814414084
+    },
+    "encoder.temporal.layers.1.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006864224560558796,
+     "max": 0.0014813441084697843,
+     "mean": 0.00104225252289325
+    },
+    "encoder.temporal.layers.1.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000669642467983067,
+     "max": 0.0013043094659224153,
+     "mean": 0.000905115157365799
+    },
+    "encoder.temporal.layers.2.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006878112908452749,
+     "max": 0.0016220184043049812,
+     "mean": 0.0010273975785821676
+    },
+    "encoder.temporal.layers.2.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0007876401650719345,
+     "max": 0.0016628812300041318,
+     "mean": 0.0011514942161738873
+    },
+    "encoder.temporal.layers.2.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006754540954716504,
+     "max": 0.001203628838993609,
+     "mean": 0.0009022941230796278
+    },
+    "encoder.temporal.layers.3.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006475982954725623,
+     "max": 0.0016498675104230642,
+     "mean": 0.00102734484244138
+    },
+    "encoder.temporal.layers.3.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0010247525060549378,
+     "max": 0.0017054120544344187,
+     "mean": 0.0012988772941753268
+    },
+    "encoder.temporal.layers.3.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006352112395688891,
+     "max": 0.001504687825217843,
+     "mean": 0.0008878264925442636
+    },
+    "encoder.mixer.score.0.weight.scale": {
+     "n_channels": 64,
+     "min": 0.000676449853926897,
+     "max": 0.0017252241959795356,
+     "mean": 0.0011349120177328587
+    },
+    "encoder.mixer.score.2.weight.scale": {
+     "n_channels": 1,
+     "min": 0.0009530874667689204,
+     "max": 0.0009530874667689204,
+     "mean": 0.0009530874667689204
+    },
+    "encoder.mixer.value.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007581221289001405,
+     "max": 0.0020816705655306578,
+     "mean": 0.0010653906501829624
+    },
+    "encoder.mixer.gate.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007218866376206279,
+     "max": 0.0022060906048864126,
+     "mean": 0.0012610502308234572
+    },
+    "encoder.mixer.context.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0005602582823485136,
+     "max": 0.0013427982339635491,
+     "mean": 0.0009425109601579607
+    },
+    "heads.heads.CWRU.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0011676652356982231,
+     "max": 0.0017752241110429168,
+     "mean": 0.0014806967228651047
+    },
+    "heads.heads.JNU.weight.scale": {
+     "n_channels": 4,
+     "min": 0.0016103757079690695,
+     "max": 0.002135418588295579,
+     "mean": 0.0018419318366795778
+    },
+    "heads.heads.HIT.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0013453298015519977,
+     "max": 0.0015751424944028258,
+     "mean": 0.0014627695782110095
+    },
+    "heads.heads.MAFAULDA.weight.scale": {
+     "n_channels": 10,
+     "min": 0.0007092786836437881,
+     "max": 0.0014693464618176222,
+     "mean": 0.0010841300245374441
+    }
+   },
+   "q8_encoder_state_digest": "4799915799724aee554fb4390b698774f3913591a0c52f20fd2cf13cbbb0047b",
+   "q8_heads_state_digest": "8f050987d7cce7aafd422fcea1897ab398d85e3dc40641e018dece18b530af05"
+  },
+  {
+   "fold": 1,
+   "seed": 2026,
+   "k1_run_id": "pcstev2_lightweight_v1_k1_gf1_s2026",
+   "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf1_s2026/best.pt",
+   "k1_sha256": "665fa67f9521a4239c9a727e0633276e5eba56c0ed8dd0513fd77c64c2b21cf5",
+   "calibration": "none",
+   "int8_modules": [
+    "coords.proj",
+    "heads::heads.CWRU",
+    "heads::heads.HIT",
+    "heads::heads.JNU",
+    "heads::heads.MAFAULDA",
+    "mixer.context",
+    "mixer.gate",
+    "mixer.score.0",
+    "mixer.score.2",
+    "mixer.value",
+    "stem.proj",
+    "temporal.layers.0.fwd.in_proj",
+    "temporal.layers.0.fwd.out_proj",
+    "temporal.layers.0.fwd.x_proj",
+    "temporal.layers.1.fwd.in_proj",
+    "temporal.layers.1.fwd.out_proj",
+    "temporal.layers.1.fwd.x_proj",
+    "temporal.layers.2.fwd.in_proj",
+    "temporal.layers.2.fwd.out_proj",
+    "temporal.layers.2.fwd.x_proj",
+    "temporal.layers.3.fwd.in_proj",
+    "temporal.layers.3.fwd.out_proj",
+    "temporal.layers.3.fwd.x_proj"
+   ],
+   "fp32_modules": [
+    "mixer.norm",
+    "mixer.score.1",
+    "stem.act",
+    "stem.conv",
+    "temporal.layers.0.fwd.conv1d",
+    "temporal.layers.0.fwd.dt_proj",
+    "temporal.layers.0.norm",
+    "temporal.layers.1.fwd.conv1d",
+    "temporal.layers.1.fwd.dt_proj",
+    "temporal.layers.1.norm",
+    "temporal.layers.2.fwd.conv1d",
+    "temporal.layers.2.fwd.dt_proj",
+    "temporal.layers.2.norm",
+    "temporal.layers.3.fwd.conv1d",
+    "temporal.layers.3.fwd.dt_proj",
+    "temporal.layers.3.norm",
+    "temporal.norm"
+   ],
+   "n_int8_params": 1322816,
+   "n_fp32_params": 56160,
+   "fraction_int8": 0.959274128048639,
+   "max_weight_abs_err": 0.0011995136737823486,
+   "n_scale_tensors": 23,
+   "per_channel_scales": {
+    "encoder.stem.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007450308185070753,
+     "max": 0.0024013156071305275,
+     "mean": 0.0013543255627155304
+    },
+    "encoder.coords.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0008594854734838009,
+     "max": 0.0014960012631490827,
+     "mean": 0.0011698334710672498
+    },
+    "encoder.temporal.layers.0.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006459452561102808,
+     "max": 0.0018389304168522358,
+     "mean": 0.0009337612427771091
+    },
+    "encoder.temporal.layers.0.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006827001343481243,
+     "max": 0.0018472388619557023,
+     "mean": 0.0009676035842858255
+    },
+    "encoder.temporal.layers.0.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006460839067585766,
+     "max": 0.0011471883626654744,
+     "mean": 0.0008106980822049081
+    },
+    "encoder.temporal.layers.1.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.000690298737026751,
+     "max": 0.0016122901579365134,
+     "mean": 0.0009690524893812835
+    },
+    "encoder.temporal.layers.1.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006709586596116424,
+     "max": 0.001428306451998651,
+     "mean": 0.0009783817222341895
+    },
+    "encoder.temporal.layers.1.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006318165687844157,
+     "max": 0.0012083243345841765,
+     "mean": 0.000833667058032006
+    },
+    "encoder.temporal.layers.2.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006783534772694111,
+     "max": 0.0018896778346970677,
+     "mean": 0.0009839528938755393
+    },
+    "encoder.temporal.layers.2.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.000736946938559413,
+     "max": 0.0017813122831285,
+     "mean": 0.0011011043097823858
+    },
+    "encoder.temporal.layers.2.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006063995533622801,
+     "max": 0.0011198923457413912,
+     "mean": 0.0008433940820395947
+    },
+    "encoder.temporal.layers.3.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006265001720748842,
+     "max": 0.0017569520277902484,
+     "mean": 0.0010054572485387325
+    },
+    "encoder.temporal.layers.3.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0008451647590845823,
+     "max": 0.0020307619124650955,
+     "mean": 0.0012703246902674437
+    },
+    "encoder.temporal.layers.3.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0005733210709877312,
+     "max": 0.0012169858673587441,
+     "mean": 0.0008206013008020818
+    },
+    "encoder.mixer.score.0.weight.scale": {
+     "n_channels": 64,
+     "min": 0.0007238229736685753,
+     "max": 0.0013864930951967835,
+     "mean": 0.0009588833781890571
+    },
+    "encoder.mixer.score.2.weight.scale": {
+     "n_channels": 1,
+     "min": 0.0009369903127662838,
+     "max": 0.0009369903127662838,
+     "mean": 0.0009369903127662838
+    },
+    "encoder.mixer.value.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007747662020847201,
+     "max": 0.0015317532233893871,
+     "mean": 0.0010430630063638091
+    },
+    "encoder.mixer.gate.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007410931284539402,
+     "max": 0.0023380594793707132,
+     "mean": 0.0011420379159972072
+    },
+    "encoder.mixer.context.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006902724271640182,
+     "max": 0.0017647362546995282,
+     "mean": 0.0009547530789859593
+    },
+    "heads.heads.CWRU.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0014809579588472843,
+     "max": 0.0017749771941453218,
+     "mean": 0.001595180481672287
+    },
+    "heads.heads.JNU.weight.scale": {
+     "n_channels": 4,
+     "min": 0.001429721130989492,
+     "max": 0.0021336323115974665,
+     "mean": 0.0016667312011122704
+    },
+    "heads.heads.HIT.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0012166615342721343,
+     "max": 0.0016152113676071167,
+     "mean": 0.001395852887071669
+    },
+    "heads.heads.MAFAULDA.weight.scale": {
+     "n_channels": 10,
+     "min": 0.0007187656592577696,
+     "max": 0.0016380505403503776,
+     "mean": 0.001078232889994979
+    }
+   },
+   "q8_encoder_state_digest": "caaaa642027e34841f29b840314a2d78db60b5c1a46571f161f609e694c30f48",
+   "q8_heads_state_digest": "7b2cbb8de0fc1b096386df992c8c8803d277c592792461be486882fd9d52625b"
+  },
+  {
+   "fold": 2,
+   "seed": 42,
+   "k1_run_id": "pcstev2_lightweight_v1_k1_gf2_s42",
+   "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf2_s42/best.pt",
+   "k1_sha256": "51cd8364afcd10a5657760c4b3493d0a104929d5347efb7b279ee94738eba1fe",
+   "calibration": "none",
+   "int8_modules": [
+    "coords.proj",
+    "heads::heads.CWRU",
+    "heads::heads.HIT",
+    "heads::heads.JNU",
+    "heads::heads.MAFAULDA",
+    "mixer.context",
+    "mixer.gate",
+    "mixer.score.0",
+    "mixer.score.2",
+    "mixer.value",
+    "stem.proj",
+    "temporal.layers.0.fwd.in_proj",
+    "temporal.layers.0.fwd.out_proj",
+    "temporal.layers.0.fwd.x_proj",
+    "temporal.layers.1.fwd.in_proj",
+    "temporal.layers.1.fwd.out_proj",
+    "temporal.layers.1.fwd.x_proj",
+    "temporal.layers.2.fwd.in_proj",
+    "temporal.layers.2.fwd.out_proj",
+    "temporal.layers.2.fwd.x_proj",
+    "temporal.layers.3.fwd.in_proj",
+    "temporal.layers.3.fwd.out_proj",
+    "temporal.layers.3.fwd.x_proj"
+   ],
+   "fp32_modules": [
+    "mixer.norm",
+    "mixer.score.1",
+    "stem.act",
+    "stem.conv",
+    "temporal.layers.0.fwd.conv1d",
+    "temporal.layers.0.fwd.dt_proj",
+    "temporal.layers.0.norm",
+    "temporal.layers.1.fwd.conv1d",
+    "temporal.layers.1.fwd.dt_proj",
+    "temporal.layers.1.norm",
+    "temporal.layers.2.fwd.conv1d",
+    "temporal.layers.2.fwd.dt_proj",
+    "temporal.layers.2.norm",
+    "temporal.layers.3.fwd.conv1d",
+    "temporal.layers.3.fwd.dt_proj",
+    "temporal.layers.3.norm",
+    "temporal.norm"
+   ],
+   "n_int8_params": 1322816,
+   "n_fp32_params": 56160,
+   "fraction_int8": 0.959274128048639,
+   "max_weight_abs_err": 0.0012377426028251648,
+   "n_scale_tensors": 23,
+   "per_channel_scales": {
+    "encoder.stem.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0005306585808284581,
+     "max": 0.0016469372203573585,
+     "mean": 0.0010037686442956328
+    },
+    "encoder.coords.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000876092235557735,
+     "max": 0.0016781057929620147,
+     "mean": 0.0011942305136471987
+    },
+    "encoder.temporal.layers.0.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006660083308815956,
+     "max": 0.0016157783102244139,
+     "mean": 0.0009510053205303848
+    },
+    "encoder.temporal.layers.0.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.000697877025231719,
+     "max": 0.001518524601124227,
+     "mean": 0.0009546493529342115
+    },
+    "encoder.temporal.layers.0.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006144448998384178,
+     "max": 0.0011311944108456373,
+     "mean": 0.0008501459378749132
+    },
+    "encoder.temporal.layers.1.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006207472761161625,
+     "max": 0.0015949689550325274,
+     "mean": 0.0009916654089465737
+    },
+    "encoder.temporal.layers.1.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006254915497265756,
+     "max": 0.001436929451301694,
+     "mean": 0.0009593198192305863
+    },
+    "encoder.temporal.layers.1.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006580252083949745,
+     "max": 0.0011147087207064033,
+     "mean": 0.0008582123555243015
+    },
+    "encoder.temporal.layers.2.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006832880317233503,
+     "max": 0.0018659374909475446,
+     "mean": 0.0010211538756266236
+    },
+    "encoder.temporal.layers.2.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0008836933993734419,
+     "max": 0.0018407423049211502,
+     "mean": 0.0011984807206317782
+    },
+    "encoder.temporal.layers.2.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006545383366756141,
+     "max": 0.001315223053097725,
+     "mean": 0.0008843271061778069
+    },
+    "encoder.temporal.layers.3.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006629691924899817,
+     "max": 0.0016511949943378568,
+     "mean": 0.0010360326850786805
+    },
+    "encoder.temporal.layers.3.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.000874605611898005,
+     "max": 0.0020937975496053696,
+     "mean": 0.001355007174424827
+    },
+    "encoder.temporal.layers.3.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0005907124141231179,
+     "max": 0.0013822026085108519,
+     "mean": 0.0008639820734970272
+    },
+    "encoder.mixer.score.0.weight.scale": {
+     "n_channels": 64,
+     "min": 0.0007544697145931423,
+     "max": 0.002111894078552723,
+     "mean": 0.001206967979669571
+    },
+    "encoder.mixer.score.2.weight.scale": {
+     "n_channels": 1,
+     "min": 0.0010419744066894054,
+     "max": 0.0010419744066894054,
+     "mean": 0.0010419744066894054
+    },
+    "encoder.mixer.value.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007589864544570446,
+     "max": 0.0014917408116161823,
+     "mean": 0.0010402168845757842
+    },
+    "encoder.mixer.gate.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000730683736037463,
+     "max": 0.002480907831341028,
+     "mean": 0.0011911350302398205
+    },
+    "encoder.mixer.context.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007054535089991987,
+     "max": 0.0014911844627931714,
+     "mean": 0.0009462257730774581
+    },
+    "heads.heads.CWRU.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0010964209213852882,
+     "max": 0.001396078267134726,
+     "mean": 0.0012959124287590384
+    },
+    "heads.heads.JNU.weight.scale": {
+     "n_channels": 4,
+     "min": 0.0014616339467465878,
+     "max": 0.0016520493663847446,
+     "mean": 0.0015755059430375695
+    },
+    "heads.heads.HIT.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0013232246274128556,
+     "max": 0.0014686579816043377,
+     "mean": 0.0013852366246283054
+    },
+    "heads.heads.MAFAULDA.weight.scale": {
+     "n_channels": 10,
+     "min": 0.0007788001094013453,
+     "max": 0.0017885155975818634,
+     "mean": 0.0010533377062529325
+    }
+   },
+   "q8_encoder_state_digest": "991f6ac009c01836af12d234f3347e5f11b38811897ee305499cbc28859e39ac",
+   "q8_heads_state_digest": "69bd5bccdc420a25fe9e4d487203de3694ce7ed9f8b6560b11c4861adcd23f50"
+  },
+  {
+   "fold": 2,
+   "seed": 1337,
+   "k1_run_id": "pcstev2_lightweight_v1_k1_gf2_s1337",
+   "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf2_s1337/best.pt",
+   "k1_sha256": "7018d01c48d1b2c11e96f53cee8c4e8d6579f8f95a9f905dfdcbc2e85c23dfca",
+   "calibration": "none",
+   "int8_modules": [
+    "coords.proj",
+    "heads::heads.CWRU",
+    "heads::heads.HIT",
+    "heads::heads.JNU",
+    "heads::heads.MAFAULDA",
+    "mixer.context",
+    "mixer.gate",
+    "mixer.score.0",
+    "mixer.score.2",
+    "mixer.value",
+    "stem.proj",
+    "temporal.layers.0.fwd.in_proj",
+    "temporal.layers.0.fwd.out_proj",
+    "temporal.layers.0.fwd.x_proj",
+    "temporal.layers.1.fwd.in_proj",
+    "temporal.layers.1.fwd.out_proj",
+    "temporal.layers.1.fwd.x_proj",
+    "temporal.layers.2.fwd.in_proj",
+    "temporal.layers.2.fwd.out_proj",
+    "temporal.layers.2.fwd.x_proj",
+    "temporal.layers.3.fwd.in_proj",
+    "temporal.layers.3.fwd.out_proj",
+    "temporal.layers.3.fwd.x_proj"
+   ],
+   "fp32_modules": [
+    "mixer.norm",
+    "mixer.score.1",
+    "stem.act",
+    "stem.conv",
+    "temporal.layers.0.fwd.conv1d",
+    "temporal.layers.0.fwd.dt_proj",
+    "temporal.layers.0.norm",
+    "temporal.layers.1.fwd.conv1d",
+    "temporal.layers.1.fwd.dt_proj",
+    "temporal.layers.1.norm",
+    "temporal.layers.2.fwd.conv1d",
+    "temporal.layers.2.fwd.dt_proj",
+    "temporal.layers.2.norm",
+    "temporal.layers.3.fwd.conv1d",
+    "temporal.layers.3.fwd.dt_proj",
+    "temporal.layers.3.norm",
+    "temporal.norm"
+   ],
+   "n_int8_params": 1322816,
+   "n_fp32_params": 56160,
+   "fraction_int8": 0.959274128048639,
+   "max_weight_abs_err": 0.0011070072650909424,
+   "n_scale_tensors": 23,
+   "per_channel_scales": {
+    "encoder.stem.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000526494113728404,
+     "max": 0.002213184954598546,
+     "mean": 0.0011371589498594403
+    },
+    "encoder.coords.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0008431514725089073,
+     "max": 0.0015498289139941335,
+     "mean": 0.0011746784439310431
+    },
+    "encoder.temporal.layers.0.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006548640667460859,
+     "max": 0.0015816048253327608,
+     "mean": 0.0009725000127218664
+    },
+    "encoder.temporal.layers.0.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006957225268706679,
+     "max": 0.0015818902757018805,
+     "mean": 0.0009723437833599746
+    },
+    "encoder.temporal.layers.0.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006220712675713003,
+     "max": 0.0011840264778584242,
+     "mean": 0.0008610964869149029
+    },
+    "encoder.temporal.layers.1.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.000637957826256752,
+     "max": 0.0017540064873173833,
+     "mean": 0.0010023749200627208
+    },
+    "encoder.temporal.layers.1.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0007456988678313792,
+     "max": 0.0018268664134666324,
+     "mean": 0.0011468055890873075
+    },
+    "encoder.temporal.layers.1.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007037966279312968,
+     "max": 0.0013293024385347962,
+     "mean": 0.0008966891909949481
+    },
+    "encoder.temporal.layers.2.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006312799523584545,
+     "max": 0.0016181129030883312,
+     "mean": 0.0010257447138428688
+    },
+    "encoder.temporal.layers.2.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0007099893991835415,
+     "max": 0.0015984353376552463,
+     "mean": 0.0010249830083921552
+    },
+    "encoder.temporal.layers.2.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007092641317285597,
+     "max": 0.0011610889341682196,
+     "mean": 0.0008918757666833699
+    },
+    "encoder.temporal.layers.3.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006697882199659944,
+     "max": 0.0017803233349695802,
+     "mean": 0.0010285197058692575
+    },
+    "encoder.temporal.layers.3.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0010391261894255877,
+     "max": 0.001662413589656353,
+     "mean": 0.0013394099660217762
+    },
+    "encoder.temporal.layers.3.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006579154287464917,
+     "max": 0.001298389513976872,
+     "mean": 0.0008753544534556568
+    },
+    "encoder.mixer.score.0.weight.scale": {
+     "n_channels": 64,
+     "min": 0.0005303071229718626,
+     "max": 0.0022197088692337275,
+     "mean": 0.0012343134731054306
+    },
+    "encoder.mixer.score.2.weight.scale": {
+     "n_channels": 1,
+     "min": 0.000882176507730037,
+     "max": 0.000882176507730037,
+     "mean": 0.000882176507730037
+    },
+    "encoder.mixer.value.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007292467053048313,
+     "max": 0.0016657960368320346,
+     "mean": 0.0010346700437366962
+    },
+    "encoder.mixer.gate.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007285368628799915,
+     "max": 0.0019973532762378454,
+     "mean": 0.0012192934518679976
+    },
+    "encoder.mixer.context.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006479507428593934,
+     "max": 0.0018242413643747568,
+     "mean": 0.0009482099558226764
+    },
+    "heads.heads.CWRU.weight.scale": {
+     "n_channels": 3,
+     "min": 0.001090700039640069,
+     "max": 0.001771411974914372,
+     "mean": 0.001469824812375009
+    },
+    "heads.heads.JNU.weight.scale": {
+     "n_channels": 4,
+     "min": 0.0016566490521654487,
+     "max": 0.0019475515000522137,
+     "mean": 0.0017679125303402543
+    },
+    "heads.heads.HIT.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0012401791755110025,
+     "max": 0.0018932471284642816,
+     "mean": 0.0015070238150656223
+    },
+    "heads.heads.MAFAULDA.weight.scale": {
+     "n_channels": 10,
+     "min": 0.0008518112590536475,
+     "max": 0.0015796269290149212,
+     "mean": 0.0011104184668511152
+    }
+   },
+   "q8_encoder_state_digest": "89a0984040948a1fcaed139f57b965bd639e8cf8b7a54b72b2c8f5b558596196",
+   "q8_heads_state_digest": "4255883d382dd7d7a657cbe8b8e9aaf0132018a8fe9876f62ff2d22273157575"
+  },
+  {
+   "fold": 2,
+   "seed": 2026,
+   "k1_run_id": "pcstev2_lightweight_v1_k1_gf2_s2026",
+   "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf2_s2026/best.pt",
+   "k1_sha256": "c5e88907837768cfe25ea3a05fdd3eee6386f586e94f48c908d155fec022af25",
+   "calibration": "none",
+   "int8_modules": [
+    "coords.proj",
+    "heads::heads.CWRU",
+    "heads::heads.HIT",
+    "heads::heads.JNU",
+    "heads::heads.MAFAULDA",
+    "mixer.context",
+    "mixer.gate",
+    "mixer.score.0",
+    "mixer.score.2",
+    "mixer.value",
+    "stem.proj",
+    "temporal.layers.0.fwd.in_proj",
+    "temporal.layers.0.fwd.out_proj",
+    "temporal.layers.0.fwd.x_proj",
+    "temporal.layers.1.fwd.in_proj",
+    "temporal.layers.1.fwd.out_proj",
+    "temporal.layers.1.fwd.x_proj",
+    "temporal.layers.2.fwd.in_proj",
+    "temporal.layers.2.fwd.out_proj",
+    "temporal.layers.2.fwd.x_proj",
+    "temporal.layers.3.fwd.in_proj",
+    "temporal.layers.3.fwd.out_proj",
+    "temporal.layers.3.fwd.x_proj"
+   ],
+   "fp32_modules": [
+    "mixer.norm",
+    "mixer.score.1",
+    "stem.act",
+    "stem.conv",
+    "temporal.layers.0.fwd.conv1d",
+    "temporal.layers.0.fwd.dt_proj",
+    "temporal.layers.0.norm",
+    "temporal.layers.1.fwd.conv1d",
+    "temporal.layers.1.fwd.dt_proj",
+    "temporal.layers.1.norm",
+    "temporal.layers.2.fwd.conv1d",
+    "temporal.layers.2.fwd.dt_proj",
+    "temporal.layers.2.norm",
+    "temporal.layers.3.fwd.conv1d",
+    "temporal.layers.3.fwd.dt_proj",
+    "temporal.layers.3.norm",
+    "temporal.norm"
+   ],
+   "n_int8_params": 1322816,
+   "n_fp32_params": 56160,
+   "fraction_int8": 0.959274128048639,
+   "max_weight_abs_err": 0.0013687871396541595,
+   "n_scale_tensors": 23,
+   "per_channel_scales": {
+    "encoder.stem.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006141177727840841,
+     "max": 0.0024508812930434942,
+     "mean": 0.0013682125136256218
+    },
+    "encoder.coords.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0009325368446297944,
+     "max": 0.0014208252541720867,
+     "mean": 0.001178774400614202
+    },
+    "encoder.temporal.layers.0.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006089789676479995,
+     "max": 0.0015984650235623121,
+     "mean": 0.000926729931961745
+    },
+    "encoder.temporal.layers.0.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.00063727842643857,
+     "max": 0.0015291980234906077,
+     "mean": 0.0009761489345692098
+    },
+    "encoder.temporal.layers.0.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006083481130190194,
+     "max": 0.001419362029992044,
+     "mean": 0.0008159647695720196
+    },
+    "encoder.temporal.layers.1.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006470317603088915,
+     "max": 0.002005013870075345,
+     "mean": 0.0009699524380266666
+    },
+    "encoder.temporal.layers.1.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006245383992791176,
+     "max": 0.0014992455253377557,
+     "mean": 0.0009687228011898696
+    },
+    "encoder.temporal.layers.1.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000660907884594053,
+     "max": 0.001242876867763698,
+     "mean": 0.0008484325371682644
+    },
+    "encoder.temporal.layers.2.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006641968502663076,
+     "max": 0.0016607176512479782,
+     "mean": 0.000992428744211793
+    },
+    "encoder.temporal.layers.2.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0007015028968453407,
+     "max": 0.002145602833479643,
+     "mean": 0.001075420412234962
+    },
+    "encoder.temporal.layers.2.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006060602026991546,
+     "max": 0.0012105131754651666,
+     "mean": 0.0008380304207094014
+    },
+    "encoder.temporal.layers.3.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006077096331864595,
+     "max": 0.0018204980297014117,
+     "mean": 0.0010122036328539252
+    },
+    "encoder.temporal.layers.3.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0009384846198372543,
+     "max": 0.0017774574225768447,
+     "mean": 0.00133764639031142
+    },
+    "encoder.temporal.layers.3.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0005585607141256332,
+     "max": 0.0011495680082589388,
+     "mean": 0.0008213843684643507
+    },
+    "encoder.mixer.score.0.weight.scale": {
+     "n_channels": 64,
+     "min": 0.0006382883875630796,
+     "max": 0.0015060153091326356,
+     "mean": 0.0008941685082390904
+    },
+    "encoder.mixer.score.2.weight.scale": {
+     "n_channels": 1,
+     "min": 0.0012138341553509235,
+     "max": 0.0012138341553509235,
+     "mean": 0.0012138341553509235
+    },
+    "encoder.mixer.value.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007952760206535459,
+     "max": 0.0015549230156466365,
+     "mean": 0.0010169363813474774
+    },
+    "encoder.mixer.gate.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006361748673953116,
+     "max": 0.002740223193541169,
+     "mean": 0.001131886849179864
+    },
+    "encoder.mixer.context.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006561579648405313,
+     "max": 0.0015647108666598797,
+     "mean": 0.0009160631452687085
+    },
+    "heads.heads.CWRU.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0014509169850498438,
+     "max": 0.00160141009837389,
+     "mean": 0.0015347342705354095
+    },
+    "heads.heads.JNU.weight.scale": {
+     "n_channels": 4,
+     "min": 0.0015852180076763034,
+     "max": 0.001813220209442079,
+     "mean": 0.0017297710292041302
+    },
+    "heads.heads.HIT.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0013502113288268447,
+     "max": 0.0016258168034255505,
+     "mean": 0.001504471874795854
+    },
+    "heads.heads.MAFAULDA.weight.scale": {
+     "n_channels": 10,
+     "min": 0.000714528956450522,
+     "max": 0.0012524056946858764,
+     "mean": 0.0009631964494474232
+    }
+   },
+   "q8_encoder_state_digest": "5e8ffa6f96c8a24c5d95009b35c3c4861dd038146c5dc28e3df05ab010de0c25",
+   "q8_heads_state_digest": "c09a9db27a828c0dbd449ef4f5ae22da26bd6e9a2a923896b5104485550ae6f5"
+  },
+  {
+   "fold": 3,
+   "seed": 42,
+   "k1_run_id": "pcstev2_lightweight_v1_k1_gf3_s42",
+   "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf3_s42/best.pt",
+   "k1_sha256": "10a0b2b24facf2093c8f65cb0fb362f6a5fc7e5477454b4c77a1c8b0f56c016e",
+   "calibration": "none",
+   "int8_modules": [
+    "coords.proj",
+    "heads::heads.CWRU",
+    "heads::heads.HIT",
+    "heads::heads.JNU",
+    "heads::heads.MAFAULDA",
+    "mixer.context",
+    "mixer.gate",
+    "mixer.score.0",
+    "mixer.score.2",
+    "mixer.value",
+    "stem.proj",
+    "temporal.layers.0.fwd.in_proj",
+    "temporal.layers.0.fwd.out_proj",
+    "temporal.layers.0.fwd.x_proj",
+    "temporal.layers.1.fwd.in_proj",
+    "temporal.layers.1.fwd.out_proj",
+    "temporal.layers.1.fwd.x_proj",
+    "temporal.layers.2.fwd.in_proj",
+    "temporal.layers.2.fwd.out_proj",
+    "temporal.layers.2.fwd.x_proj",
+    "temporal.layers.3.fwd.in_proj",
+    "temporal.layers.3.fwd.out_proj",
+    "temporal.layers.3.fwd.x_proj"
+   ],
+   "fp32_modules": [
+    "mixer.norm",
+    "mixer.score.1",
+    "stem.act",
+    "stem.conv",
+    "temporal.layers.0.fwd.conv1d",
+    "temporal.layers.0.fwd.dt_proj",
+    "temporal.layers.0.norm",
+    "temporal.layers.1.fwd.conv1d",
+    "temporal.layers.1.fwd.dt_proj",
+    "temporal.layers.1.norm",
+    "temporal.layers.2.fwd.conv1d",
+    "temporal.layers.2.fwd.dt_proj",
+    "temporal.layers.2.norm",
+    "temporal.layers.3.fwd.conv1d",
+    "temporal.layers.3.fwd.dt_proj",
+    "temporal.layers.3.norm",
+    "temporal.norm"
+   ],
+   "n_int8_params": 1322816,
+   "n_fp32_params": 56160,
+   "fraction_int8": 0.959274128048639,
+   "max_weight_abs_err": 0.0010722354054450989,
+   "n_scale_tensors": 23,
+   "per_channel_scales": {
+    "encoder.stem.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0005462648114189506,
+     "max": 0.0017552933422848582,
+     "mean": 0.0010239749681204557
+    },
+    "encoder.coords.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0009040532750077546,
+     "max": 0.0014390158466994762,
+     "mean": 0.0011391091393306851
+    },
+    "encoder.temporal.layers.0.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.000660757883451879,
+     "max": 0.0018494086107239127,
+     "mean": 0.0009752926416695118
+    },
+    "encoder.temporal.layers.0.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006803743890486658,
+     "max": 0.001539040938951075,
+     "mean": 0.0010001887567341328
+    },
+    "encoder.temporal.layers.0.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006706371204927564,
+     "max": 0.001196727971546352,
+     "mean": 0.0008684866479597986
+    },
+    "encoder.temporal.layers.1.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006686499691568315,
+     "max": 0.0016757274279370904,
+     "mean": 0.0010000906186178327
+    },
+    "encoder.temporal.layers.1.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006890191580168903,
+     "max": 0.0018056933768093586,
+     "mean": 0.0010143538238480687
+    },
+    "encoder.temporal.layers.1.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007020970224402845,
+     "max": 0.0012782302219420671,
+     "mean": 0.0008987531182356179
+    },
+    "encoder.temporal.layers.2.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006756418151780963,
+     "max": 0.0016046937089413404,
+     "mean": 0.0010449765250086784
+    },
+    "encoder.temporal.layers.2.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0010389715898782015,
+     "max": 0.0015114014968276024,
+     "mean": 0.0012467462802305818
+    },
+    "encoder.temporal.layers.2.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.00068473577266559,
+     "max": 0.0012811945052817464,
+     "mean": 0.0009292128379456699
+    },
+    "encoder.temporal.layers.3.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006480051088146865,
+     "max": 0.0017461529932916164,
+     "mean": 0.0010222833370789886
+    },
+    "encoder.temporal.layers.3.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0009035426774062216,
+     "max": 0.0015277188504114747,
+     "mean": 0.0012598814209923148
+    },
+    "encoder.temporal.layers.3.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006438310374505818,
+     "max": 0.0013949298299849033,
+     "mean": 0.0009090524981729686
+    },
+    "encoder.mixer.score.0.weight.scale": {
+     "n_channels": 64,
+     "min": 0.0005926552112214267,
+     "max": 0.001783807878382504,
+     "mean": 0.0010943356901407242
+    },
+    "encoder.mixer.score.2.weight.scale": {
+     "n_channels": 1,
+     "min": 0.0009416387765668333,
+     "max": 0.0009416387765668333,
+     "mean": 0.0009416387765668333
+    },
+    "encoder.mixer.value.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007269475609064102,
+     "max": 0.001807257067412138,
+     "mean": 0.001075511914677918
+    },
+    "encoder.mixer.gate.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0008747573592700064,
+     "max": 0.0020877900533378124,
+     "mean": 0.0013323792954906821
+    },
+    "encoder.mixer.context.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006699081277474761,
+     "max": 0.0015892975497990847,
+     "mean": 0.0009395997039973736
+    },
+    "heads.heads.CWRU.weight.scale": {
+     "n_channels": 3,
+     "min": 0.001398983527906239,
+     "max": 0.002005878137424588,
+     "mean": 0.001647392869926989
+    },
+    "heads.heads.JNU.weight.scale": {
+     "n_channels": 4,
+     "min": 0.0018428164767101407,
+     "max": 0.002147725550457835,
+     "mean": 0.001997563987970352
+    },
+    "heads.heads.HIT.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0014362465590238571,
+     "max": 0.0018416090169921517,
+     "mean": 0.0015980651369318366
+    },
+    "heads.heads.MAFAULDA.weight.scale": {
+     "n_channels": 10,
+     "min": 0.0009406898752786219,
+     "max": 0.001643992611207068,
+     "mean": 0.0011733404826372862
+    }
+   },
+   "q8_encoder_state_digest": "dde19dc586381d4bbd6f3ebe1765d488728abb0ca6af7557f53224a2860da76b",
+   "q8_heads_state_digest": "ab8020e85b7ab654d3c05fb61859b9f9c0da3c387a7554ca922d4d0846d44948"
+  },
+  {
+   "fold": 3,
+   "seed": 1337,
+   "k1_run_id": "pcstev2_lightweight_v1_k1_gf3_s1337",
+   "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf3_s1337/best.pt",
+   "k1_sha256": "e74e71f26eabb69272e851ce2e08b9439a4f3d6990bf7b674174c3299ea90e34",
+   "calibration": "none",
+   "int8_modules": [
+    "coords.proj",
+    "heads::heads.CWRU",
+    "heads::heads.HIT",
+    "heads::heads.JNU",
+    "heads::heads.MAFAULDA",
+    "mixer.context",
+    "mixer.gate",
+    "mixer.score.0",
+    "mixer.score.2",
+    "mixer.value",
+    "stem.proj",
+    "temporal.layers.0.fwd.in_proj",
+    "temporal.layers.0.fwd.out_proj",
+    "temporal.layers.0.fwd.x_proj",
+    "temporal.layers.1.fwd.in_proj",
+    "temporal.layers.1.fwd.out_proj",
+    "temporal.layers.1.fwd.x_proj",
+    "temporal.layers.2.fwd.in_proj",
+    "temporal.layers.2.fwd.out_proj",
+    "temporal.layers.2.fwd.x_proj",
+    "temporal.layers.3.fwd.in_proj",
+    "temporal.layers.3.fwd.out_proj",
+    "temporal.layers.3.fwd.x_proj"
+   ],
+   "fp32_modules": [
+    "mixer.norm",
+    "mixer.score.1",
+    "stem.act",
+    "stem.conv",
+    "temporal.layers.0.fwd.conv1d",
+    "temporal.layers.0.fwd.dt_proj",
+    "temporal.layers.0.norm",
+    "temporal.layers.1.fwd.conv1d",
+    "temporal.layers.1.fwd.dt_proj",
+    "temporal.layers.1.norm",
+    "temporal.layers.2.fwd.conv1d",
+    "temporal.layers.2.fwd.dt_proj",
+    "temporal.layers.2.norm",
+    "temporal.layers.3.fwd.conv1d",
+    "temporal.layers.3.fwd.dt_proj",
+    "temporal.layers.3.norm",
+    "temporal.norm"
+   ],
+   "n_int8_params": 1322816,
+   "n_fp32_params": 56160,
+   "fraction_int8": 0.959274128048639,
+   "max_weight_abs_err": 0.001317828893661499,
+   "n_scale_tensors": 23,
+   "per_channel_scales": {
+    "encoder.stem.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000663550803437829,
+     "max": 0.002636061515659094,
+     "mean": 0.0011453564511612058
+    },
+    "encoder.coords.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0008816144545562565,
+     "max": 0.0015885611064732075,
+     "mean": 0.001148086041212082
+    },
+    "encoder.temporal.layers.0.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006591451237909496,
+     "max": 0.0017220175359398127,
+     "mean": 0.0009675354813225567
+    },
+    "encoder.temporal.layers.0.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0006724278791807592,
+     "max": 0.0018519723089411855,
+     "mean": 0.001009242725558579
+    },
+    "encoder.temporal.layers.0.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006720654782839119,
+     "max": 0.0013217394007369876,
+     "mean": 0.0008828353020362556
+    },
+    "encoder.temporal.layers.1.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006334880599752069,
+     "max": 0.0016236359952017665,
+     "mean": 0.0009961765026673675
+    },
+    "encoder.temporal.layers.1.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0007517953054048121,
+     "max": 0.0015585034852847457,
+     "mean": 0.0010723909363150597
+    },
+    "encoder.temporal.layers.1.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006773272762075067,
+     "max": 0.001286711310967803,
+     "mean": 0.0008814941975288093
+    },
+    "encoder.temporal.layers.2.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006664075190201402,
+     "max": 0.0016376598505303264,
+     "mean": 0.0010177119402214885
+    },
+    "encoder.temporal.layers.2.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0007820004248060286,
+     "max": 0.0016712729120627046,
+     "mean": 0.0011251266114413738
+    },
+    "encoder.temporal.layers.2.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006760776159353554,
+     "max": 0.0012464463943615556,
+     "mean": 0.0008776343311183155
+    },
+    "encoder.temporal.layers.3.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006675288896076381,
+     "max": 0.0017666139174252748,
+     "mean": 0.0010287943296134472
+    },
+    "encoder.temporal.layers.3.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0009407090838067234,
+     "max": 0.0015184440417215228,
+     "mean": 0.0011490938486531377
+    },
+    "encoder.temporal.layers.3.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0005770911811850965,
+     "max": 0.0014722406631335616,
+     "mean": 0.0008727554231882095
+    },
+    "encoder.mixer.score.0.weight.scale": {
+     "n_channels": 64,
+     "min": 0.0005363117670640349,
+     "max": 0.0018346875440329313,
+     "mean": 0.0011042915284633636
+    },
+    "encoder.mixer.score.2.weight.scale": {
+     "n_channels": 1,
+     "min": 0.0010604799026623368,
+     "max": 0.0010604799026623368,
+     "mean": 0.0010604799026623368
+    },
+    "encoder.mixer.value.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007713376544415951,
+     "max": 0.0014639607397839427,
+     "mean": 0.0010610936442390084
+    },
+    "encoder.mixer.gate.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0008333976729772985,
+     "max": 0.002160110743716359,
+     "mean": 0.0012780098477378488
+    },
+    "encoder.mixer.context.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006283395923674107,
+     "max": 0.0015725375851616263,
+     "mean": 0.0009293023613281548
+    },
+    "heads.heads.CWRU.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0014145119348540902,
+     "max": 0.0017187625635415316,
+     "mean": 0.0016058228211477399
+    },
+    "heads.heads.JNU.weight.scale": {
+     "n_channels": 4,
+     "min": 0.0014680413296446204,
+     "max": 0.0019617758225649595,
+     "mean": 0.0016288687475025654
+    },
+    "heads.heads.HIT.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0014310218393802643,
+     "max": 0.001592448796145618,
+     "mean": 0.0015369098400697112
+    },
+    "heads.heads.MAFAULDA.weight.scale": {
+     "n_channels": 10,
+     "min": 0.000824190559796989,
+     "max": 0.0014104257570579648,
+     "mean": 0.0011064123827964067
+    }
+   },
+   "q8_encoder_state_digest": "a49902abf3083bc5013332bc30e63e3b90dc3bca947713bca41567427aa5cbcb",
+   "q8_heads_state_digest": "13a5266838946d3692afe92d3ccd2e285f3ad34731163f2cd6c0d8d6b06950a7"
+  },
+  {
+   "fold": 3,
+   "seed": 2026,
+   "k1_run_id": "pcstev2_lightweight_v1_k1_gf3_s2026",
+   "k1_checkpoint": "results/pcste_v2/lightweight_v1/pcstev2_lightweight_v1_k1_gf3_s2026/best.pt",
+   "k1_sha256": "4840188f9ff5e6cdc60d1c820fcfc266c908d8e47a743208583eb6939719bae1",
+   "calibration": "none",
+   "int8_modules": [
+    "coords.proj",
+    "heads::heads.CWRU",
+    "heads::heads.HIT",
+    "heads::heads.JNU",
+    "heads::heads.MAFAULDA",
+    "mixer.context",
+    "mixer.gate",
+    "mixer.score.0",
+    "mixer.score.2",
+    "mixer.value",
+    "stem.proj",
+    "temporal.layers.0.fwd.in_proj",
+    "temporal.layers.0.fwd.out_proj",
+    "temporal.layers.0.fwd.x_proj",
+    "temporal.layers.1.fwd.in_proj",
+    "temporal.layers.1.fwd.out_proj",
+    "temporal.layers.1.fwd.x_proj",
+    "temporal.layers.2.fwd.in_proj",
+    "temporal.layers.2.fwd.out_proj",
+    "temporal.layers.2.fwd.x_proj",
+    "temporal.layers.3.fwd.in_proj",
+    "temporal.layers.3.fwd.out_proj",
+    "temporal.layers.3.fwd.x_proj"
+   ],
+   "fp32_modules": [
+    "mixer.norm",
+    "mixer.score.1",
+    "stem.act",
+    "stem.conv",
+    "temporal.layers.0.fwd.conv1d",
+    "temporal.layers.0.fwd.dt_proj",
+    "temporal.layers.0.norm",
+    "temporal.layers.1.fwd.conv1d",
+    "temporal.layers.1.fwd.dt_proj",
+    "temporal.layers.1.norm",
+    "temporal.layers.2.fwd.conv1d",
+    "temporal.layers.2.fwd.dt_proj",
+    "temporal.layers.2.norm",
+    "temporal.layers.3.fwd.conv1d",
+    "temporal.layers.3.fwd.dt_proj",
+    "temporal.layers.3.norm",
+    "temporal.norm"
+   ],
+   "n_int8_params": 1322816,
+   "n_fp32_params": 56160,
+   "fraction_int8": 0.959274128048639,
+   "max_weight_abs_err": 0.001120121916756034,
+   "n_scale_tensors": 23,
+   "per_channel_scales": {
+    "encoder.stem.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006829796475358307,
+     "max": 0.0022414664272218943,
+     "mean": 0.0012600234476849437
+    },
+    "encoder.coords.proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0008265897049568594,
+     "max": 0.0014657411957159638,
+     "mean": 0.001169610652141273
+    },
+    "encoder.temporal.layers.0.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0005977828986942768,
+     "max": 0.0017697870498523116,
+     "mean": 0.0009420376736670732
+    },
+    "encoder.temporal.layers.0.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0005966258468106389,
+     "max": 0.0016362175811082125,
+     "mean": 0.0009527837974019349
+    },
+    "encoder.temporal.layers.0.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0006319020758382976,
+     "max": 0.0011695006396621466,
+     "mean": 0.0008363677188754082
+    },
+    "encoder.temporal.layers.1.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006554650608450174,
+     "max": 0.0015947044594213367,
+     "mean": 0.00097972946241498
+    },
+    "encoder.temporal.layers.1.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0005942510324530303,
+     "max": 0.0015344643034040928,
+     "mean": 0.0009395607048645616
+    },
+    "encoder.temporal.layers.1.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000627283239737153,
+     "max": 0.0012397094396874309,
+     "mean": 0.0008389728027395904
+    },
+    "encoder.temporal.layers.2.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.00068450509570539,
+     "max": 0.0015915565891191363,
+     "mean": 0.0009977786103263497
+    },
+    "encoder.temporal.layers.2.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0007363326149061322,
+     "max": 0.0018621821654960513,
+     "mean": 0.001101818634197116
+    },
+    "encoder.temporal.layers.2.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0005957641405984759,
+     "max": 0.0012270756997168064,
+     "mean": 0.0008526376914232969
+    },
+    "encoder.temporal.layers.3.fwd.in_proj.weight.scale": {
+     "n_channels": 768,
+     "min": 0.0006409329944290221,
+     "max": 0.0019720271229743958,
+     "mean": 0.0010124746477231383
+    },
+    "encoder.temporal.layers.3.fwd.x_proj.weight.scale": {
+     "n_channels": 44,
+     "min": 0.0009494491969235241,
+     "max": 0.001630905899219215,
+     "mean": 0.0012651900760829449
+    },
+    "encoder.temporal.layers.3.fwd.out_proj.weight.scale": {
+     "n_channels": 192,
+     "min": 0.000599911727476865,
+     "max": 0.0013487710384652019,
+     "mean": 0.0008469584863632917
+    },
+    "encoder.mixer.score.0.weight.scale": {
+     "n_channels": 64,
+     "min": 0.0007354434346780181,
+     "max": 0.001378244603984058,
+     "mean": 0.0009694969048723578
+    },
+    "encoder.mixer.score.2.weight.scale": {
+     "n_channels": 1,
+     "min": 0.0010030262637883425,
+     "max": 0.0010030262637883425,
+     "mean": 0.0010030262637883425
+    },
+    "encoder.mixer.value.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007536156917922199,
+     "max": 0.001657063257880509,
+     "mean": 0.0010481862118467689
+    },
+    "encoder.mixer.gate.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007329086656682193,
+     "max": 0.0019606538116931915,
+     "mean": 0.0011636166600510478
+    },
+    "encoder.mixer.context.weight.scale": {
+     "n_channels": 192,
+     "min": 0.0007180132088251412,
+     "max": 0.0015616982709616423,
+     "mean": 0.0009492566459812224
+    },
+    "heads.heads.CWRU.weight.scale": {
+     "n_channels": 3,
+     "min": 0.0011645869817584753,
+     "max": 0.001709402073174715,
+     "mean": 0.001368017983622849
+    },
+    "heads.heads.JNU.weight.scale": {
+     "n_channels": 4,
+     "min": 0.0013046282110735774,
+     "max": 0.0016205698484554887,
+     "mean": 0.0015179081819951534
+    },
+    "heads.heads.HIT.weight.scale": {
+     "n_channels": 3,
+     "min": 0.001343978219665587,
+     "max": 0.001440410502254963,
+     "mean": 0.0014079929096624255
+    },
+    "heads.heads.MAFAULDA.weight.scale": {
+     "n_channels": 10,
+     "min": 0.0008577708504162729,
+     "max": 0.0014320297632366419,
+     "mean": 0.0010651324409991503
+    }
+   },
+   "q8_encoder_state_digest": "486ee5ea507a3c97d83593938b992fb70e5b01cce53b42e5cc64023a7c22498d",
+   "q8_heads_state_digest": "80f44eaf88f9809d0d807884e613da6553484b5d083e91fa8d90e2b67aaee02f"
+  }
+ ]
+}

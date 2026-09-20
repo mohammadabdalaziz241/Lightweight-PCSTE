@@ -118,6 +118,38 @@ Measured on the deterministically fixed GF1 / seed-42 pair on one idle RTX 4000 
 
 Pairing this with the sealed predictive result — K1 non-inferior at the frozen -0.02 margin, paired delta +0.020691 +/- 0.013509 — gives the performance-versus-efficiency trade-off the study set out to quantify. **No manuscript claim is drawn here.**
 
+## Secondary extension — Q8(K1)
+
+> Everything above is the **primary study**: pre-registered, sealed TEST, confirmatory non-inferiority of K1 vs Full-S1 at margin -0.02. The Q8 results below are a **secondary extension** (`lightweight_pcste_q8_v1`), frozen after the primary study completed and evaluated afterwards. Q8 was not part of the sealed comparison and does not alter any primary claim.
+
+Q8 is derived deterministically from each frozen K1 checkpoint; no training, no calibration, no TEST tuning. K1 inference was not rerun - the comparison uses the frozen K1 results above.
+
+| Endpoint | K1 FP32 | Q8(K1) | Paired delta (Q8 - K1) | Q8 w/t/l |
+|---|---:|---:|---:|---:|
+| Macro-4 Macro-F1 | 0.955334 +/- 0.018393 | 0.955334 +/- 0.018405 | -0.0000009 +/- 0.0001101 | 1 / 6 / 2 |
+| Macro-4 Macro-AUC | 0.996398 +/- 0.002367 | 0.996395 +/- 0.002376 | -0.0000031 +/- 0.0000156 | 4 / 0 / 5 |
+
+Six of nine cells are bit-identical on Macro-4 Macro-F1. CWRU, JNU and HIT Macro-F1 are unchanged in all nine cells; only MaFaulDa moves, by a mean of -3.6e-6.
+
+**Non-inferiority, using the historically pre-defined test** (margin -0.01 from `quantization_spec.yaml` / `NI_MARGIN_PTQ`; paired unit fold x seed; exact one-sided sign-flip on margin-shifted deltas):
+
+| Quantity | Value |
+|---|---|
+| Observed mean delta | `-0.0000009` |
+| Predefined margin | `-0.01` |
+| Exact one-sided p | `0.001953125` |
+| Verdict | **SATISFIED** |
+
+The p-value is `1/512`, the minimum attainable at n = 9, and reflects sign consistency rather than effect size. No superiority test is defined for Q8 and none was run. Holm adjustment from the historical 3-hypothesis family is **not** applied (that family is not executable), so this is a standalone secondary contrast without family-wise error control. The primary -0.02 margin does not apply to Q8.
+
+Storage: 5.285 MiB -> **1.526 MiB** (-71.12%, 3.46x) versus K1 FP32; -83.29% (5.99x) versus Full-S1. Parameter count is unchanged at 1,379,813 - only storage precision changes.
+
+Deployment: CPU batch-1 latency 31.046 -> 28.647 ms (1.084x); CPU batch-32 throughput 26.56 -> 27.34 win/s (1.029x). **No true INT8 GPU path exists**, so no GPU latency or memory figure is reported for Q8.
+
+**Limitation that bounds the deployment claim:** TEST accuracy is evaluated on the weight-only `sim` representation (the frozen accuracy designation). The deployed CPU artifact (`cpu_dynamic`) additionally quantizes activations and agrees with `sim` on only 98.63% of validation windows (95.0% on MaFaulDa). The non-inferiority result therefore covers `sim`, not the deployed CPU artifact.
+
+Full detail: `benchmarks/q8_v1/Q8_FINAL_REPORT.md`.
+
 ## Not claimed here
 
-Q8 quantization has not been executed, so no int8 size, latency, or accuracy figure exists. No dissertation-era efficiency number is reused anywhere in this repository. Efficiency was measured on one representative cell on one host; it was not measured across all nine cells or on other hardware.
+No dissertation-era efficiency or Q8 number is reused anywhere in this repository. Efficiency and Q8 deployment measurements were taken on one representative cell (GF1/seed 42) on one host; they were not measured across all nine cells or on other hardware. No TEST evaluation of the `cpu_dynamic` representation was performed, so no accuracy claim is made for the deployed CPU int8 artifact.

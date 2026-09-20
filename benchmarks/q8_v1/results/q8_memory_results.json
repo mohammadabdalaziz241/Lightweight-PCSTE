@@ -1,0 +1,10 @@
+{
+ "scope": "CPU model resident parameter+buffer bytes (a directly interpretable quantity)",
+ "k1_fp32_bytes": 5519316,
+ "q8_sim_bytes_note": "the sim representation holds DEQUANTISED fp32 weights in memory, so its runtime footprint equals FP32 by construction; it is a numerical stand-in, not a compact runtime",
+ "q8_sim_runtime_bytes": 5519316,
+ "q8_cpu_dynamic_packed_state_bytes": 1681205,
+ "gpu_note": "No GPU memory figure is reported for Q8: there is no true INT8 CUDA path, so a GPU measurement would reflect fp32/dequantised runtime memory and would NOT reflect the stored INT8 artifact size. Reporting it as a Q8 memory saving would be misleading.",
+ "headline_eligible": false,
+ "headline_rationale": "CPU packed-state bytes mix weights with torch.ao packing metadata; parameter-tensor bytes for the sim representation are fp32 by construction. Neither is a clean 'Q8 runtime memory' number, so memory is reported as descriptive only."
+}

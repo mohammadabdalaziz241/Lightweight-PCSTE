@@ -23,6 +23,7 @@ Frozen artifacts are copied verbatim from the canonical scientific repository an
 | Sealed TEST summaries and statistics | `results/final_test/publication_final_test_v1/` | ~49 KiB |
 | Per-model class-level / confusion-matrix reports (18 files) | `results/final_test/publication_final_test_v1/per_model_reports/` | ~535 KiB |
 | Efficiency benchmark plan, driver, results and report | `benchmarks/efficiency_v1/` | ~1.7 MiB |
+| Q8 extension plan, barrier, driver, results and report | `benchmarks/q8_v1/` | ~2.5 MiB |
 
 Per-model reports contain per-dataset confusion matrices, per-class precision/recall/F1 with support, macro one-vs-rest AUC, CWRU per-specimen recall, MaFaulDa per-configuration recall, per-severity breakdowns, and each checkpoint's path and SHA256. They are text JSON and comfortably Git-safe.
 
@@ -72,6 +73,14 @@ The benchmark **produces no binary artifact**. Standardized FP32 state_dict seri
 
 Result files are marked read-only (mode 444). They must never be edited in place; a correction means re-running the benchmark and re-freezing.
 
-## Optional Q8 artifact
+## Q8 extension artifacts
 
-The Q8 quantization extension has not been executed for publication. If it is later retained as a scientific result, its artifacts follow the same rule: text records in Git, binary state in the archival deposit.
+`benchmarks/q8_v1/` is tracked in full and hashed in `Q8_ARTIFACT_HASHES.sha256` (30 entries). The bulk is the two latency raw CSVs (~1.9 MiB combined): 32,000 timed samples each for the primary `inference_mode` run and the secondary run that matches the `efficiency_v1` measurement mode. Both are retained because absolute milliseconds are not comparable across the two benchmarks; keeping only one would make the discrepancy unverifiable.
+
+Also tracked: the nine per-cell Q8 class-level reports (~26 KiB each, ~236 KiB total) carrying confusion matrices, per-class precision/recall/F1, per-specimen and per-configuration recall - the same structure as the primary TEST reports.
+
+**No Q8 binary model artifact enters Git.** Q8 models are derived deterministically from the frozen K1 checkpoints at run time and are never serialized to the repository. `q8_conversion_manifest.json` records, per cell, the module plan, per-channel scale statistics, and a deterministic content digest of the produced int8 state, so any regenerated Q8 artifact can be checked against it byte-for-byte without storing it.
+
+Standardized serializations used for size measurement are written to in-memory buffers only. Result files are mode 444; a correction means re-running and re-freezing, never editing in place.
+
+**Archival plan.** Q8 needs no new deposit entry: with the K1 `best.pt` checkpoints already marked *Required* in the deposit table above, plus this repository's conversion manifest, every Q8 artifact is exactly reproducible.

@@ -481,3 +481,161 @@ def test_efficiency_report_agrees_with_result_files():
         assert f"{med:.3f}" in readme, f"{key} headline median missing from the README"
     # The reference-scan caveat must be carried, not dropped.
     assert "reference selective scan" in doc and "reference selective scan" in readme
+
+
+# --------------------------------------------------------------------------
+# Q8 secondary extension (q8_v1)
+# --------------------------------------------------------------------------
+
+Q8 = REPO / "benchmarks/q8_v1"
+
+
+def test_q8_artifact_hashes_are_correct():
+    manifest = Q8 / "Q8_ARTIFACT_HASHES.sha256"
+    assert manifest.is_file()
+    n = 0
+    for line in manifest.read_text().splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        digest, rel = line.split(None, 1)
+        path = Q8 / rel.strip()
+        assert path.is_file(), f"missing Q8 artifact: {rel}"
+        assert sha256_of(path) == digest, f"Q8 artifact modified: {rel}"
+        n += 1
+    assert n >= 30, f"expected the full Q8 artifact set, got {n}"
+
+
+def test_q8_is_declared_a_secondary_post_primary_extension():
+    plan = json.loads((Q8 / "Q8_EVALUATION_PLAN.json").read_text())
+    sd = plan["stage_declaration"]
+    assert sd["primary_study_status"] == "PUBLICATION_FINAL_SEALED_TEST_COMPLETE"
+    assert sd["q8_evaluated_when_this_plan_was_frozen"] is False
+    assert sd["q8_result_observed_when_this_plan_was_frozen"] is False
+    assert sd["k1_checkpoints_already_fixed"] is True
+    assert sd["test_membership_unchanged"] is True
+    assert sd["q8_specific_tuning_permitted"] is False
+    assert sd["retroactive_inclusion_in_primary_claim_permitted"] is False
+
+    barrier = json.loads((Q8 / "Q8_EVALUATION_BARRIER.json").read_text())
+    assert barrier["status"] == "FROZEN_BEFORE_Q8_EVALUATION"
+    for flag in ("q8_evaluated_before_freeze", "q8_result_observed_before_freeze",
+                 "test_membership_changed", "k1_inference_rerun",
+                 "full_s1_inference_rerun", "q8_tuned_on_test"):
+        assert barrier[flag] is False, f"barrier declaration not sealed: {flag}"
+    # the barrier must still pin the plan it was frozen against
+    assert barrier["evaluation_plan_sha256"] == sha256_of(Q8 / "Q8_EVALUATION_PLAN.json")
+    assert barrier["model_table_sha256"] == sha256_of(Q8 / "Q8_FROZEN_MODEL_TABLE.csv")
+
+
+def test_q8_used_the_historical_margin_and_procedure():
+    """The Q8 margin must come from frozen records, not from the driver's opinion."""
+    qspec = json.loads((REPO / "configs/lightweight_k1/quantization_spec.yaml").read_text())
+    sspec = json.loads((REPO / "configs/lightweight_k1/statistics_spec.yaml").read_text())
+    assert qspec["ni_margin"] == 0.01
+    assert "NI 0.01" in sspec["confirmatory_family_holm_m3"]["H3"]
+    assert "Q8(K1) vs K1" in sspec["confirmatory_family_holm_m3"]["H3"]
+    assert sspec["paired_unit"] == "fold x seed (9 cells)"
+    src = (REPO / "src/methodology_v2/compression/protocol.py").read_text()
+    assert "NI_MARGIN_PTQ = 0.01" in src
+
+    agg = json.loads((Q8 / "results/q8_aggregate_summary.json").read_text())
+    ni = agg["non_inferiority"]
+    assert ni["margin"] == 0.01
+    assert ni["defined_by_historical_protocol"] is True
+    assert ni["holm_family_applied"] is False, "Holm must not be reconstructed"
+    assert ni["primary_margin_does_not_apply"] == -0.02
+    res = ni["result"]
+    assert res["kind"] == "ni"
+    assert "superiority" not in res, "no superiority test is defined for Q8"
+    assert res["non_inferiority"]["h0"] == "mean(delta) <= -0.01"
+    assert res["non_inferiority"]["passes"] is True
+
+
+def test_q8_did_not_rerun_or_alter_the_primary_study():
+    """Q8 must reuse frozen K1 results and leave every primary artifact intact."""
+    plan = json.loads((Q8 / "Q8_EVALUATION_PLAN.json").read_text())
+    for rel, want in plan["evaluation"]["k1_reference_artifacts"].items():
+        assert sha256_of(FINAL_TEST / rel) == want, f"frozen K1 artifact changed: {rel}"
+    for key, rec in plan["evaluation"]["test_membership"]["global_fold_manifests"].items():
+        assert sha256_of(REPO / rec["path"]) == rec["sha256"], f"TEST membership changed: {key}"
+    assert plan["evaluation"]["k1_reference"].startswith("the ALREADY-FROZEN")
+
+    # every pinned source, including the quantization implementation, unmodified
+    for rel, want in plan["source_hashes"].items():
+        assert sha256_of(REPO / rel) == want, f"pinned source changed: {rel}"
+
+    # Q8 must be built from selected checkpoints only
+    with (Q8 / "Q8_FROZEN_MODEL_TABLE.csv").open() as fh:
+        rows = list(csv.DictReader(fh))
+    assert len(rows) == 9
+    assert {(int(r["fold"]), int(r["seed"])) for r in rows} == {(f, s) for f in FOLDS for s in SEEDS}
+    for r in rows:
+        assert r["k1_checkpoint"].endswith("best.pt"), "last.pt is forbidden"
+    # and they must be the same checkpoints the primary study sealed
+    with (PREREG / "PUBLICATION_FROZEN_MODEL_TABLE.csv").open() as fh:
+        prim = {(int(r["fold"]), int(r["seed"])): r["k1_sha256"] for r in csv.DictReader(fh)}
+    for r in rows:
+        assert prim[(int(r["fold"]), int(r["seed"]))] == r["k1_sha256"]
+
+
+def test_q8_calibration_was_none_and_test_was_never_used_for_tuning():
+    conv = json.loads((Q8 / "results/q8_conversion_manifest.json").read_text())
+    assert conv["calibration"] == "none"
+    assert len(conv["cells"]) == 9
+    for c in conv["cells"]:
+        assert c["calibration"] == "none"
+        assert c["n_scale_tensors"] > 0
+        # the denylist must never be quantized
+        for name in c["int8_modules"]:
+            assert "dt_proj" not in name and "conv1d" not in name and not name.endswith("norm")
+        assert any("dt_proj" in n for n in c["fp32_modules"])
+        assert any("conv1d" in n for n in c["fp32_modules"])
+    agree = json.loads((Q8 / "results/q8_sim_vs_cpu_dynamic_agreement.json").read_text())
+    assert "VALIDATION only" in agree["scope"]
+
+
+def test_q8_makes_no_int8_gpu_claim():
+    probe = json.loads((Q8 / "results/q8_gpu_probe.json").read_text())
+    assert probe["true_int8_cuda"] is False
+    report = (Q8 / "Q8_FINAL_REPORT.md").read_text()
+    readme = (REPO / "README.md").read_text()
+    for doc, label in ((report, "Q8 report"), (readme, "README")):
+        assert "no true INT8" in doc.lower() or "no true int8" in doc.lower(), label
+    # no GPU latency number may be presented for Q8
+    assert "not reported" in report
+    mem = json.loads((Q8 / "results/q8_memory_results.json").read_text())
+    assert mem["headline_eligible"] is False
+
+
+def test_q8_report_agrees_with_result_files():
+    agg = json.loads((Q8 / "results/q8_aggregate_summary.json").read_text())
+    sz = json.loads((Q8 / "results/q8_size_results.json").read_text())
+    report = (Q8 / "Q8_FINAL_REPORT.md").read_text()
+    readme = (REPO / "README.md").read_text()
+
+    assert f"{agg['macro_4_macro_f1']['q8']['mean']:.6f}" in report
+    assert "0.001953125" in report and "0.001953125" in readme
+    assert f"{sz['n_params_total_true']:,}" in report
+    # the parameter count must be stated as unchanged
+    assert "does not change the parameter count" in report
+    assert sz["n_params_int8"] + sz["n_params_fp32"] == sz["n_params_total_true"]
+    # nine matched cells, delta consistent
+    with (Q8 / "results/q8_matched_cells.csv").open() as fh:
+        cells = list(csv.DictReader(fh))
+    assert len(cells) == 9
+    for c in cells:
+        d = float(c["q8_macro_4_f1"]) - float(c["k1_macro_4_f1"])
+        assert abs(d - float(c["delta_f1"])) < 1e-12
+
+
+def test_documentation_separates_primary_study_from_q8_extension():
+    readme = (REPO / "README.md").read_text()
+    results = (REPO / "docs/RESULTS.md").read_text()
+    protocol = (REPO / "docs/EXPERIMENT_PROTOCOL.md").read_text()
+    for doc, label in ((readme, "README"), (results, "docs/RESULTS.md"), (protocol, "docs/EXPERIMENT_PROTOCOL.md")):
+        low = doc.lower()
+        assert "secondary" in low, f"{label} does not mark Q8 as secondary"
+        assert "primary" in low, f"{label} does not name the primary study"
+    # the primary margin must never be attached to Q8
+    assert "-0.01" in results or "\u22120.01" in results
+    assert "does not apply to Q8" in results or "does not apply" in results

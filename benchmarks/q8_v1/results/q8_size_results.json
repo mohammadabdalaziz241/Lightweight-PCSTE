@@ -1,0 +1,31 @@
+{
+ "representative_cell": {
+  "fold": 1,
+  "seed": 42
+ },
+ "selection_rule": "same deterministic cell as lightweight_pcste_efficiency_v1 (lowest fold, then lowest seed)",
+ "k1_checkpoint_sha256": "10770c5359337cae6e8f82665a3533b87548fa7f57fad42c5d4d6ba2f9952c5b",
+ "method": "actual torch.save bytes of a state-dict-only payload; never an estimate",
+ "parameter_count_note": "Q8 does NOT change the parameter count (1,379,813 for encoder + 4 heads). Only the storage precision of allowlisted Linear weights changes.",
+ "n_params_int8": 1322816,
+ "fraction_params_int8": 0.958692228584598,
+ "n_scale_values": 5061,
+ "k1_fp32_state_dict_bytes": 5541832,
+ "k1_fp32_state_dict_bytes_efficiency_v1": 5542468,
+ "q8_compact_int8_state_bytes": 1600387,
+ "q8_theoretical_weight_bytes": 1567700,
+ "cpu_dynamic_packed_state_bytes": 1681909,
+ "cpu_dynamic_engine": "fbgemm",
+ "cpu_dynamic_n_linears": 23,
+ "full_s1_fp32_state_dict_bytes": 9578353,
+ "reduction_q8_vs_k1_fp32": 0.7112169766243366,
+ "reduction_q8_vs_full_s1_fp32": 0.832916264414143,
+ "ratio_k1_fp32_over_q8": 3.4628074334520336,
+ "ratio_full_s1_over_q8": 5.9850229975624645,
+ "separation_rule": "the packed torch.ao artifact carries runtime packing/observer overhead and is reported SEPARATELY from the compact int8 state and from the theoretical weight bytes; the three are never mixed into one number",
+ "max_weight_abs_err": 0.0010076388716697693,
+ "n_params_total_true": 1379813,
+ "accounting_note": "Counts are taken directly from the model. int8 = the weights of the 23 allowlisted Linear modules (1,322,816); fp32 = every remaining parameter (56,997), which includes the biases of those same Linears plus dt_proj, A_log, D, conv1d, all LayerNorms and stem.conv. The historical apply_q8_simulated n_int8_params/n_fp32_params counters are not used for this table: they omit quantized-module biases and include 16 buffer values, so they do not sum to the parameter count. Q8 does not change the parameter count.",
+ "n_params_fp32": 56997,
+ "n_buffers": 16
+}

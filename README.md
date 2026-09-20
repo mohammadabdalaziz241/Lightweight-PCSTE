@@ -16,7 +16,8 @@ K1 uses **one shared 1,375,953-parameter encoder** across CWRU, JNU, HIT, and Ma
 - **The final sealed publication TEST is complete** under protocol `lightweight_pcste_final_test_v1`, status `PUBLICATION_FINAL_SEALED_TEST_COMPLETE`.
 - Checkpoint selection used **validation only** (maximum validation Macro-Domain F1, strict improvement, earliest-epoch tie retention, no early stopping). No TEST metric entered training or selection.
 - **TEST remained sealed** until all eighteen checkpoints *and* the publication evaluation plan were frozen and externally hash-pinned. TEST was then executed exactly once under that frozen plan.
-- **Efficiency benchmarking is complete** under `lightweight_pcste_efficiency_v1` (see below). The optional Q8 quantization extension has **not** been run.
+- **Efficiency benchmarking is complete** under `lightweight_pcste_efficiency_v1` (see below).
+- **A secondary Q8 deployment extension is complete** under `lightweight_pcste_q8_v1`. It was frozen *after* the primary study and evaluated afterwards; it is **not** part of the original sealed Full-S1-vs-K1 comparison.
 
 ## Design
 
@@ -99,7 +100,32 @@ Latency figures are batch-1 medians aggregated as the equal-domain mean of the f
 
 Full detail: [`benchmarks/efficiency_v1/EFFICIENCY_FINAL_REPORT.md`](benchmarks/efficiency_v1/EFFICIENCY_FINAL_REPORT.md).
 
-The optional Q8 quantization arm remains a separate, not-yet-executed decision.
+## Secondary extension — Q8(K1) deployment quantization
+
+> **Stage separation.** Everything above is the **primary study**: a pre-registered, sealed-TEST, confirmatory non-inferiority comparison of Full-S1 vs K1 at margin −0.02. What follows is a **secondary extension**, frozen only after that study and its efficiency benchmark were complete. Q8 was never part of the sealed comparison, and nothing here changes the primary claim.
+
+Q8 is not a trained model. It is derived deterministically from each already-frozen K1 checkpoint by the historical Part-6 recipe: per-output-channel symmetric int8 weights on 23 allowlisted `nn.Linear` modules, **no calibration**, with `dt_proj`, `A_log`, `D`, `conv1d`, all LayerNorms, `stem.conv` and the selective-scan path retained in FP32.
+
+| Metric | K1 FP32 | Q8(K1) | Change |
+|---|---:|---:|---:|
+| Macro-4 Macro-F1 | 0.955334 ± 0.018393 | 0.955334 ± 0.018405 | −0.0000009 ± 0.0001101 |
+| Macro-4 Macro-AUC | 0.996398 ± 0.002367 | 0.996395 ± 0.002376 | −0.0000031 ± 0.0000156 |
+| Stored model size | 5.285 MiB | **1.526 MiB** | −71.12% (3.46×) |
+| CPU batch-1 latency (model-only) | 31.046 ms | 28.647 ms | 1.084× |
+| CPU batch-32 throughput | 26.56 win/s | 27.34 win/s | 1.029× |
+| Parameters | 1,379,813 | 1,379,813 | unchanged |
+
+Six of the nine cells are bit-identical to K1. The **historically pre-defined** non-inferiority test (margin −0.01, from `quantization_spec.yaml` and `NI_MARGIN_PTQ`; exact one-sided sign-flip on margin-shifted deltas over the nine fold×seed cells) is **SATISFIED**, exact p = `0.001953125`. Holm adjustment from the historical 3-hypothesis family is **not** applied — that family is not executable — so this is a standalone secondary contrast with no family-wise error control.
+
+Relative to Full-S1, Q8 is **83.29% smaller (5.99×)**.
+
+**Three limits stated plainly:**
+
+1. **No true INT8 GPU path exists** in the preserved implementation — `quantized::linear_dynamic` has no CUDA backend, and the accuracy representation dequantises to FP32. No GPU latency or GPU memory figure is reported for Q8.
+2. **The CPU gain is modest** (≈8% at batch 1), consistent with the frozen historical note that weight-only int8 cannot speed the FP32 sequential scan that dominates runtime.
+3. **The evaluated representation and the deployed CPU artifact are not numerically identical.** TEST accuracy is evaluated on the weight-only `sim` representation; the deployed `cpu_dynamic` artifact also quantizes activations and agrees with `sim` on 98.63% of validation windows (95.0% on MaFaulDa). The non-inferiority result covers `sim`, **not** `cpu_dynamic`.
+
+Full detail: [`benchmarks/q8_v1/Q8_FINAL_REPORT.md`](benchmarks/q8_v1/Q8_FINAL_REPORT.md).
 
 ## Layout
 
@@ -116,6 +142,7 @@ The optional Q8 quantization arm remains a separate, not-yet-executed decision.
 | `results/lightweight_k1/` | Per-cell validation-stage summaries (9 cells, no checkpoints) |
 | `results/final_test/publication_final_test_v1/` | Sealed final TEST results and per-model class-level reports |
 | `benchmarks/efficiency_v1/` | Frozen efficiency benchmark: plan, driver, results, final report |
+| `benchmarks/q8_v1/` | Secondary Q8 extension: plan, barrier, driver, results, final report |
 | `docs/` | Protocol, reproducibility, results, artifact policy, inventory |
 | `FROZEN_ARTIFACT_HASHES.sha256` | SHA256 manifest of every frozen artifact tracked here |
 
