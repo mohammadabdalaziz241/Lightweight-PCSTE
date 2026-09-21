@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\caption{Qualitative positioning against representative related work. A check mark indicates that the cited work explicitly addresses the corresponding dimension; the table is not an accuracy leaderboard.}
+\label{tab:related_work}
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccl}
+\toprule
+Work & Reusable / multi-dataset & Mamba/SSM & Structural compression & KD & Multi-teacher & Quantization & Physical edge & Main distinction \\
+\midrule
+FaultFormer \citep{Zhou2024FaultFormer} & \checkmark & -- & -- & -- & -- & -- & -- & SSL/adaptation, not deployment compression \\
+BearingFM \citep{Lai2024BearingFM} & \checkmark & -- & -- & -- & -- & -- & concept & Foundation-style bearing representation \\
+RmGPT \citep{Wang2025RmGPT} & \checkmark & -- & -- & -- & -- & -- & -- & Unified diagnosis/prognosis model \\
+VibFM \citep{Mannone2026VibFM} & \checkmark & -- & -- & -- & -- & -- & -- & 16-dataset masked spectrogram pretraining \\
+MD-BiMamba \citep{Wang2025MDBiMamba} & -- & \checkmark & -- & -- & -- & -- & -- & Bidirectional Mamba diagnosis \\
+VibrMamba \citep{Yi2025VibrMamba} & multi-task & \checkmark & lightweight design & -- & -- & -- & -- & Lightweight Mamba designed directly \\
+DTCP-MAKD \citep{Zhong2024DTCPMAKD} & -- & -- & \checkmark & \checkmark & assistants & -- & -- & Channel pruning + teacher assistants \\
+BFD-KD \citep{Sun2026BFDKD} & -- & -- & lightweight student & \checkmark & \checkmark & -- & -- & Multi-teacher rolling-bearing KD \\
+BearingPGA-Net \citep{Liao2024BearingPGANet} & -- & -- & compact student & \checkmark & -- & \checkmark & \checkmark & KD + quantization + FPGA \\
+\textbf{PC-STE/K1 (this work)} & \checkmark & \checkmark & \checkmark & \checkmark & seed ensemble & Q8 secondary & -- & Shared encoder + direction reduction + paired retention test \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

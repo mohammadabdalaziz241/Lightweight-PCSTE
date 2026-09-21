@@ -1,0 +1,109 @@
+diff -ruN a/manuscript/main.tex b/manuscript/main.tex
+--- a/manuscript/main.tex	2026-09-21 12:58:12.926865870 +0100
++++ b/manuscript/main.tex	2026-09-21 13:01:37.622573000 +0100
+@@ -11,7 +11,6 @@
+ \usepackage{tabularx}
+ \usepackage{array}
+ \usepackage{amsmath,amssymb}
+-\usepackage{siunitx}
+ \usepackage{microtype}
+ \usepackage{enumitem}
+ \usepackage{hyperref}
+@@ -63,13 +62,13 @@
+ \input{sections/05_conclusion}
+ 
+ \section*{Author Contributions}
+-\textbf{Mohammad Abdalaziz:}\\
+-\textbf{Erick Giovani Sperandio Nascimento:} \\
+-\textbf{Marco Aur\'elio da Silva Cruz:} \\
++\textit{[To be completed by the authors before submission. CRediT roles for Mohammad Abdalaziz, Erick Giovani Sperandio Nascimento, and Marco Aur\'elio da Silva Cruz are intentionally left blank here rather than assigned on the authors' behalf.]}
+ 
+ \section*{Data and Code Availability}
++\textit{[To be completed before submission: public repository URL and archival DOI. All four datasets are publicly available from the sources cited in Section~\ref{subsec:datasets}.]}
+ 
+ \section*{Declaration of Competing Interest}
++\textit{[To be completed by the authors before submission.]}
+ 
+ 
+ \bibliographystyle{plainnat}
+diff -ruN a/manuscript/sections/03_methodology.tex b/manuscript/sections/03_methodology.tex
+--- a/manuscript/sections/03_methodology.tex	2026-09-21 12:58:12.898866072 +0100
++++ b/manuscript/sections/03_methodology.tex	2026-09-21 13:01:37.616490000 +0100
+@@ -89,7 +89,7 @@
+ \end{equation}
+ A relational term aligns cross-band attention distributions between K1 and the same-cell Full-S1 teacher. Invalid or padded bands are excluded before the distributions are renormalized. The final registered loss adds this term with weight $\lambda_{\mathrm{rel}}=1.0$. Losses are first averaged over windows within each dataset and then averaged equally across datasets, ensuring that datasets with more windows do not dominate an optimization step.
+ 
+-K1 is trained for 50 epochs using the frozen AdamW recipe described above. The effective batch is 64 windows, organized as 16 windows per dataset. Checkpoint selection uses the maximum validation Macro-Domain F1 under strict improvement; exact ties retain the earlier epoch. There is no early stopping and no TEST-based model selection.
++K1 is trained for 50 epochs using the frozen AdamW recipe described above. The effective batch is 64 windows, organized as 16 windows per dataset. Checkpoint selection uses the maximum validation Macro-4 Macro-F1 (recorded in the frozen artifacts as \texttt{macro\_domain\_f1}) under strict improvement; exact ties retain the earlier epoch. There is no early stopping and no TEST-based model selection.
+ 
+ \subsection{Secondary Q8 Quantization Extension}
+ \label{subsec:q8}
+@@ -119,19 +119,19 @@
+   \Delta_i = F_{\mathrm{M4},i}^{\mathrm{K1}} - F_{\mathrm{M4},i}^{\mathrm{Full-S1}},
+   \qquad i=1,\ldots,9.
+ \end{equation}
+-Before final TEST evaluation, the acceptable loss margin was fixed at $m=0.02$. The non-inferiority hypothesis is
++Before final TEST evaluation, the largest acceptable Macro-F1 loss was fixed at $m=0.02$. The non-inferiority hypothesis is
+ \begin{equation}
+-  H_0:\mathbb{E}[\Delta]\leq -0.02, \qquad
+-  H_1:\mathbb{E}[\Delta]>-0.02.
++  H_0:\mathbb{E}[\Delta]\leq -m, \qquad
++  H_1:\mathbb{E}[\Delta]>-m, \qquad m=0.02.
+ \end{equation}
+-The exact one-sided test is performed by first shifting each paired difference by the margin, $\Delta_i'=\Delta_i+0.02$, then enumerating all $2^9=512$ sign-flip patterns. Non-inferiority passes only when the exact one-sided $p$-value is below 0.05 and the observed shifted mean is positive. A two-sided exact superiority test is reported only after the non-inferiority gate passes, and is treated as supportive secondary evidence rather than the primary study claim. Descriptive dispersion is the sample standard deviation across all nine cells.
++The exact one-sided test is performed by first shifting each paired difference by the margin, $\Delta_i'=\Delta_i+m$, then enumerating all $2^9=512$ sign-flip patterns. Non-inferiority passes only when the exact one-sided $p$-value is below 0.05 and the observed shifted mean is positive. A two-sided exact superiority test is reported only after the non-inferiority gate passes, and is treated as supportive secondary evidence rather than the primary study claim. Descriptive dispersion is the sample standard deviation across all nine cells.
+ 
+ For Q8, the paired unit is again fold--seed, but the historical quantization margin is $-0.01$ and the contrast is Q8 minus K1. The exact one-sided sign-flip procedure is reused without adding a superiority test. Because the broader historical multiple-hypothesis family was not executable in the publication extension, the Q8 contrast is reported as a standalone secondary analysis without family-wise multiplicity adjustment.
+ 
+ \subsection{Computational Efficiency Evaluation}
+ \label{subsec:efficiency_method}
+ 
+-Model complexity is characterized by encoder and complete-model parameter counts, standardized FP32 state-dictionary size, FLOPs per one-second window, batch-1 latency, batch-32 throughput, and GPU peak allocated memory. FLOPs combine a dense-operator count with an analytic selective-scan term; the same convention is applied to both Full-S1 and K1. Because CWRU uses a smaller native-12~kHz spectrogram grid than the historical mixed-rate implementation, the scan term uses the live final representation rather than the obsolete dissertation-era band count.
++Model complexity is characterized by encoder and complete-model parameter counts, standardized FP32 state-dictionary size, FLOPs per one-second window, batch-1 latency, batch-32 throughput, and GPU peak allocated memory. FLOPs combine a dense-operator count with an analytic selective-scan term; the same convention is applied to both Full-S1 and K1. Because CWRU uses a smaller native-12~kHz spectrogram grid than the historical mixed-rate implementation, the scan term uses the final publication representation rather than the superseded mixed-rate band count.
+ 
+ Runtime measurement uses one deterministically fixed representative pair, global fold 1 / seed 42, selected by the rule ``lowest fold, then lowest seed'' before any efficiency outcome was observed. The first validation window in frozen manifest order is used for each dataset, and the same inputs are supplied to both models. Measurements were obtained on an idle Intel Core i9-14900 host with an NVIDIA RTX 4000 Ada Generation GPU, PyTorch 2.12.0+cu130, and CUDA 13.0. CPU timing uses one thread.
+ 
+diff -ruN a/manuscript/sections/04_results_discussion.tex b/manuscript/sections/04_results_discussion.tex
+--- a/manuscript/sections/04_results_discussion.tex	2026-09-21 12:58:12.901866050 +0100
++++ b/manuscript/sections/04_results_discussion.tex	2026-09-21 13:01:37.610249000 +0100
+@@ -1,7 +1,7 @@
+ \section{Results and Discussion}
+ \label{sec:results}
+ 
+-The results are presented in the same order as the scientific question. First, the sealed matched TEST comparison establishes whether K1 retains Full-S1 diagnostic performance. Second, dataset-level behaviour is examined to identify where the aggregate difference arises. Third, the prespecified non-inferiority result is interpreted using the nine paired cells. Finally, structural efficiency and the secondary Q8 extension are considered to determine what is gained in deployment terms.
++The results are presented in the same order as the scientific question. First, the sealed matched TEST comparison establishes whether K1 retains Full-S1 diagnostic performance. Second, dataset-level behaviour is examined to identify where the aggregate difference arises, and the pooled confusion matrices localize it to individual classes. Third, the prespecified non-inferiority result is interpreted using the nine paired cells. Structural efficiency and the secondary Q8 extension are then considered to determine what is gained in deployment terms, before the work is positioned against related approaches and its limitations are stated.
+ 
+ \subsection{Full-S1 versus K1 Diagnostic Performance}
+ \label{subsec:main_results}
+@@ -15,7 +15,7 @@
+ 
+ The observed mean is higher for K1, but the study was designed as a non-inferiority experiment rather than a universal superiority claim. The result therefore supports the narrower conclusion that substantial structural reduction was achieved without an unacceptable aggregate performance loss. The positive point estimate and the gated superiority test are useful additional evidence, but they do not imply that K1 must outperform Full-S1 for every dataset, fold, seed, or future operating condition.
+ 
+-\subsection{Dataset-Level and Class-Level Performance}
++\subsection{Dataset-Level Performance}
+ \label{subsec:dataset_results}
+ 
+ \input{tables/dataset_results}
+@@ -114,7 +114,7 @@
+ 
+ The principal Q8 benefit is storage. The standardized K1 state decreases from 5.285~MiB to 1.526~MiB, a $71.12\%$ reduction or $3.46\times$ compression relative to K1. Relative to Full-S1, the Q8 state is $83.29\%$ smaller, corresponding to approximately $5.99\times$ lower stored size. In contrast, runtime improvement on the real CPU dynamic-quantization backend is modest: model-only batch-1 latency improves from 31.046 to 28.647~ms ($1.084\times$), and batch-32 throughput from 26.56 to 27.34 windows/s ($1.029\times$). This difference between storage and runtime is expected because the selective-scan recurrence and several sensitive modules remain FP32.
+ 
+-Two boundaries are essential when interpreting Q8. First, the preserved implementation does not offer a true INT8 CUDA path. Timing the simulated representation on the GPU would therefore measure FP32 arithmetic on dequantized weights and would not constitute an INT8 acceleration result; no such claim is made. Second, the TEST accuracy evaluation applies to \texttt{sim}, whereas the CPU deployment model uses dynamic activation quantization in addition to int8 weights. On validation data, these two representations agree on 98.63\% of top-1 predictions in the equal-domain summary, with lower agreement on MaFaulDa. Consequently, the formal Q8 non-inferiority result does not automatically transfer to the deployed \texttt{cpu\_dynamic} artifact. A future pre-registered evaluation of the exact deployed representation would be required to make that stronger claim.
++Two boundaries are essential when interpreting Q8. First, the preserved implementation does not offer a true INT8 CUDA path. Timing the simulated representation on the GPU would therefore measure FP32 arithmetic on dequantized weights and would not constitute an INT8 acceleration result; no such claim is made. Second, the TEST accuracy evaluation applies to \texttt{sim}, whereas the CPU deployment model uses dynamic activation quantization in addition to int8 weights. On validation data, these two representations agree on 98.63\% of top-1 predictions in the equal-domain summary, but agreement falls to 95.0\% on MaFaulDa, where the maximum absolute probability difference reaches 0.49. Consequently, the formal Q8 non-inferiority result does not automatically transfer to the deployed \texttt{cpu\_dynamic} artifact. A future pre-registered evaluation of the exact deployed representation would be required to make that stronger claim.
+ 
+ Taken together, the three-stage result distinguishes two mechanisms. Structural compression from Full-S1 to K1 delivers most of the compute and latency reduction, whereas post-training Q8 contributes mainly a further storage reduction. This separation is useful for deployment decisions because it avoids treating weight precision and architecture size as interchangeable sources of efficiency.
+ 
+diff -ruN a/manuscript/tables/datasets_protocol.tex b/manuscript/tables/datasets_protocol.tex
+--- a/manuscript/tables/datasets_protocol.tex	2026-09-21 12:58:12.921865906 +0100
++++ b/manuscript/tables/datasets_protocol.tex	2026-09-21 13:02:52.098589000 +0100
+@@ -3,7 +3,9 @@
+ \caption{Datasets and frozen evaluation principles used in the publication study. The protocols are designed to prevent direct window leakage but do not establish unseen-machine generalization.}
+ \label{tab:datasets}
+ \small
+-\begin{tabularx}{\textwidth}{l c c X X}
++% ragged-right X columns: justified narrow cells produced visibly stretched
++% inter-word gaps in the MaFaulDa row.
++\begin{tabularx}{\textwidth}{l c c >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+ \toprule
+ Dataset & Classes & Native rate & Split principle & Scope of claim \\
+ \midrule

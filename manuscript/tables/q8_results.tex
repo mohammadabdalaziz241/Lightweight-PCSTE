@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Secondary Q8 deployment extension. The predictive non-inferiority result applies to the weight-only simulated Q8 representation, not to the CPU-dynamic deployment artifact.}
+\label{tab:q8}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Metric & K1 FP32 & Q8(K1) & Change \\
+\midrule
+Macro-4 Macro-F1 & $0.955334 \pm 0.018393$ & $0.955334 \pm 0.018405$ & $-0.0000009 \pm 0.0001101$ \\
+Macro-4 Macro-AUC & $0.996398 \pm 0.002367$ & $0.996395 \pm 0.002376$ & $-0.0000031 \pm 0.0000156$ \\
+Stored model size & 5.285 MiB & 1.526 MiB & $-71.12\%$ \\
+CPU b1 model-only latency & 31.046 ms & 28.647 ms & 1.084$\times$ \\
+CPU b32 throughput & 26.56 win/s & 27.34 win/s & 1.029$\times$ \\
+Parameters & 1,379,813 & 1,379,813 & unchanged \\
+\bottomrule
+\end{tabular}
+\end{table}

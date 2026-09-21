@@ -1,0 +1,11 @@
+true\pred,normal,imbalance,horizontal-misalignment,vertical-misalignment,underhang/ball_fault,underhang/cage_fault,underhang/outer_race,overhang/ball_fault,overhang/cage_fault,overhang/outer_race
+normal,310,0,1,0,0,0,0,0,0,4
+imbalance,18,2013,53,15,1,0,0,0,0,0
+horizontal-misalignment,66,182,1784,78,0,73,14,0,0,8
+vertical-misalignment,0,0,0,2250,0,0,0,0,0,0
+underhang/ball_fault,0,0,0,0,2040,0,0,0,0,0
+underhang/cage_fault,0,21,0,0,1,2059,4,0,0,0
+underhang/outer_race,0,0,0,0,6,9,2010,0,0,0
+overhang/ball_fault,0,0,0,0,1,0,0,1295,0,24
+overhang/cage_fault,0,0,0,0,0,0,0,0,1845,240
+overhang/outer_race,0,0,0,0,0,0,0,0,363,1722

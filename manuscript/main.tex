@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+
+% -----------------------------------------------------------------------------
+% Publisher-neutral manuscript shell. Replace the document class only after the
+% target journal has been selected; section files are deliberately modular.
+% -----------------------------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{natbib}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\newcommand{\pcste}{PC-STE}
+\newcommand{\fulls}{Full-S1}
+\newcommand{\kone}{K1}
+\newcommand{\qeight}{Q8(K1)}
+\newcommand{\macrofour}{Macro-4}
+
+\title{\textbf{Lightweight PC-STE: Performance-Preserving Compression of a Shared Multi-Dataset State-Space Encoder for Rotating-Machinery Fault Diagnosis}}
+
+\author{
+Mohammad Abdalaziz$^{1}$ \and
+Erick Giovani Sperandio Nascimento$^{1}$ \and
+Marco Aur\'elio da Silva Cruz$^{1}$
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+$^{1}$\textit{University of Surrey, Guildford, United Kingdom.}\\
+\textit{Corresponding author to be designated before submission.}
+\end{center}
+
+\begin{abstract}
+Reusable vibration encoders can reduce the need to develop a separate diagnostic model for every machinery dataset, but their computational cost can hinder deployment. This work investigates whether a shared multi-dataset selective-state-space encoder can be compressed without an unacceptable loss of diagnostic performance. The reference model, Full-S1, is a self-supervised PC-STE encoder with four bidirectional Mamba layers and dataset-specific heads for CWRU, JNU, HIT, and MaFaulDa. A lightweight student, K1, is structurally derived by retaining the four temporal stages while removing the reverse selective-scan path. K1 is distilled from a same-fold ensemble of three independently seeded Full-S1 teachers. Evaluation uses three global folds and three seeds, yielding nine matched teacher--student cells, with a prespecified $-0.02$ Macro-F1 non-inferiority margin. K1 increases equal-domain Macro-F1 from $0.934644\pm0.023258$ to $0.955334\pm0.018393$ and satisfies the predefined non-inferiority criterion (exact one-sided sign-flip $p=0.001953125$). Structurally, K1 reduces encoder parameters by $42.24\%$, serialized FP32 size by $42.14\%$, and computation by $45.38\%$. Corrected deployment measurements show $1.874\times$ CPU and $1.633\times$ GPU end-to-end batch-1 speed-ups and approximately $2.0\times$ GPU batch-32 throughput. A secondary post-training Q8 extension preserves the simulated-Q8 predictive result while reducing stored model size by a further $71.12\%$ relative to K1 FP32. The results show that directionality-specific state-space compression combined with ensemble distillation can substantially reduce inference cost while retaining the diagnostic performance of a shared vibration representation.
+\end{abstract}
+
+\noindent\textbf{Keywords:} predictive maintenance; rotating machinery; fault diagnosis; state-space models; Mamba; knowledge distillation; model compression; quantization
+
+\input{sections/01_introduction}
+\input{sections/02_review_of_literature}
+\input{sections/03_methodology}
+\input{sections/04_results_discussion}
+\input{sections/05_conclusion}
+
+\section*{Author Contributions}
+\textit{Author contributions will be finalized by all authors before submission.}
+
+\section*{Data and Code Availability}
+\textit{The code, frozen evaluation artifacts, and reproducibility materials are
+maintained in the project repository, which is currently private. The public release
+and its persistent archive identifier will be finalized before submission. The four
+vibration datasets are obtained from their original providers, cited in
+Section~\ref{subsec:datasets}, and are not redistributed here.}
+
+\section*{Declaration of Competing Interest}
+\textit{Competing-interest declarations will be confirmed by all authors before
+submission.}
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

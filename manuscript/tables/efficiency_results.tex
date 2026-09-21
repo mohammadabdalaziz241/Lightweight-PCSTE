@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Authoritative publication efficiency comparison. Latency/throughput values use the corrected inference-mode benchmark.}
+\label{tab:efficiency}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Metric & Full-S1 & K1 & Reduction / speed-up \\
+\midrule
+Encoder parameters & 2,382,033 & 1,375,953 & 42.24\% \\
+FP32 state-dict size & 9.135 MiB & 5.286 MiB & 42.14\% \\
+Macro-4 computation & 2.6067 GFLOP & 1.4236 GFLOP & 45.38\% \\
+CPU b1 model-only & 54.709 ms & 28.560 ms & 1.916$\times$ \\
+CPU b1 end-to-end & 55.699 ms & 29.725 ms & 1.874$\times$ \\
+GPU b1 model-only & 7.711 ms & 4.164 ms & 1.852$\times$ \\
+GPU b1 end-to-end & 9.577 ms & 5.864 ms & 1.633$\times$ \\
+GPU b32 throughput & 392.85 win/s & 785.47 win/s & 1.999$\times$ \\
+CPU b32 throughput & 13.84 win/s & 26.27 win/s & 1.897$\times$ \\
+GPU peak memory & 29.466 MiB & 24.823 MiB & 15.76\% \\
+\bottomrule
+\end{tabular}
+\end{table}

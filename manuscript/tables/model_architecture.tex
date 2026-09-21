@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\caption{Full-S1 and K1 architecture summary. The student preserves model width and temporal depth while removing the reverse state-space direction.}
+\label{tab:model_architecture}
+\small
+\begin{tabular}{lcc}
+\toprule
+Property & Full-S1 & K1 \\
+\midrule
+Shared embedding width & 192 & 192 \\
+Temporal stages & 4 & 4 \\
+Directions per stage & 2 (forward + backward) & 1 (forward) \\
+Mamba inner width & 384 & 384 \\
+State dimension & 16 & 16 \\
+Patch size (frequency $\times$ time) & $16\times8$ & $16\times8$ \\
+Dataset-specific heads & 4 & 4 \\
+Encoder parameters & 2,382,033 & 1,375,953 \\
+Complete-model parameters & 2,385,893 & 1,379,813 \\
+\bottomrule
+\end{tabular}
+\end{table}

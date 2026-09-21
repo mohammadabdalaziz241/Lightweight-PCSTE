@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Datasets and frozen evaluation principles used in the publication study. The protocols are designed to prevent direct window leakage but do not establish unseen-machine generalization.}
+\label{tab:datasets}
+\small
+% ragged-right X columns: justified narrow cells produced visibly stretched
+% inter-word gaps in the MaFaulDa row.
+\begin{tabularx}{\textwidth}{l c c >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+Dataset & Classes & Native rate & Split principle & Scope of claim \\
+\midrule
+CWRU & 3 & 12 kHz & TRAIN: 0+1 hp; validation: 2 hp; TEST: 3 hp & Cross-load on the same rig, not cross-machine \\
+JNU & 4 & 50 kHz & Guarded temporal split within frozen recordings & Held-out windows/segments, not unseen-machine \\
+HIT & 3 & 25 kHz & Frozen logical-recording split & Held-out recordings under the registered protocol \\
+MaFaulDa & 10 & 50 kHz & Grouped by configuration/severity & Held-out grouped conditions on the same simulator \\
+\bottomrule
+\end{tabularx}
+\end{table}
