@@ -57,3 +57,12 @@ id_ed25519*
 *.tar
 *.tar.gz
 *.tgz
+
+# LaTeX build products (main.pdf is kept: it is the reviewable deliverable)
+*.aux
+*.bbl
+*.blg
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
