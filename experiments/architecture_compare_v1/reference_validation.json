@@ -1,0 +1,197 @@
+{
+  "repository": "mohammadabdalaziz241/Lightweight-PCSTE",
+  "source_commit": "d3e3bc932238a67f5221cd3baa95ac87f7bf5fa5",
+  "arm": "4x1",
+  "cells": [
+    {
+      "fold": 1,
+      "seed": 42,
+      "epochs": 50,
+      "source_path": "results/lightweight_k1/pcstev2_lightweight_v1_k1_gf1_s42/epoch_metrics.jsonl",
+      "best_epoch": 23,
+      "best_val_macro_domain_f1": 0.9934071749256772,
+      "best_val_per_dataset_macro_f1": {
+        "CWRU": 1,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.9736286997027086
+      },
+      "final_val_macro_domain_f1": 0.9902109870753946,
+      "final_val_per_dataset_macro_f1": {
+        "CWRU": 0.9925040438710694,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.9683399044305091
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 1337,
+      "epochs": 50,
+      "source_path": "results/lightweight_k1/pcstev2_lightweight_v1_k1_gf1_s1337/epoch_metrics.jsonl",
+      "best_epoch": 25,
+      "best_val_macro_domain_f1": 0.9905436529191768,
+      "best_val_per_dataset_macro_f1": {
+        "CWRU": 1,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.962174611676707
+      },
+      "final_val_macro_domain_f1": 0.9895931688630547,
+      "final_val_per_dataset_macro_f1": {
+        "CWRU": 1,
+        "JNU": 1,
+        "HIT": 0.9970237502076067,
+        "MAFAULDA": 0.961348925244612
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 2026,
+      "epochs": 50,
+      "source_path": "results/lightweight_k1/pcstev2_lightweight_v1_k1_gf1_s2026/epoch_metrics.jsonl",
+      "best_epoch": 1,
+      "best_val_macro_domain_f1": 0.9886525380030676,
+      "best_val_per_dataset_macro_f1": {
+        "CWRU": 0.979825773919484,
+        "JNU": 1,
+        "HIT": 0.9970237502076067,
+        "MAFAULDA": 0.9777606278851797
+      },
+      "final_val_macro_domain_f1": 0.9836769335843843,
+      "final_val_per_dataset_macro_f1": {
+        "CWRU": 0.9610256410256409,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.9736820933118967
+      }
+    },
+    {
+      "fold": 2,
+      "seed": 42,
+      "epochs": 50,
+      "source_path": "results/lightweight_k1/pcstev2_lightweight_v1_k1_gf2_s42/epoch_metrics.jsonl",
+      "best_epoch": 11,
+      "best_val_macro_domain_f1": 0.9917302455105466,
+      "best_val_per_dataset_macro_f1": {
+        "CWRU": 1,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.9669209820421865
+      },
+      "final_val_macro_domain_f1": 0.9879120662359036,
+      "final_val_per_dataset_macro_f1": {
+        "CWRU": 1,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.951648264943614
+      }
+    },
+    {
+      "fold": 2,
+      "seed": 1337,
+      "epochs": 50,
+      "source_path": "results/lightweight_k1/pcstev2_lightweight_v1_k1_gf2_s1337/epoch_metrics.jsonl",
+      "best_epoch": 20,
+      "best_val_macro_domain_f1": 0.9841301559829307,
+      "best_val_per_dataset_macro_f1": {
+        "CWRU": 0.9962187926007742,
+        "JNU": 1,
+        "HIT": 0.9864204017297822,
+        "MAFAULDA": 0.9538814296011665
+      },
+      "final_val_macro_domain_f1": 0.978112648761216,
+      "final_val_per_dataset_macro_f1": {
+        "CWRU": 0.9924142611889648,
+        "JNU": 1,
+        "HIT": 0.9676767676767678,
+        "MAFAULDA": 0.952359566179131
+      }
+    },
+    {
+      "fold": 2,
+      "seed": 2026,
+      "epochs": 50,
+      "source_path": "results/lightweight_k1/pcstev2_lightweight_v1_k1_gf2_s2026/epoch_metrics.jsonl",
+      "best_epoch": 2,
+      "best_val_macro_domain_f1": 0.9785258384983887,
+      "best_val_per_dataset_macro_f1": {
+        "CWRU": 0.9610256410256409,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.9530777129679141
+      },
+      "final_val_macro_domain_f1": 0.9755401965234146,
+      "final_val_per_dataset_macro_f1": {
+        "CWRU": 0.9515327184892403,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.9506280676044181
+      }
+    },
+    {
+      "fold": 3,
+      "seed": 42,
+      "epochs": 50,
+      "source_path": "results/lightweight_k1/pcstev2_lightweight_v1_k1_gf3_s42/epoch_metrics.jsonl",
+      "best_epoch": 33,
+      "best_val_macro_domain_f1": 0.9870684656766702,
+      "best_val_per_dataset_macro_f1": {
+        "CWRU": 0.9962187926007742,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.9520550701059065
+      },
+      "final_val_macro_domain_f1": 0.9858638302990698,
+      "final_val_per_dataset_macro_f1": {
+        "CWRU": 0.9962187926007742,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.9472365285955048
+      }
+    },
+    {
+      "fold": 3,
+      "seed": 1337,
+      "epochs": 50,
+      "source_path": "results/lightweight_k1/pcstev2_lightweight_v1_k1_gf3_s1337/epoch_metrics.jsonl",
+      "best_epoch": 17,
+      "best_val_macro_domain_f1": 0.9714522759323951,
+      "best_val_per_dataset_macro_f1": {
+        "CWRU": 0.9952378522713744,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.8905712514582061
+      },
+      "final_val_macro_domain_f1": 0.9701619135350297,
+      "final_val_per_dataset_macro_f1": {
+        "CWRU": 0.9962187926007742,
+        "JNU": 1,
+        "HIT": 1,
+        "MAFAULDA": 0.8844288615393443
+      }
+    },
+    {
+      "fold": 3,
+      "seed": 2026,
+      "epochs": 50,
+      "source_path": "results/lightweight_k1/pcstev2_lightweight_v1_k1_gf3_s2026/epoch_metrics.jsonl",
+      "best_epoch": 7,
+      "best_val_macro_domain_f1": 0.987262678921944,
+      "best_val_per_dataset_macro_f1": {
+        "CWRU": 1,
+        "JNU": 1,
+        "HIT": 0.9940471444896223,
+        "MAFAULDA": 0.9550035711981536
+      },
+      "final_val_macro_domain_f1": 0.9859711461265749,
+      "final_val_per_dataset_macro_f1": {
+        "CWRU": 0.9962412336666766,
+        "JNU": 1,
+        "HIT": 0.9970237502076067,
+        "MAFAULDA": 0.9506196006320161
+      }
+    }
+  ]
+}
+
