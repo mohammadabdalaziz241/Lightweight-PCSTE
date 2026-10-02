@@ -1,0 +1,56 @@
+{
+  "study": "architecture_compare_v1",
+  "status": "PREPARED_NOT_EXECUTED",
+  "question": "Does retaining four forward-only temporal stages retain more validation performance than two bidirectional stages, before and after matched recovery training?",
+  "publication_source_commit": "d3e3bc932238a67f5221cd3baa95ac87f7bf5fa5",
+  "historical_evidence": {
+    "repository": "mohammadabdalaziz241/Foundation-Models-for-Industrial-Fault-Diagnosis-",
+    "commit": "c07107ab4a4c72907509e342ba3eb65dd4424709",
+    "path": "methodology_v2/part6_compression/half_student_decision.json",
+    "median_2x2": 0.5574894608254581,
+    "median_4x1": 0.6842917091323478,
+    "wins_4x1": 9,
+    "scope": "Historical teachers; training-free validation screening only, not the final publication teachers."
+  },
+  "folds": [1, 2, 3],
+  "seeds": [42, 1337, 2026],
+  "arms": {
+    "2x2": {"blocks": 2, "directions": 2, "retained_layers": [0, 2], "encoder_parameters": 1375185},
+    "4x1": {"blocks": 4, "directions": 1, "kept_direction": "fwd", "residual": "mean_of_remaining", "encoder_parameters": 1375953}
+  },
+  "recovery": {
+    "new_training_arm": "2x2",
+    "reference_arm": "existing frozen K1 4x1 validation logs",
+    "epochs": 50,
+    "effective_batch": 64,
+    "teacher_policy": "same-fold three-seed final-v1 S1 ensemble",
+    "initialization": "same-cell final-v1 S1 checkpoint, encoder and heads inherited",
+    "loss": "kd_ensemble+relational",
+    "temperature": 4.0,
+    "alpha": 0.5,
+    "relational_weight": 1.0,
+    "ensemble_rule": "mean_prob_at_T",
+    "optimizer_schedule": "unchanged original Part6Trainer",
+    "stream": "exact SHA-verified existing K1 batch stream",
+    "checkpoint_selection": "highest validation MacroDomainF1 after an epoch; strict improvement; earliest epoch on ties; epoch-zero screen is excluded",
+    "budget_scope": "matched optimization steps, not matched wall-clock training cost"
+  },
+  "analysis": {
+    "screen": "per-cell and per-dataset validation Macro-F1 for Full-S1, 2x2 and 4x1 before training",
+    "recovery": "paired 2x2-minus-4x1 best validation MacroDomainF1, per-dataset deltas, learning curves, and separately final-epoch validation results",
+    "aggregation": "all nine cells retained; equal-domain means; report mean, median, sample SD and win/tie/loss descriptively",
+    "inferential_test": null,
+    "no_automatic_winner": true
+  },
+  "test_policy": {
+    "new_test_inference": false,
+    "training_splits": ["train"],
+    "evaluation_splits": ["validation"],
+    "metadata_only": "The full frozen manifest is parsed to enforce split exclusion; TEST signal data are never loaded.",
+    "prior_results_known": true,
+    "interpretation": "Exploratory follow-up designed after publication TEST results were known; validation comparison cannot establish fresh held-out generalization."
+  },
+  "original_executor_sha256": "1f5d86a1c6b7f2b637ecdd6d61c279a0b86e9edb54bdbe0490d2a4b20fd62308",
+  "output_relative_path": "results/pcste_v2/architecture_compare_v1",
+  "runtime_benchmark": "Not included in this first runner; equal parameter and recurrent-work budgets do not imply equal latency. Measure both students on identical validation inputs before claiming a superior performance-cost trade-off."
+}
