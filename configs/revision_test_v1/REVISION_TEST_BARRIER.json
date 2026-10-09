@@ -1,0 +1,9 @@
+{
+ "driver_sha256": "f973c00d36e6dfefcd17c9150aa01b4b43905f05d57acb3e68ee9d764104d112",
+ "evaluation_plan_sha256": "8d1f4b15328061fa0019f5af0aca093c889ea327d92843b51e05c3780427baae",
+ "frozen_at_utc": "2026-10-09T17:44:15.873755+00:00",
+ "model_table_sha256": "606be0866a1dec3d9437b9ca394409f7bf0d06b2593ca7d9aef1733cb162f07d",
+ "protocol_identity": "lightweight_pcste_revision_ablation_test_v1",
+ "schema_version": "lightweight_pcste_revision_barrier.v1",
+ "status": "FROZEN_BEFORE_TEST"
+}
