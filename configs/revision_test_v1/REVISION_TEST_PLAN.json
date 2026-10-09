@@ -1,0 +1,225 @@
+{
+ "analyses": {
+  "A_ssl_full_scale": {
+   "contrasts": [
+    {
+     "a": "full_s1",
+     "b": "s0",
+     "endpoint": "macro_4_macro_f1",
+     "kind": "two_sided",
+     "name": "S1 vs S0 (Macro-4 F1)"
+    },
+    {
+     "a": "full_s1",
+     "b": "s0",
+     "endpoint": "macro_4_macro_auc",
+     "kind": "two_sided",
+     "name": "S1 vs S0 (Macro-4 AUC)"
+    }
+   ],
+   "deviation": "S0 gf3_s2026 is a retrained replacement (original lost); a sensitivity analysis on the 8 cells with original S0 checkpoints is reported",
+   "labels": "SSL_BENEFICIAL / SSL_COMPETITIVE (+/-0.01 band on both endpoints) / SSL_UNFAVOURABLE / SSL_INCONCLUSIVE_OR_MIXED, as defined in the frozen plan",
+   "multiplicity": "Holm over the two endpoints (m=2), alpha 0.05",
+   "question": "Does self-supervised pretraining improve the full model? (S1 vs S0)",
+   "status": "executes the frozen dissertation-era plan FINAL_STATISTICAL_PLAN.yaml (final_s0_s1.v1, FROZEN_BEFORE_TRAINING) without change"
+  },
+  "B_original_compression_contrasts": {
+   "contrasts": [
+    {
+     "a": "k1",
+     "b": "c_small",
+     "endpoint": "macro_4_macro_f1",
+     "kind": "two_sided",
+     "name": "K1 vs C_small"
+    },
+    {
+     "a": "k1",
+     "b": "k0",
+     "endpoint": "macro_4_macro_f1",
+     "kind": "two_sided",
+     "name": "K1 vs K0"
+    },
+    {
+     "a": "k0",
+     "b": "s0",
+     "endpoint": "macro_4_macro_f1",
+     "kind": "ni",
+     "margin": 0.02,
+     "name": "K0 vs S0"
+    }
+   ],
+   "deviation": "the original families also contained Q8 contrasts (reported separately in the published study / not executable); the three executable contrasts form one Holm family here",
+   "multiplicity": "Holm over the three contrasts (m=3), alpha 0.05",
+   "question": "Is K1's performance explained by the small architecture alone, and does SSL pretraining matter at the student level?",
+   "status": "pre-specified in the original compression protocol (statistics_spec.yaml: H2 K1 vs C_small; secondary K1 vs K0 and K0 vs S0) but not executed in the publication stage; executed here with the same tests"
+  },
+  "C_review_ablations": {
+   "contrasts": [
+    {
+     "a": "k1",
+     "b": "p1",
+     "endpoint": "macro_4_macro_f1",
+     "kind": "two_sided",
+     "name": "K1 vs P1 (no distillation)"
+    },
+    {
+     "a": "k1",
+     "b": "k1_2x2",
+     "endpoint": "macro_4_macro_f1",
+     "kind": "two_sided",
+     "name": "K1 vs K1-2x2 (depth instead of direction)"
+    },
+    {
+     "a": "k1",
+     "b": "k1_single",
+     "endpoint": "macro_4_macro_f1",
+     "kind": "two_sided",
+     "name": "K1 vs K1-single (one teacher)"
+    }
+   ],
+   "equivalence": "for each contrast also an exact TOST at +/-0.02 (the frozen architecture non-inferiority margin), reported descriptively",
+   "multiplicity": "Holm over the three contrasts (m=3), alpha 0.05",
+   "question": "Does distillation add value beyond initialisation; is removing a direction better than removing depth; is the three-teacher ensemble necessary?",
+   "status": "POST-HOC: specified in October 2026 in response to supervisor review, after the primary sealed TEST, before any ablation TEST access"
+  },
+  "descriptive": [
+   "all nine deltas, mean, median, SD (ddof=1), wins/ties/losses",
+   "per-dataset Macro-F1 deltas",
+   "Macro-3 excluding CWRU",
+   "Macro-4 AUC deltas (except where an AUC test is specified above)"
+  ]
+ },
+ "cells": [
+  [
+   1,
+   42
+  ],
+  [
+   1,
+   1337
+  ],
+  [
+   1,
+   2026
+  ],
+  [
+   2,
+   42
+  ],
+  [
+   2,
+   1337
+  ],
+  [
+   2,
+   2026
+  ],
+  [
+   3,
+   42
+  ],
+  [
+   3,
+   1337
+  ],
+  [
+   3,
+   2026
+  ]
+ ],
+ "created_at_utc": "2026-10-09T17:44:15.870818+00:00",
+ "execution": {
+  "authorization_token": "AUTHORIZE_LIGHTWEIGHT_PCSTE_REVISION_ABLATION_TEST_V1",
+  "order": "sealed families first (must reproduce), then new families",
+  "runs": "once"
+ },
+ "families": [
+  "full_s1",
+  "k1",
+  "s0",
+  "c_small",
+  "p1",
+  "k1_2x2",
+  "k1_single",
+  "k0"
+ ],
+ "model_table": {
+  "path": "analysis/pcste_v2_revision_v1/revision_test_v1/REVISION_TEST_MODEL_TABLE.csv",
+  "sha256": "606be0866a1dec3d9437b9ca394409f7bf0d06b2593ca7d9aef1733cb162f07d"
+ },
+ "protocol_identity": "lightweight_pcste_revision_ablation_test_v1",
+ "schema_version": "lightweight_pcste_revision_test_plan.v1",
+ "scientific_source_hashes": {
+  "analysis/pcste_v2_revision_v1/scripts/revision_test_driver.py": "f973c00d36e6dfefcd17c9150aa01b4b43905f05d57acb3e68ee9d764104d112",
+  "src/methodology_v2/compression/stats.py": "efb3d20c777e4ab0eda15491147950c77c816610d1f71ca0072f8dfa36e3cfcb",
+  "src/methodology_v2/compression/student.py": "ad990df666ed0ec63833b950d9c4607ad363e881610e5502177f18faebfe363e",
+  "src/methodology_v2/encoder/__init__.py": "0a42a525dca151b0081631ce20f1f53751c43dc0262f148646cb54395df0ddcb",
+  "src/methodology_v2/encoder/collate.py": "526b1d977892f274ce9318989b7b1028a46add805cf7b3352db944731ee85ce8",
+  "src/methodology_v2/encoder/coords.py": "dc22a1fc0e2722bba3c7cf2983c75fe76e6f3a74c7723a5fc7696a4323d8800f",
+  "src/methodology_v2/encoder/mixer.py": "d353fbda2b53d23c4a51e8f403899fdcf90c1ba86eee2a7818d30adca4b13b08",
+  "src/methodology_v2/encoder/patchify.py": "440455e592229d95aad194fc1170d6ca3c29d3a0e43f02f6bfc437147d7f939c",
+  "src/methodology_v2/encoder/pcste.py": "a79891f8f689d79757a79b5143d74b01a642aaf79e03200e0f4588b44d1d0ac4",
+  "src/methodology_v2/encoder/ssl_design.py": "3012bc7f5f35aa795190a49c863e3a313058859dcb054cc87c6b08321f5c04f2",
+  "src/methodology_v2/encoder/ssm.py": "d40672b80fa7d19e7f2e17bee3453848148621db93d7b1dd2be0b4615ae47401",
+  "src/methodology_v2/experiment/heads.py": "fd90680026ae2fd93bd95f83c24441013f76e3ed3b903fe57745a9a6e104c8a1",
+  "src/methodology_v2/experiment/metrics.py": "970480d1b30bfee871fcafedcfb7da669167ff7240c7f8d66d4258bfad6889d0",
+  "src/pcste_v2/metrics_v2.py": "dbfcdc290e2a13b7997d9f03e8385fd5ef19c9dc3591940a5d2242f491e14ccd",
+  "src/pcste_v2/model.py": "aaec4c10084609503cdd517b99c00bd6ed67e51dc0c3ae724d2ec78959d2f9e6",
+  "src/pcste_v2/representation.py": "7d68f6d8ad5e3a94769d914ab7c553eec5d918aa8e8d07da5a3a24115d0ce249"
+ },
+ "sealed_families_for_driver_check": [
+  "full_s1",
+  "k1"
+ ],
+ "sealed_report_hashes": {
+  "gf1_s1337_full_s1_report.json": "13a670e1c759e7d1b8c1cb638ac7f8121677769f5b649d80eeb77d65011e05a8",
+  "gf1_s1337_k1_report.json": "d7bc1537475de53efe235129b184506e1c324b971390e5d16ad73d72493982f1",
+  "gf1_s2026_full_s1_report.json": "0b53f5abf792a2102968ded1b886221d9d97707ae429b2cc0e1ef803c6930fe6",
+  "gf1_s2026_k1_report.json": "a166282e5f5f3fae1fa0e0765f9edc54bbf278db0b13083a40b74037b632bfa0",
+  "gf1_s42_full_s1_report.json": "5b48589b50b00ac922f731acbe217d92d051743686ba9bcdc918a965391d2d1b",
+  "gf1_s42_k1_report.json": "372988317d49c018429dc97ed5bcd1b2a62b3bbf56a40b6a3598611c86a283b5",
+  "gf2_s1337_full_s1_report.json": "8dd13d004d49695c0046aeb7be63268a7b457b8a0c966ff722fb76aafcde3d81",
+  "gf2_s1337_k1_report.json": "39cbdbd2174385590a7834b5d73abe06a0b5b035d221b4308f34770a298455b4",
+  "gf2_s2026_full_s1_report.json": "edc3c9adc1a6e042ad9f7a7060372298158e1ef702e1091f6d9aa78dc67c7b3f",
+  "gf2_s2026_k1_report.json": "7fbbb2e421d5d6d71acf108564d34840611515b916e5f63480822a86a4a8cb78",
+  "gf2_s42_full_s1_report.json": "7a27bec2aced2808d2ec0419d9f73a669b74eca8d6fc8614c01b06951cd4070a",
+  "gf2_s42_k1_report.json": "08d03359aa7024db8bf677c4b94ac55156e2246db83d19f616339e0e68b3bbfe",
+  "gf3_s1337_full_s1_report.json": "a957c41e9f09c952a17faf4ac9ce14112e9838f8d9ab246399f13062afb01069",
+  "gf3_s1337_k1_report.json": "3939f44ebcff506722cedec713e9c5d515341982d55292085d7995baaebb5641",
+  "gf3_s2026_full_s1_report.json": "c8c27477af68bd3dde53905e8259e4e0b5d405f2de5d469badc924e1bbb6b478",
+  "gf3_s2026_k1_report.json": "f21c5e5d21c3282a89562451d1443d47811317e81d95aa6920f94c0b73126607",
+  "gf3_s42_full_s1_report.json": "576a34a5c25819aca278eaf9a0b0e616f3a26b91aa388b44c56d424b5691e93a",
+  "gf3_s42_k1_report.json": "15e857aa2144e76471ff6a6e2701b510e1b60ab52c157833a5b210e905be7c18"
+ },
+ "sealed_reports_dir": "results/pcste_v2/lightweight_v1/publication_final_test_v1",
+ "statistics_module": "src/methodology_v2/compression/stats.py",
+ "test_access_at_freeze": {
+  "ablation_test_inference_performed": false,
+  "ablation_test_loader_invoked": false,
+  "ablation_test_metrics_computed": false
+ },
+ "test_membership": {
+  "cwru_freeze_index": {
+   "path": "pcste_v2/protocol/cwru_native12_load_v1/FREEZE_BUNDLE_INDEX.txt",
+   "sha256": "ddf4d32573c016b08da65b4f878ee0511a9bae4b15444626e1d932d24ebf39e4"
+  },
+  "global_fold_manifests": {
+   "GF1": {
+    "path": "pcste_v2/protocol/global_v2_final_s0s1_v1/global_v2_fold_1.csv",
+    "sha256": "456a69474a3763647b7e0ad13f5538e8f630d268347671ad617134b08e830d0a"
+   },
+   "GF2": {
+    "path": "pcste_v2/protocol/global_v2_final_s0s1_v1/global_v2_fold_2.csv",
+    "sha256": "74029f81a4b5617b13218812aa26568b0f3a268f8f6b450b5ab0293b17f71f93"
+   },
+   "GF3": {
+    "path": "pcste_v2/protocol/global_v2_final_s0s1_v1/global_v2_fold_3.csv",
+    "sha256": "fe622f3bc1146998d00fe070ea045f0790145b55a028effea52de00f94000f0e"
+   }
+  },
+  "global_hash_registry": {
+   "path": "pcste_v2/protocol/global_v2_final_s0s1_v1/global_v2_hashes.json",
+   "sha256": "4b6884b10d30b9b169502a9561e7eed8a0de24dcd29985d5bbca6f718e4165d0"
+  }
+ }
+}
