@@ -66,3 +66,6 @@ id_ed25519*
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+
+# Unpublished manuscript: kept local until submission
+manuscript/
